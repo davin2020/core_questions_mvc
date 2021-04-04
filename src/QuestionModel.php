@@ -2,7 +2,7 @@
 
 namespace App;
 
-// updated for CoreQuestions - but should i have a QuestionModel and a UserModeL??
+// updated for CoreQuestions - but should i have a QuestionModel and a UserModeL that are separte ??
 class QuestionModel
 {
     private $db;
