@@ -28,13 +28,25 @@ public function getQuestions()
         return $result;
     }
 
-//replaced from saveTask, takes 2 params
-public function saveUser(string $user, date $date_joined)
+public function getQuestionsAndPoints()
     {
-        $query = $this->db->prepare('INSERT INTO `users` (`name`, `date_joined`) VALUES (:pl_name, :pl_date_joined);');
-        $result = $query->execute(['pl_name' => $user, 'pl_date_joined' => $date_joined]);
+        // $queryGetQuestionPoints = 'SELECT rcq.q_id, `rcq.question`, `rcq.points_type`, `rcp.pointsA_not`, `rcp.pointsB_only`, `rcp.pointsC_sometimes`, `rcp.pointsD_often`, `rcp.pointsE_most` FROM `ref_core_questions` AS rcq INNER JOIN `ref_core_points` AS rcp ON `rcq.points_type` = `rcp.points_id`;';
+
+        $queryGetQuestionPoints = 'SELECT rcq.q_id, rcq.gp_order, rcq.question, rcq.points_type, rcp.pointsA_not, rcp.pointsB_only, rcp.pointsC_sometimes, rcp.pointsD_often, rcp.pointsE_most FROM ref_core_questions AS rcq INNER JOIN ref_core_points AS rcp ON rcq.points_type = rcp.points_id ORDER BY rcq.gp_order;';
+        $query = $this->db->prepare($queryGetQuestionPoints);
+        $query->execute();
+        $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion'); //wher is class Task or CoreQuestions actually defined??
+        $result = $query->fetchAll();
         return $result;
     }
+
+//replaced from saveTask, takes 2 params  -this should become SaveQuestion!
+// public function saveUser(string $user, date $date_joined)
+//     {
+//         $query = $this->db->prepare('INSERT INTO `users` (`name`, `date_joined`) VALUES (:pl_name, :pl_date_joined);');
+//         $result = $query->execute(['pl_name' => $user, 'pl_date_joined' => $date_joined]);
+//         return $result;
+//     }
 
 /*
     public function saveTask(string $task)
