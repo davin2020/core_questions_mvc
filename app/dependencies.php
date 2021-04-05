@@ -37,9 +37,10 @@ return function (ContainerBuilder $containerBuilder) {
     //new stuff for ToDos
     $container['HomepageController'] = DI\Factory('App\Factories\HomepageControllerFactory');
     $container['DBConnector'] = DI\Factory('App\DBConnector'); //technically a factoy
-
-    //updaetd for Questions instead of Tasks
+ 
+    //updaetd for Questions instead of Tasks - added UserModel too
     $container['QuestionModel'] = DI\Factory('App\Factories\QuestionModelFactory');
+    $container['UserModel'] = DI\Factory('App\Factories\UserModelFactory');
 
     $container['SaveUserController'] = DI\Factory('App\Factories\SaveUserControllerFactory');
 

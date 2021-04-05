@@ -2,7 +2,7 @@
 
 
 namespace App\Factories;
-// updated for CoreQuestions - but will need separate User Model, in addition to Task Model! 
+// updated for CoreQuestions wrt User - but will need separate User Model, in addition to Task Model! - now created UserModel
 
 use App\Controllers\SaveUserController;
 

@@ -6,16 +6,20 @@ namespace App\Controllers;
 
 class HomepageController
 {
+    private $userModel;
     private $questionModel;
     private $renderer;
+    //do i also need a UserModel here?
 
     /**
      * CompletedTasksPageController constructor.
      * @param $questionModel
      * @param $renderer
      */
-    public function __construct($questionModel, $renderer)
+    // need to update constructor btu where isit being called from, as need to pass in extra args!
+    public function __construct($userModel, $questionModel, $renderer)
     {
+        $this->userModel = $userModel;
         $this->questionModel = $questionModel;
         $this->renderer = $renderer;
     }
@@ -28,6 +32,14 @@ class HomepageController
 //        var_dump($questions);
         $assocArrayArgs = [];
         $assocArrayArgs['coreQuestions'] = $allQuestions; //add questions to assoc array, for php renderer to display stuff - can have 2 diff keys if u needed to display more stuff here
+
+        // Dav 5April add in stuff about all users
+        $allUsers = $this->userModel->getUsers();
+//      var_dump($allUsers);
+        // $assocArrayArgs = [];
+        $assocArrayArgs['usersList'] = $allUsers;
+
+
         //last param $args is the data to return to the index page
         return $this->renderer->render($response, 'index.php', $assocArrayArgs);
     }
