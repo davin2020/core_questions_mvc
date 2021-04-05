@@ -1,15 +1,14 @@
 <?php
 
-
 namespace App;
 
-
-class TaskModel
+// updated for CoreQuestions - but should i have a QuestionModel and a UserModeL that are separte ??
+class QuestionModel
 {
     private $db;
 
     /**
-     * TaskModel constructor.
+     * QuestionModel constructor.
      * @param $db
      */
     public function __construct($db)
@@ -17,6 +16,27 @@ class TaskModel
         $this->db = $db;
     }
 
+// Dav new functions - saveAllAnswers, getAllQuestions, getHistoricalQA but this involves updating multiple tables - so start with !saveUser, getUsers, !getQuestions, getQuestionsAndPoints
+
+//replaced from getCompletedTasks
+public function getQuestions()
+    {
+        $query = $this->db->prepare('SELECT `q_id`, `question`, `gp_order`, `points_type` FROM `ref_core_questions`;');
+        $query->execute();
+        $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion'); //wher is class Task or CoreQuestions actually defined??
+        $result = $query->fetchAll();
+        return $result;
+    }
+
+//replaced from saveTask, takes 2 params
+public function saveUser(string $user, date $date_joined)
+    {
+        $query = $this->db->prepare('INSERT INTO `users` (`name`, `date_joined`) VALUES (:pl_name, :pl_date_joined);');
+        $result = $query->execute(['pl_name' => $user, 'pl_date_joined' => $date_joined]);
+        return $result;
+    }
+
+/*
     public function saveTask(string $task)
     {
         $query = $this->db->prepare('INSERT INTO `tasks` (`item`, `isCompleted`) VALUES (:pl_item, :pl_isCompleted);');
@@ -57,5 +77,6 @@ class TaskModel
         $result = $query->fetchAll();
         return $result;
     }
+*/
 
 }
