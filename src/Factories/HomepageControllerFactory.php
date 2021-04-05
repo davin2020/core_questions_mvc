@@ -2,7 +2,7 @@
 
 
 namespace App\Factories;
-
+// Davin updated this file for CoreQuestions wrt Qs and UserModel
 
 use App\Controllers\HomepageController;
 
@@ -12,9 +12,10 @@ class HomepageControllerFactory
     {
         //ok to break DI here, inside factory, in order to create new controller
         //get dependancceis from DIC/container, then call constructor to create new controller & return it
+        $userModel = $container->get('UserModel');
+        $questionModel = $container->get('QuestionModel');
         $renderer = $container->get('renderer');
-        $taskModel = $container->get('TaskModel');
-        $homepageController = new HomepageController($taskModel, $renderer);
+        $homepageController = new HomepageController($userModel, $questionModel, $renderer);
         return $homepageController;
     }
 

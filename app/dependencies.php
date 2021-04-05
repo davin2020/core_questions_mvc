@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+// Davin updated for CoreQuestions
 
 use DI\ContainerBuilder;
 use Monolog\Handler\StreamHandler;
@@ -33,18 +34,21 @@ return function (ContainerBuilder $containerBuilder) {
         return $renderer;
     };
 
-    //new stuff
+    //new stuff for ToDos
     $container['HomepageController'] = DI\Factory('App\Factories\HomepageControllerFactory');
-    $container['DBConnector'] = DI\Factory('App\DBConnector'); //tech a factoy
-    $container['TaskModel'] = DI\Factory('App\Factories\TaskModelFactory');
+    $container['DBConnector'] = DI\Factory('App\DBConnector'); //technically a factoy
+ 
+    //updaetd for Questions instead of Tasks - added UserModel too
+    $container['QuestionModel'] = DI\Factory('App\Factories\QuestionModelFactory');
+    $container['UserModel'] = DI\Factory('App\Factories\UserModelFactory');
 
-    $container['MarkCompleteController'] = DI\Factory('App\Factories\MarkCompleteControllerFactory');
+    $container['SaveUserController'] = DI\Factory('App\Factories\SaveUserControllerFactory');
 
-    $container['CompletedTasksPageController'] = DI\Factory('App\Factories\CompletedTasksPageControllerFactory');
+    // $container['MarkCompleteController'] = DI\Factory('App\Factories\MarkCompleteControllerFactory');
 
-    $container['SaveTaskController'] = DI\Factory('App\Factories\SaveTaskControllerFactory');
+    // $container['CompletedTasksPageController'] = DI\Factory('App\Factories\CompletedTasksPageControllerFactory');
 
-    $container['DeleteTaskController'] = DI\Factory('App\Factories\DeleteTaskControllerFactory');
+    // $container['DeleteTaskController'] = DI\Factory('App\Factories\DeleteTaskControllerFactory');
 
     $containerBuilder->addDefinitions($container);
 };

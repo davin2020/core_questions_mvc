@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+// Davin updated for CoreQuestions
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
@@ -15,12 +16,14 @@ return function (App $app) {
 
     // add in custom routes here
     $app->get('/', 'HomepageController');
-    $app->get('/markAsComplete/{id}', 'MarkCompleteController');
-    $app->get('/completedTasks', 'CompletedTasksPageController');
-    $app->post('/saveTask', 'SaveTaskController');
+    // getQuestions
+    $app->post('/saveUser', 'SaveUserController');
+    // $app->post('/saveUser', 'SaveUserController');
+
+    // $app->get('/markAsComplete/{id}', 'MarkCompleteController');
+    // $app->get('/completedTasks', 'CompletedTasksPageController');
 
     //need to create controller & factory for this route
-    $app->get('/deleteTask/{id}', 'DeleteTaskController');
-
+    // $app->get('/deleteTask/{id}', 'DeleteTaskController');
 
 };
