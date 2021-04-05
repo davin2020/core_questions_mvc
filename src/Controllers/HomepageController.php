@@ -26,12 +26,18 @@ class HomepageController
 
     public function __invoke($request, $response, $args)
     {//need to return response via render method
+
+        $assocArrayArgs = [];
+
         //get & show all questions
         //invoke only ever does 1 thing, each page has own controler thus own invoke method - invoke is where the stuff for the actual page gets done eg display uncomplete questions etc - prev code was - taskModel object accessor to getUncompletedTasks
         $allQuestions = $this->questionModel->getQuestions();
 //        var_dump($questions);
-        $assocArrayArgs = [];
+        
         $assocArrayArgs['coreQuestions'] = $allQuestions; //add questions to assoc array, for php renderer to display stuff - can have 2 diff keys if u needed to display more stuff here
+
+        $allQuestionsAndPoints = $this->questionModel->getQuestionsAndPoints();
+        $assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
 
         // Dav 5April add in stuff about all users
         $allUsers = $this->userModel->getUsers();
