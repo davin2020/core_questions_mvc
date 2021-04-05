@@ -21,9 +21,9 @@ class QuestionModel
 //replaced from getCompletedTasks
 public function getQuestions()
     {
-        $query = $this->db->prepare('SELECT `q_id`, `questions`, `gp_order`, `points_type` FROM `ref_core_questions`;');
+        $query = $this->db->prepare('SELECT `q_id`, `question`, `gp_order`, `points_type` FROM `ref_core_questions`;');
         $query->execute();
-        $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion');
+        $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion'); //wher is class Task or CoreQuestions actually defined??
         $result = $query->fetchAll();
         return $result;
     }

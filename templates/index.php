@@ -12,7 +12,7 @@
 <body>
     <h1>Core Question Form</h1>
 
-    <h2>Questions - TBC</h2>
+    <h2>Add A New User - TBC</h2>
     <form method="post" action="/saveTask">
         <label for="item">Task:</label>
         <input type="text" name="item" id="item">
@@ -24,8 +24,8 @@
     <!-- need a table here for Questions -->
     <?php
     echo '<ol>';
-    foreach($coreQuestions as $coreQ) {
-        echo '<li>' . $coreQ["question"] . ' PointsType ' . $coreQ["points_type"] .' </li>';
+    foreach($coreQuestions as $singleQuestion) {
+        echo '<li>' . $singleQuestion["question"] . ' PointsType ' . $singleQuestion["points_type"] .' </li>';
         }
     echo '</ol>';
     ?>
