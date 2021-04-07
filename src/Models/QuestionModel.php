@@ -1,14 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-// updated for CoreQuestions wrt Users- but should i have a QuestionModel and a UserModeL that are separte ??
-class UserModel
+// updated for CoreQuestions - but should i have a QuestionModel and a UserModeL that are separte ??
+class QuestionModel
 {
     private $db;
 
     /**
-     * UserModel constructor.
+     * QuestionModel constructor.
      * @param $db
      */
     public function __construct($db)
@@ -19,23 +19,34 @@ class UserModel
 // Dav new functions - saveAllAnswers, getAllQuestions, getHistoricalQA but this involves updating multiple tables - so start with !saveUser, getUsers, !getQuestions, getQuestionsAndPoints
 
 //replaced from getCompletedTasks
-public function getUsers()
+public function getQuestions()
     {
-        $query = $this->db->prepare('SELECT `user_id`, `name`, `date_joined` FROM `users`;');
+        $query = $this->db->prepare('SELECT `q_id`, `question`, `gp_order`, `points_type` FROM `ref_core_questions`;');
         $query->execute();
-        $query->setFetchMode(\PDO::FETCH_CLASS, 'UserModel'); //wher is class Task or User or UserModel or CoreQuestions actually defined??
+        $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion'); //wher is class Task or CoreQuestions actually defined??
         $result = $query->fetchAll();
         return $result;
     }
 
-//replaced from saveTask, takes 2 params - can date be string representation of a date? YES but how to make  the string-date on the html Form into a php Date datatype eg casting?
-// validation  - need to stop future dates from being entered
-public function saveUser(string $user, string $date_joined)
+public function getQuestionsAndPoints()
     {
-        $query = $this->db->prepare('INSERT INTO `users` (`name`, `date_joined`) VALUES (:pl_name, :pl_date_joined);');
-        $result = $query->execute(['pl_name' => $user, 'pl_date_joined' => $date_joined]);
+        // $queryGetQuestionPoints = 'SELECT rcq.q_id, `rcq.question`, `rcq.points_type`, `rcp.pointsA_not`, `rcp.pointsB_only`, `rcp.pointsC_sometimes`, `rcp.pointsD_often`, `rcp.pointsE_most` FROM `ref_core_questions` AS rcq INNER JOIN `ref_core_points` AS rcp ON `rcq.points_type` = `rcp.points_id`;';
+
+        $queryGetQuestionPoints = 'SELECT rcq.q_id, rcq.gp_order, rcq.question, rcq.points_type, rcp.pointsA_not, rcp.pointsB_only, rcp.pointsC_sometimes, rcp.pointsD_often, rcp.pointsE_most FROM ref_core_questions AS rcq INNER JOIN ref_core_points AS rcp ON rcq.points_type = rcp.points_id ORDER BY rcq.gp_order;';
+        $query = $this->db->prepare($queryGetQuestionPoints);
+        $query->execute();
+        $query->setFetchMode(\PDO::FETCH_CLASS, 'QuestionModel'); //wher is class Task or CoreQuestions actually defined?? - should this be QuestionModel instead of CoreQuestion ??
+        $result = $query->fetchAll();
         return $result;
     }
+
+//replaced from saveTask, takes 2 params  -this should become SaveQuestion!
+// public function saveUser(string $user, date $date_joined)
+//     {
+//         $query = $this->db->prepare('INSERT INTO `users` (`name`, `date_joined`) VALUES (:pl_name, :pl_date_joined);');
+//         $result = $query->execute(['pl_name' => $user, 'pl_date_joined' => $date_joined]);
+//         return $result;
+//     }
 
 /*
     public function saveTask(string $task)
