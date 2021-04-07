@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 // updated for CoreQuestions - but should i have a QuestionModel and a UserModeL that are separte ??
 class QuestionModel

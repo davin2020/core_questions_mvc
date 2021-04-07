@@ -4,7 +4,7 @@
 namespace App\Factories;
 // Davin updated this file for CoreQuestions wrt UserModel
 
-use App\UserModel;
+use App\Models\UserModel;
 
 class UserModelFactory
 {

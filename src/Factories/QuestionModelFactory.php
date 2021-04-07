@@ -4,7 +4,7 @@
 namespace App\Factories;
 // Davin updated this file for CoreQuestions
 
-use App\QuestionModel;
+use App\Models\QuestionModel;
 
 class QuestionModelFactory
 {
