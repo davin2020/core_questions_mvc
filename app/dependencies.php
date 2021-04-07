@@ -34,7 +34,7 @@ return function (ContainerBuilder $containerBuilder) {
         return $renderer;
     };
 
-    //new stuff for ToDos
+    //original stuff for ToDos
     $container['HomepageController'] = DI\Factory('App\Factories\HomepageControllerFactory');
     $container['DBConnector'] = DI\Factory('App\DBConnector'); //technically a factoy
  
@@ -42,7 +42,13 @@ return function (ContainerBuilder $containerBuilder) {
     $container['QuestionModel'] = DI\Factory('App\Factories\QuestionModelFactory');
     $container['UserModel'] = DI\Factory('App\Factories\UserModelFactory');
 
+    //dont forget to make a AnswerModelFactory for the new AnswerModel!
+    $container['AnswerModel'] = DI\Factory('App\Factories\AnswerModelFactory');
+
+    //dont forget to add new models & controllers here!
     $container['SaveUserController'] = DI\Factory('App\Factories\SaveUserControllerFactory');
+
+    $container['SaveAnswersController'] = DI\Factory('App\Factories\SaveAnswersControllerFactory');
 
     // $container['MarkCompleteController'] = DI\Factory('App\Factories\MarkCompleteControllerFactory');
 

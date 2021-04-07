@@ -1,38 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <html>
-<!-- Davin updated this file for CoreQuestions - BUT style.css is not being found! -->
+<!-- Davin updated this file for CoreQuestions -->
 <head>
     <meta charset="utf-8"/>
     <title>Core Question Form</title>
-    <!-- <link href="/templates/style2.css" type="text/css" rel="stylesheet"> -->
     <link href="style.css" type="text/css" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
-
-    <!-- temp inline stylesheet -->
-    <style>
-        body { 
-            background-color: #FCFFCD;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-         }
-        p { color: #fff; }
-        h2 {
-            color: #FF8F35;
-        }
-        span {
-            border: 1px solid green;
-        }
-        div {
-            border: 1px solid red;
-        }
-
-
-    </style>
-
 </head>
 
 <body>
-    <h1>Core Question Form</h1>
+    <h1>Core Questions Form</h1>
 
     <h2>Show Existing Users</h2>
     <!-- hwo to call this ??? the Controller for this page ie HomePageController is where these variables are coming from eg $userList -->
@@ -56,18 +34,7 @@
     </form>
     <br>
 
-
-<!--     <h2>Question Table</h2> -->
-    <!-- need a table here for Questions -->
-    <?php
-    // echo '<ol>';
-    // foreach($coreQuestions as $singleQuestion) {
-    //     echo '<li>' . $singleQuestion["question"] . ' PointsType ' . $singleQuestion["points_type"] .' </li>';
-    //     }
-    // echo '</ol>';
-    ?>
-
-    <h2>Question Table with Points</h2>
+    <h2>Question Table with Answer Points</h2>
     <!-- what will these fields be named?  
         Should i include the gp_order here or is it enought that qs are already sorted in the right order?
         maybe try writing out hte html and just using php for the variable values? 
@@ -77,39 +44,63 @@
     -->
 
     <div>
-<!-- needs flex grid or similar here -->
+<!-- needs flex grid or similar here - form submits to saveUser -->
+    <form method="post" action="/saveAnswers">
         <div>
+            <!-- Need Names dropdown & Date field here, or should whole form be under a /userid route? -->
             <ol>
                 <?php foreach($coreQuestionsAndPoints as $singleQuestionPoints) { ?>
-                <li>
+                <li id="question_id" >
+                    <!-- need to save q_id here  -->
+                    <?php $q_id = $singleQuestionPoints["q_id"];
+                    // need to have actual question id shown!
+                    echo $singleQuestionPoints["q_id"];  
+                    // $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
+                    ?>
+                    <!-- // <?php echo $radioButtonGroupName ?> -->
                     <?php echo $singleQuestionPoints["question"]  ?>
-
+                    <!-- each radio button group for each answer needs a  unique name!! 
+                    need var name based on Q id, then name radiobutton group based on that eg radioQ1AnswerPoints, radioQ2AnswerPoints
+                    <input type="radio" name="optradio[<?php echo $i; ?>]" value="b">Option 2</label>
+                    INSTEAD start by using the array here eg radioAnswerPoints[x], so its easier to access from Controller page
+                    name="radioAnswerPoints[<?php echo $singleQuestionPoints["q_id"] ?>]" 
+           
+                    -->
+                    <!-- this is now working well; BUT is echo  better syntax than < ? = syntax    -->
                     <div class="radioGroupAnswers">
-                        <input type="radio" id="answerNot" name="radioAnswerPoints" value=" 
-                            <?php echo $singleQuestionPoints["pointsA_not"] ?> ">
+                        <input type="radio" id="answerNot" 
+                        name="radioAnswerPoints[<?php echo $q_id ?>]" 
+                        value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
                         <label for="answerNot">Not</label>
 
-                        <input type="radio" id="answerOnly" name="radioAnswerPoints" value="
-                            <?php echo $singleQuestionPoints["pointsB_only"] ?> ">
+                        <input type="radio" id="answerOnly" 
+                        name="radioAnswerPoints[<?php echo $q_id?>]" 
+                        value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
                         <label for="answerOnly">Only</label>
 
-                        <input type="radio" id="answerSometimes" name="radioAnswerPoints" value="
-                            <?php echo $singleQuestionPoints["pointsC_sometimes"] ?> ">
+                        <input type="radio" id="answerSometimes" 
+                        name="radioAnswerPoints[<?php echo $q_id?>]" 
+                        value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
                         <label for="answerSometimes">Sometimes</label>
 
-                        <input type="radio" id="answerOften" name="radioAnswerPoints" value="
-                            <?php echo $singleQuestionPoints["pointsD_often"] ?> ">
+                        <input type="radio" id="answerOften" 
+                        name="radioAnswerPoints[<?php echo $q_id?>]" 
+                        value="<?php echo $singleQuestionPoints["pointsD_often"] ?>">
                         <label for="answerOften">Often</label>
 
-                        <input type="radio" id="answerMost" name="radioAnswerPoints" value="
-                            <?php echo $singleQuestionPoints["pointsE_most"] ?> ">
+                        <input type="radio" id="answerMost" 
+                        name="radioAnswerPoints[<?php echo $q_id?>]" 
+                        value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
                         <label for="answerMost">Most</label>
                     </div>
 
                 </li>
                 <?php } ?>
+
             </ol>
         </div>
+        <button name="btnSubmitAnswers" type="submit">Submit Answers</button>
+        </form>
 
     </div>
     
