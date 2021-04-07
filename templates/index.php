@@ -34,7 +34,9 @@
     </form>
     <br>
 
-    <h2>Question Table with Answer Points</h2>
+    <!-- <h2>Question Table with Answer Points</h2> -->
+    <h2>GP-Core Questions</h2>
+    <div id="core_form">
     <!-- what will these fields be named?  
         Should i include the gp_order here or is it enought that qs are already sorted in the right order?
         maybe try writing out hte html and just using php for the variable values? 
@@ -42,8 +44,13 @@
         On next iteration, get labels from DB
         Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns
     -->
+    <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
+Please read each statement and think how often you felt that way last week.
+Then tick the box which is closest to this.</p>
 
     <div>
+
+        <p>Over the last week...</p>
 <!-- needs flex grid or similar here - form submits to saveUser -->
     <form method="post" action="/saveAnswers">
         <div>
@@ -53,8 +60,10 @@
                 <li id="question_id" >
                     <!-- need to save q_id here  -->
                     <?php $q_id = $singleQuestionPoints["q_id"];
+
                     // need to have actual question id shown!
-                    echo $singleQuestionPoints["q_id"];  
+                    // echo $singleQuestionPoints["q_id"];  
+
                     // $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
                     ?>
                     <!-- // <?php echo $radioButtonGroupName ?> -->
@@ -71,12 +80,12 @@
                         <input type="radio" id="answerNot" 
                         name="radioAnswerPoints[<?php echo $q_id ?>]" 
                         value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
-                        <label for="answerNot">Not</label>
+                        <label for="answerNot">Not at all</label>
 
                         <input type="radio" id="answerOnly" 
                         name="radioAnswerPoints[<?php echo $q_id?>]" 
                         value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
-                        <label for="answerOnly">Only</label>
+                        <label for="answerOnly">Only ocassionally</label>
 
                         <input type="radio" id="answerSometimes" 
                         name="radioAnswerPoints[<?php echo $q_id?>]" 
@@ -91,7 +100,7 @@
                         <input type="radio" id="answerMost" 
                         name="radioAnswerPoints[<?php echo $q_id?>]" 
                         value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
-                        <label for="answerMost">Most</label>
+                        <label for="answerMost">Most or all the time</label>
                     </div>
 
                 </li>
@@ -103,7 +112,7 @@
         </form>
 
     </div>
-    
+    </div>
 
     <!-- <h2>Alt way of making table</h2> -->
     <?php
@@ -138,7 +147,7 @@
     ?> -->
 
     <br><br>
-    <h3><a href="/completedTasks">View Historical QA - Later</a></h3>
+    <!-- <h3><a href="/completedTasks">View Historical QA - Later</a></h3> -->
 
 </body>
 </html>
