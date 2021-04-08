@@ -29,7 +29,8 @@
         <input type="text" name="itemName" id="itemName">
         <br>
         <label for="item">Date Joined for New User:</label>
-        <input type="Date" name="itemDate" id="itemDate">
+        <input type="Date" name="itemDate" id="itemDate" 
+        value="<?php echo date('Y-m-d');?>">
         <button name="btnAddItem" type="submit">Add</button>
     </form>
     <br>
@@ -37,6 +38,27 @@
     <!-- <h2>Question Table with Answer Points</h2> -->
     <h2>GP-Core Questions</h2>
     <div id="core_form">
+
+<!--  TEMP FLEX BOX for LAYOUR -->
+        <div class="flex-grid">
+          <div class="col">
+            <!-- can i put simmple for each in here? -->
+            <?php
+            $tmp = [1,2,3,4,5];
+            foreach($tmp as $item )
+                echo '<p>hello' . $item . '</p>';
+            ?>
+          <p>This little piggy went to market.</p>
+        </div>
+          <div class="col">
+            <input type="radio" id="huey" name="drone" value="huey"
+         checked>
+            <label for="huey">Huey</label>
+            <input type="radio" id="dewey" name="drone" value="dewey">
+            <label for="dewey">Dewey</label>
+          <p>This little piggy stayed home.</p>
+        </div>
+        </div>
     <!-- what will these fields be named?  
         Should i include the gp_order here or is it enought that qs are already sorted in the right order?
         maybe try writing out hte html and just using php for the variable values? 
@@ -44,6 +66,19 @@
         On next iteration, get labels from DB
         Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns
     -->
+
+<!-- Add date and name here - need to extract values as part of SaveAnswersController-->
+<!--     <?php
+    echo '<ul>';
+    foreach($usersList as $user) {
+        echo '<li>' . $user["name"] . ' Date Joined: ' . $user["date_joined"] .' </li>';
+        }
+    echo '</ul>';
+    ?> -->
+
+        
+
+
     <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
 Please read each statement and think how often you felt that way last week.
 Then tick the box which is closest to this.</p>
@@ -52,17 +87,42 @@ Then tick the box which is closest to this.</p>
 
         <p>Over the last week...</p>
 <!-- needs flex grid or similar here - form submits to saveUser -->
+    <div class="flex-grid">
     <form method="post" action="/saveAnswers">
-        <div>
+        <div class="formNameDate">
+            <label for="item">Name of Existing User:</label>
+            <!-- <input type="text" name="itemName" id="itemName"> -->
+
+            <select name="existingUserID">
+              <option value="">Select...</option>
+
+            <?php
+            foreach($usersList as $user) { ?>
+              <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+            <?php 
+            }
+            ?>
+            </select>
+
+            <br>
+            <label for="dateCompleted">Date Form Completed:</label>
+            <input type="Date" name="dateCompleted" id="dateCompleted" 
+            value="<?php echo date('Y-m-d');?>">
+        </div>
+
+
+        
             <!-- Need Names dropdown & Date field here, or should whole form be under a /userid route? -->
-            <ol>
+            <!-- <ol> -->
                 <?php foreach($coreQuestionsAndPoints as $singleQuestionPoints) { ?>
-                <li id="question_id" >
+                <!-- <li id="question_id" > -->
+                    <!-- for each is likely messing up flex divs -->
+                <div class="col" id="question_id">
                     <!-- need to save q_id here  -->
                     <?php $q_id = $singleQuestionPoints["q_id"];
 
                     // need to have actual question id shown!
-                    // echo $singleQuestionPoints["q_id"];  
+                    echo $singleQuestionPoints["q_id"];  
 
                     // $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
                     ?>
@@ -75,8 +135,10 @@ Then tick the box which is closest to this.</p>
                     name="radioAnswerPoints[<?php echo $singleQuestionPoints["q_id"] ?>]" 
            
                     -->
+                </div>  <!-- for col flex grid -->
+
                     <!-- this is now working well; BUT is echo  better syntax than < ? = syntax    -->
-                    <div class="radioGroupAnswers">
+                    <div class="radioGroupAnswers col">
                         <input type="radio" id="answerNot" 
                         name="radioAnswerPoints[<?php echo $q_id ?>]" 
                         value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
@@ -103,13 +165,15 @@ Then tick the box which is closest to this.</p>
                         <label for="answerMost">Most or all the time</label>
                     </div>
 
-                </li>
+
+                <!-- </li> -->
                 <?php } ?>
 
-            </ol>
-        </div>
+            <!-- </ol> -->
+        
         <button name="btnSubmitAnswers" type="submit">Submit Answers</button>
         </form>
+        </div>
 
     </div>
     </div>
@@ -147,7 +211,7 @@ Then tick the box which is closest to this.</p>
     ?> -->
 
     <br><br>
-    <!-- <h3><a href="/completedTasks">View Historical QA - Later</a></h3> -->
+    <h3><a href="/completedTasks">View Historical QA - Later</a></h3>
 
 </body>
 </html>
