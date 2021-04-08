@@ -13,7 +13,7 @@
     <h1>Core Questions Form</h1>
 
     <h2>Show Existing Users</h2>
-    <!-- hwo to call this ??? the Controller for this page ie HomePageController is where these variables are coming from eg $userList -->
+    <!-- the Controller for this page ie HomePageController is where these variables are coming/being called from eg $userList -->
     <?php
     echo '<ul>';
     foreach($usersList as $user) {
@@ -29,7 +29,8 @@
         <input type="text" name="itemName" id="itemName">
         <br>
         <label for="item">Date Joined for New User:</label>
-        <input type="Date" name="itemDate" id="itemDate">
+        <input type="Date" name="itemDate" id="itemDate" 
+        value="<?php echo date('Y-m-d');?>">
         <button name="btnAddItem" type="submit">Add</button>
     </form>
     <br>
@@ -37,32 +38,54 @@
     <!-- <h2>Question Table with Answer Points</h2> -->
     <h2>GP-Core Questions</h2>
     <div id="core_form">
-    <!-- what will these fields be named?  
-        Should i include the gp_order here or is it enought that qs are already sorted in the right order?
-        maybe try writing out hte html and just using php for the variable values? 
-        Need to get linked css working so can style this
-        On next iteration, get labels from DB
+
+
+    <!-- 
         Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns
     -->
+
+
     <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
-Please read each statement and think how often you felt that way last week.
-Then tick the box which is closest to this.</p>
+    <br>Please read each statement and think how often you felt that way last week.
+    <br>Then tick the box which is closest to this.</p>
 
     <div>
 
         <p>Over the last week...</p>
-<!-- needs flex grid or similar here - form submits to saveUser -->
+<!-- needs flex grid or similar here - form submits to saveUser
+        need success msg whne form is submittd ok!  -->
+    <div class="flex-grid">
     <form method="post" action="/saveAnswers">
-        <div>
+        <div class="formNameDate">
+            <label for="item">Name of Existing User:</label>
+            <select name="existingUserID">
+                <option value="">Select...</option>
+
+                <?php
+                foreach($usersList as $user) { ?>
+                  <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+                <?php 
+                }
+                ?>
+            </select>
+
+            <br>
+            <label for="dateCompleted">Date Form Completed:</label>
+            <input type="Date" name="dateCompleted" id="dateCompleted" 
+            value="<?php echo date('Y-m-d');?>">
+        </div>
+        
             <!-- Need Names dropdown & Date field here, or should whole form be under a /userid route? -->
-            <ol>
+            <!-- <ol> -->
                 <?php foreach($coreQuestionsAndPoints as $singleQuestionPoints) { ?>
-                <li id="question_id" >
+                <!-- <li id="question_id" > -->
+                    <!-- for each is likely messing up flex divs -->
+                <div class="col" id="question_id">
                     <!-- need to save q_id here  -->
                     <?php $q_id = $singleQuestionPoints["q_id"];
 
                     // need to have actual question id shown!
-                    // echo $singleQuestionPoints["q_id"];  
+                    echo $singleQuestionPoints["q_id"];  
 
                     // $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
                     ?>
@@ -75,8 +98,10 @@ Then tick the box which is closest to this.</p>
                     name="radioAnswerPoints[<?php echo $singleQuestionPoints["q_id"] ?>]" 
            
                     -->
+                </div>  <!-- for col flex grid -->
+
                     <!-- this is now working well; BUT is echo  better syntax than < ? = syntax    -->
-                    <div class="radioGroupAnswers">
+                    <div class="radioGroupAnswers col">
                         <input type="radio" id="answerNot" 
                         name="radioAnswerPoints[<?php echo $q_id ?>]" 
                         value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
@@ -103,51 +128,19 @@ Then tick the box which is closest to this.</p>
                         <label for="answerMost">Most or all the time</label>
                     </div>
 
-                </li>
+
+                <!-- </li> -->
                 <?php } ?>
 
-            </ol>
-        </div>
+            <!-- </ol> -->
+        
         <button name="btnSubmitAnswers" type="submit">Submit Answers</button>
         </form>
+        </div>
 
     </div>
     </div>
 
-    <!-- <h2>Alt way of making table</h2> -->
-    <?php
-    // echo '<ol>';
-    // foreach($coreQuestionsAndPoints as $singleQuestionPoints) {
-    //     echo '<li>' 
-    //     . $singleQuestionPoints["question"] 
-    //     . '<div class="radioGroupAnswers">'
-    //       . ' <input type="radio" id="answerNot" name="answerPoints" value="' . $singleQuestionPoints["pointsA_not"] . '">'
-    //       .  '<label for="answerNot">Not</label>'
-    //         . '<input type="radio" id="answerOnly" name="radioAnswerPoints" value="'. $singleQuestionPoints["pointsB_only"] .'">'
-    //        . '<label for="answerOnly">Only</label>'
-    //       . '</div>'
-
-    //     .' </li>';
-    //     }
-    // echo '</ol>';
-    ?>
-
-
-    <!-- <h2>Tasks To Do</h2> -->
-    <!-- <?php
-    // echo '<ol>';
-    // foreach($tasks as $task) {
-    // //        echo '<li>' . $task["item"] . '</li>';
-    // //        echo '<a href="/markAsComplete/' . $task["id"] . '">Completed</a>';
-
-    // //show task in a list, with a link to Complete each task
-    //     echo '<li>' . $task["item"] . ' &nbsp <a href="/markAsComplete/' . $task["id"] . '">Completed</a> </li>';
-    // }
-    // echo '</ol>';
-    ?> -->
-
-    <br><br>
-    <!-- <h3><a href="/completedTasks">View Historical QA - Later</a></h3> -->
 
 </body>
 </html>
