@@ -13,7 +13,7 @@
     <h1>Core Questions Form</h1>
 
     <h2>Show Existing Users</h2>
-    <!-- hwo to call this ??? the Controller for this page ie HomePageController is where these variables are coming from eg $userList -->
+    <!-- the Controller for this page ie HomePageController is where these variables are coming/being called from eg $userList -->
     <?php
     echo '<ul>';
     foreach($usersList as $user) {
@@ -39,69 +39,34 @@
     <h2>GP-Core Questions</h2>
     <div id="core_form">
 
-<!--  TEMP FLEX BOX for LAYOUR -->
-        <div class="flex-grid">
-          <div class="col">
-            <!-- can i put simmple for each in here? -->
-            <?php
-            $tmp = [1,2,3,4,5];
-            foreach($tmp as $item )
-                echo '<p>hello' . $item . '</p>';
-            ?>
-          <p>This little piggy went to market.</p>
-        </div>
-          <div class="col">
-            <input type="radio" id="huey" name="drone" value="huey"
-         checked>
-            <label for="huey">Huey</label>
-            <input type="radio" id="dewey" name="drone" value="dewey">
-            <label for="dewey">Dewey</label>
-          <p>This little piggy stayed home.</p>
-        </div>
-        </div>
-    <!-- what will these fields be named?  
-        Should i include the gp_order here or is it enought that qs are already sorted in the right order?
-        maybe try writing out hte html and just using php for the variable values? 
-        Need to get linked css working so can style this
-        On next iteration, get labels from DB
+
+    <!-- 
         Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns
     -->
 
-<!-- Add date and name here - need to extract values as part of SaveAnswersController-->
-<!--     <?php
-    echo '<ul>';
-    foreach($usersList as $user) {
-        echo '<li>' . $user["name"] . ' Date Joined: ' . $user["date_joined"] .' </li>';
-        }
-    echo '</ul>';
-    ?> -->
-
-        
-
 
     <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
-Please read each statement and think how often you felt that way last week.
-Then tick the box which is closest to this.</p>
+    <br>Please read each statement and think how often you felt that way last week.
+    <br>Then tick the box which is closest to this.</p>
 
     <div>
 
         <p>Over the last week...</p>
-<!-- needs flex grid or similar here - form submits to saveUser -->
+<!-- needs flex grid or similar here - form submits to saveUser
+        need success msg whne form is submittd ok!  -->
     <div class="flex-grid">
     <form method="post" action="/saveAnswers">
         <div class="formNameDate">
             <label for="item">Name of Existing User:</label>
-            <!-- <input type="text" name="itemName" id="itemName"> -->
-
             <select name="existingUserID">
-              <option value="">Select...</option>
+                <option value="">Select...</option>
 
-            <?php
-            foreach($usersList as $user) { ?>
-              <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
-            <?php 
-            }
-            ?>
+                <?php
+                foreach($usersList as $user) { ?>
+                  <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+                <?php 
+                }
+                ?>
             </select>
 
             <br>
@@ -109,8 +74,6 @@ Then tick the box which is closest to this.</p>
             <input type="Date" name="dateCompleted" id="dateCompleted" 
             value="<?php echo date('Y-m-d');?>">
         </div>
-
-
         
             <!-- Need Names dropdown & Date field here, or should whole form be under a /userid route? -->
             <!-- <ol> -->
@@ -178,40 +141,6 @@ Then tick the box which is closest to this.</p>
     </div>
     </div>
 
-    <!-- <h2>Alt way of making table</h2> -->
-    <?php
-    // echo '<ol>';
-    // foreach($coreQuestionsAndPoints as $singleQuestionPoints) {
-    //     echo '<li>' 
-    //     . $singleQuestionPoints["question"] 
-    //     . '<div class="radioGroupAnswers">'
-    //       . ' <input type="radio" id="answerNot" name="answerPoints" value="' . $singleQuestionPoints["pointsA_not"] . '">'
-    //       .  '<label for="answerNot">Not</label>'
-    //         . '<input type="radio" id="answerOnly" name="radioAnswerPoints" value="'. $singleQuestionPoints["pointsB_only"] .'">'
-    //        . '<label for="answerOnly">Only</label>'
-    //       . '</div>'
-
-    //     .' </li>';
-    //     }
-    // echo '</ol>';
-    ?>
-
-
-    <!-- <h2>Tasks To Do</h2> -->
-    <!-- <?php
-    // echo '<ol>';
-    // foreach($tasks as $task) {
-    // //        echo '<li>' . $task["item"] . '</li>';
-    // //        echo '<a href="/markAsComplete/' . $task["id"] . '">Completed</a>';
-
-    // //show task in a list, with a link to Complete each task
-    //     echo '<li>' . $task["item"] . ' &nbsp <a href="/markAsComplete/' . $task["id"] . '">Completed</a> </li>';
-    // }
-    // echo '</ol>';
-    ?> -->
-
-    <br><br>
-    <h3><a href="/completedTasks">View Historical QA - Later</a></h3>
 
 </body>
 </html>
