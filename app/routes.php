@@ -20,6 +20,8 @@ return function (App $app) {
     $app->post('/saveUser', 'SaveUserController');
     $app->post('/saveAnswers', 'SaveAnswersController');
 
+    $app->get('/showUserHistory/{q_id}', 'ShowUserHistoryController');
+
     // $app->get('/markAsComplete/{id}', 'MarkCompleteController');
     // $app->get('/completedTasks', 'CompletedTasksPageController');
 

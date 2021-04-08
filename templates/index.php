@@ -210,8 +210,12 @@ Then tick the box which is closest to this.</p>
     // echo '</ol>';
     ?> -->
 
+
+<!-- hard code 1 = alvis for now, route is /showUserHistory/{q_id} 
+need to make userid & thus name dynamic
+-->
     <br><br>
-    <h3><a href="/completedTasks">View Historical QA - Later</a></h3>
+    <h3><a href="/showUserHistory/2">Show User History ie Historical QA</a></h3>
 
 </body>
 </html>

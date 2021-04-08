@@ -6,6 +6,7 @@ namespace App\Models;
 class AnswerModel
 {
     private $db;
+    //should this have private vars like score_date, overall_score etc
 
     /**
      * AnswerModel constructor.
@@ -20,11 +21,21 @@ class AnswerModel
 
 //replaced from getCompletedTasks
 //need to get all answers for a given user, incl dates of different answers
-// WIP - change query 
-public function getAnswers()
+// WIP - change query  
+public function getUserAnswers(int $userID)
     {
-        $query = $this->db->prepare('SELECT `user_id`, `name`, `date_joined` FROM `users`;');
-        $query->execute();
+        // SELECT ucs_id, score_date, overall_score FROM user_core_score WHERE user_id=1;
+
+        // `id` = :pl_id;');
+        // $result = $query->execute(['pl_id' => $id]);
+
+        //how to pass number is as a placeholder value??
+        //why cant i just get the name out here and return it all in one go?
+        $query = $this->db->prepare('SELECT `ucs_id`, `score_date`, `overall_score` FROM `user_core_score` WHERE `user_id` = :pl_user_id;');
+
+        // $query = $this->db->prepare('SELECT `user_id`, `name`, `date_joined` FROM `users`;');
+        // $query->execute();
+        $result = $query->execute(['pl_user_id' => $userID]);
         $query->setFetchMode(\PDO::FETCH_CLASS, 'AnswerModel'); //wher is class Task or User or UserModel or CoreQuestions actually defined??
         $result = $query->fetchAll();
         return $result;
@@ -36,7 +47,7 @@ public function getAnswers()
     // saveAnswers($dataQid, $dataQpoints $totalScore);
     // TODO save array of values ie answers to each question
     
-// public function saveAnswers(int $dataQid, int $dataQpoints, int $totalScore)
+// public function saveAnswers(int $dataQid, int $dataQpoints, int $totalScore) - this is really SaveUserAnswers
 public function saveAnswers(int $userID, string $scoreDate, array $dataArrayAnswers, int $totalScore)
     {
         //update user_core_score with user_id, score_date & overall_score
