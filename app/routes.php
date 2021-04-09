@@ -20,10 +20,6 @@ return function (App $app) {
     $app->post('/saveUser', 'SaveUserController');
     $app->post('/saveAnswers', 'SaveAnswersController');
 
-    // $app->get('/markAsComplete/{id}', 'MarkCompleteController');
-    // $app->get('/completedTasks', 'CompletedTasksPageController');
-
-    //need to create controller & factory for this ToDo route
-    // $app->get('/deleteTask/{id}', 'DeleteTaskController');
+    $app->get('/showUserHistory/{q_id}', 'ShowUserHistoryController');
 
 };

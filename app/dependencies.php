@@ -50,6 +50,10 @@ return function (ContainerBuilder $containerBuilder) {
 
     $container['SaveAnswersController'] = DI\Factory('App\Factories\SaveAnswersControllerFactory');
 
+    $container['ShowUserHistoryController'] = DI\Factory('App\Factories\ShowUserHistoryControllerFactory');
+
+
+
     // $container['MarkCompleteController'] = DI\Factory('App\Factories\MarkCompleteControllerFactory');
 
     // $container['CompletedTasksPageController'] = DI\Factory('App\Factories\CompletedTasksPageControllerFactory');

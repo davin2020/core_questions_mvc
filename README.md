@@ -16,11 +16,10 @@ This To Do app is live here - (not yet)
 
 ## End User Features
 - View a list of existing users
+- View user history ie previous dates & scores - **NEW!**
 - Add a new user to the DB
 - View all existing Core Questions
-- Answer the Core Questions on the form (using radio buttons) and submit the form to save the data to the DB - **NEW!**
-<!-- - Answer questions and submit form
-- View historical answers -->
+- Answer the Core Questions on the form (using radio buttons) and submit the form to save the data to the DB
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory

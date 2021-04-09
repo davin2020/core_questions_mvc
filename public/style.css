@@ -51,6 +51,11 @@ div {
   /*border: 3px solid yellow;*/
 }
 
+.submitButton {
+    padding: 10px 20px;
+    background-color: gray;
+}
+
 /* 
 COLORS
 #a5e0f7 blue bkg

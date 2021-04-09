@@ -30,7 +30,6 @@ class HomepageController
         $assocArrayArgs = [];
 
         //get & show all questions
-        //invoke only ever does 1 thing, each page has own controler thus own invoke method - invoke is where the stuff for the actual page gets done eg display uncomplete questions etc - prev code was - taskModel object accessor to getUncompletedTasks
         $allQuestions = $this->questionModel->getQuestions();
 //        var_dump($questions);
         
@@ -39,12 +38,9 @@ class HomepageController
         $allQuestionsAndPoints = $this->questionModel->getQuestionsAndPoints();
         $assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
 
-        // Dav 5April add in stuff about all users
         $allUsers = $this->userModel->getUsers();
-//      var_dump($allUsers);
-        // $assocArrayArgs = [];
-        $assocArrayArgs['usersList'] = $allUsers;
 
+        $assocArrayArgs['usersList'] = $allUsers;
 
         //last param $args is the data to return to the index page
         return $this->renderer->render($response, 'index.php', $assocArrayArgs);

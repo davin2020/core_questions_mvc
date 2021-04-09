@@ -17,7 +17,8 @@ class SaveAnswersController
         //NEW TODO need to get userid and date form completed, then add those args to the saveAnswers function
 // existingUser
 // dateCompleted
-        $userID = $request->getParsedBody()['existingUserID'];
+        $userID = (int) $request->getParsedBody()['existingUserID'];
+        // $int = (int)$num; casting to an int
         $dateFormCompleted = $request->getParsedBody()['dateCompleted'];
 
         //this works - i only want the selected radio button from teh whole group!

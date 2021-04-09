@@ -10,40 +10,39 @@
 </head>
 
 <body>
-    <h1>Core Questions Form</h1>
+    <h1>Core Questions App</h1>
 
     <h2>Show Existing Users</h2>
-    <!-- the Controller for this page ie HomePageController is where these variables are coming/being called from eg $userList -->
+
     <?php
     echo '<ul>';
     foreach($usersList as $user) {
-        echo '<li>' . $user["name"] . ' Date Joined: ' . $user["date_joined"] .' </li>';
+        echo '<li>' . $user["name"] . ' -- Joined: ' . $user["date_joined"] .
+        ' -- <a href="/showUserHistory/'. $user["user_id"] .'">User History</a></li>';
         }
     echo '</ul>';
     ?>
 
+
     <h2>Add A New User</h2>
-    <!-- where is item being refered to, when getting data from Form ? -->
+
     <form method="post" action="/saveUser">
         <label for="item">Name of New User:</label>
         <input type="text" name="itemName" id="itemName">
         <br>
-        <label for="item">Date Joined for New User:</label>
+        <label for="item">Date Joined:</label>
         <input type="Date" name="itemDate" id="itemDate" 
         value="<?php echo date('Y-m-d');?>">
-        <button name="btnAddItem" type="submit">Add</button>
+        <br>
+        <button name="btnAddItem" type="submit" class="submitButton">Add</button>
     </form>
     <br>
 
-    <!-- <h2>Question Table with Answer Points</h2> -->
-    <h2>GP-Core Questions</h2>
+
+    <h2>Answer GP-Core Questions</h2>
     <div id="core_form">
 
-
-    <!-- 
-        Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns
-    -->
-
+    <!--  Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns -->
 
     <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
     <br>Please read each statement and think how often you felt that way last week.
@@ -51,15 +50,16 @@
 
     <div>
 
-        <p>Over the last week...</p>
-<!-- needs flex grid or similar here - form submits to saveUser
-        need success msg whne form is submittd ok!  -->
+    <!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
+    <!-- needs flex grid or similar here to layout QA better - form submits to saveUser
+      need success msg whne form is submittd ok!  -->
     <div class="flex-grid">
     <form method="post" action="/saveAnswers">
         <div class="formNameDate">
-            <label for="item">Name of Existing User:</label>
+            <label for="existingUserID">Name of Existing User:</label>
             <select name="existingUserID">
-                <option value="">Select...</option>
+                <!-- caveat - this gives an error if u dont select a user, as it means thers no user_id to query! need validation & error checking! -->
+              <option value="">Select...</option>
 
                 <?php
                 foreach($usersList as $user) { ?>
@@ -74,33 +74,25 @@
             <input type="Date" name="dateCompleted" id="dateCompleted" 
             value="<?php echo date('Y-m-d');?>">
         </div>
-        
-            <!-- Need Names dropdown & Date field here, or should whole form be under a /userid route? -->
+
+        <p>Over the last week...</p>
+
             <!-- <ol> -->
                 <?php foreach($coreQuestionsAndPoints as $singleQuestionPoints) { ?>
                 <!-- <li id="question_id" > -->
-                    <!-- for each is likely messing up flex divs -->
+                    <!-- foreach is likely messing up flex divs! -->
                 <div class="col" id="question_id">
-                    <!-- need to save q_id here  -->
+                    <!-- need to show actual q_id here & explicitly save it later  -->
                     <?php $q_id = $singleQuestionPoints["q_id"];
-
-                    // need to have actual question id shown!
                     echo $singleQuestionPoints["q_id"];  
 
                     // $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
                     ?>
                     <!-- // <?php echo $radioButtonGroupName ?> -->
                     <?php echo $singleQuestionPoints["question"]  ?>
-                    <!-- each radio button group for each answer needs a  unique name!! 
-                    need var name based on Q id, then name radiobutton group based on that eg radioQ1AnswerPoints, radioQ2AnswerPoints
-                    <input type="radio" name="optradio[<?php echo $i; ?>]" value="b">Option 2</label>
-                    INSTEAD start by using the array here eg radioAnswerPoints[x], so its easier to access from Controller page
-                    name="radioAnswerPoints[<?php echo $singleQuestionPoints["q_id"] ?>]" 
-           
-                    -->
+
                 </div>  <!-- for col flex grid -->
 
-                    <!-- this is now working well; BUT is echo  better syntax than < ? = syntax    -->
                     <div class="radioGroupAnswers col">
                         <input type="radio" id="answerNot" 
                         name="radioAnswerPoints[<?php echo $q_id ?>]" 
@@ -128,19 +120,17 @@
                         <label for="answerMost">Most or all the time</label>
                     </div>
 
-
                 <!-- </li> -->
                 <?php } ?>
 
             <!-- </ol> -->
         
-        <button name="btnSubmitAnswers" type="submit">Submit Answers</button>
+        <button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>
         </form>
         </div>
 
     </div>
     </div>
-
 
 </body>
 </html>
