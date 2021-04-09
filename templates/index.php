@@ -10,17 +10,21 @@
 </head>
 
 <body>
-    <h1>Core Questions Form</h1>
+    <h1>Core Questions App</h1>
 
     <h2>Show Existing Users</h2>
-    <!-- hwo to call this ??? the Controller for this page ie HomePageController is where these variables are coming from eg $userList -->
+    <!-- hwo to call this ??? the Controller for this page ie HomePageController is where these array variables are coming from eg $userList 
+    Make link to Route dynamic - /showUserHistory/{q_id}
+    -->
     <?php
     echo '<ul>';
     foreach($usersList as $user) {
-        echo '<li>' . $user["name"] . ' Date Joined: ' . $user["date_joined"] .' </li>';
+        echo '<li>' . $user["name"] . ' -- Joined: ' . $user["date_joined"] .
+        ' -- <a href="/showUserHistory/'. $user["user_id"] .'">User History</a></li>';
         }
     echo '</ul>';
     ?>
+
 
     <h2>Add A New User</h2>
     <!-- where is item being refered to, when getting data from Form ? -->
@@ -28,15 +32,16 @@
         <label for="item">Name of New User:</label>
         <input type="text" name="itemName" id="itemName">
         <br>
-        <label for="item">Date Joined for New User:</label>
+        <label for="item">Date Joined:</label>
         <input type="Date" name="itemDate" id="itemDate" 
         value="<?php echo date('Y-m-d');?>">
-        <button name="btnAddItem" type="submit">Add</button>
+        <br>
+        <button name="btnAddItem" type="submit" class="submitButton">Add</button>
     </form>
     <br>
 
-    <!-- <h2>Question Table with Answer Points</h2> -->
-    <h2>GP-Core Questions</h2>
+
+    <h2>Answer GP-Core Questions</h2>
     <div id="core_form">
 
 <!--  TEMP FLEX BOX for LAYOUR -->
@@ -67,41 +72,26 @@
         Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns
     -->
 
-<!-- Add date and name here - need to extract values as part of SaveAnswersController-->
-<!--     <?php
-    echo '<ul>';
-    foreach($usersList as $user) {
-        echo '<li>' . $user["name"] . ' Date Joined: ' . $user["date_joined"] .' </li>';
-        }
-    echo '</ul>';
-    ?> -->
-
-        
-
-
     <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
-Please read each statement and think how often you felt that way last week.
-Then tick the box which is closest to this.</p>
+    <br>Please read each statement and think how often you felt that way last week.
+    <br>Then tick the box which is closest to this.</p>
 
     <div>
 
-        <p>Over the last week...</p>
-<!-- needs flex grid or similar here - form submits to saveUser -->
+    <!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
+    <!-- needs flex grid or similar here to layout QA better - form submits to saveUser -->
     <div class="flex-grid">
     <form method="post" action="/saveAnswers">
         <div class="formNameDate">
-            <label for="item">Name of Existing User:</label>
-            <!-- <input type="text" name="itemName" id="itemName"> -->
-
+            <label for="existingUserID">Name of Existing User:</label>
             <select name="existingUserID">
               <option value="">Select...</option>
-
-            <?php
-            foreach($usersList as $user) { ?>
-              <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
-            <?php 
-            }
-            ?>
+                <?php
+                foreach($usersList as $user) { ?>
+                  <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+                <?php 
+                }
+                ?>
             </select>
 
             <br>
@@ -110,18 +100,15 @@ Then tick the box which is closest to this.</p>
             value="<?php echo date('Y-m-d');?>">
         </div>
 
+        <p>Over the last week...</p>
 
-        
-            <!-- Need Names dropdown & Date field here, or should whole form be under a /userid route? -->
             <!-- <ol> -->
                 <?php foreach($coreQuestionsAndPoints as $singleQuestionPoints) { ?>
                 <!-- <li id="question_id" > -->
-                    <!-- for each is likely messing up flex divs -->
+                    <!-- foreach is likely messing up flex divs! -->
                 <div class="col" id="question_id">
-                    <!-- need to save q_id here  -->
+                    <!-- need to show actual q_id here & explicitly save it later  -->
                     <?php $q_id = $singleQuestionPoints["q_id"];
-
-                    // need to have actual question id shown!
                     echo $singleQuestionPoints["q_id"];  
 
                     // $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
@@ -137,7 +124,7 @@ Then tick the box which is closest to this.</p>
                     -->
                 </div>  <!-- for col flex grid -->
 
-                    <!-- this is now working well; BUT is echo  better syntax than < ? = syntax    -->
+                    <!-- this is now working well; BUT is echo  better syntax than short < ? = syntax  - YES per Mike  -->
                     <div class="radioGroupAnswers col">
                         <input type="radio" id="answerNot" 
                         name="radioAnswerPoints[<?php echo $q_id ?>]" 
@@ -165,13 +152,12 @@ Then tick the box which is closest to this.</p>
                         <label for="answerMost">Most or all the time</label>
                     </div>
 
-
                 <!-- </li> -->
                 <?php } ?>
 
             <!-- </ol> -->
         
-        <button name="btnSubmitAnswers" type="submit">Submit Answers</button>
+        <button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>
         </form>
         </div>
 
@@ -210,12 +196,6 @@ Then tick the box which is closest to this.</p>
     // echo '</ol>';
     ?> -->
 
-
-<!-- hard code 1 = alvis for now, route is /showUserHistory/{q_id} 
-need to make userid & thus name dynamic
--->
-    <br><br>
-    <h3><a href="/showUserHistory/2">Show User History ie Historical QA</a></h3>
 
 </body>
 </html>
