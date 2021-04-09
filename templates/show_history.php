@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To Do App - Completed Items</title>
+    <title>GP-Core Questions Form - User History</title>
     <link href="../style.css" type="text/css" rel="stylesheet">
 </head>
 
