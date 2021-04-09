@@ -4,7 +4,7 @@
 <!-- Davin updated this file for CoreQuestions -->
 <head>
     <meta charset="utf-8"/>
-    <title>Core Question Form</title>
+    <title>GP-Core Question Form</title>
     <link href="style.css" type="text/css" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
 </head>
