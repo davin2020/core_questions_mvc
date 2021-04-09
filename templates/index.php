@@ -42,6 +42,7 @@
     <h2>Answer GP-Core Questions</h2>
     <div id="core_form">
 
+    <!--  Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns -->
 
     <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
     <br>Please read each statement and think how often you felt that way last week.
@@ -50,7 +51,8 @@
     <div>
 
     <!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
-    <!-- needs flex grid or similar here to layout QA better - form submits to saveUser -->
+    <!-- needs flex grid or similar here to layout QA better - form submits to saveUser
+      need success msg whne form is submittd ok!  -->
     <div class="flex-grid">
     <form method="post" action="/saveAnswers">
         <div class="formNameDate">
@@ -58,6 +60,7 @@
             <select name="existingUserID">
                 <!-- caveat - this gives an error if u dont select a user, as it means thers no user_id to query! need validation & error checking! -->
               <option value="">Select...</option>
+
                 <?php
                 foreach($usersList as $user) { ?>
                   <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
