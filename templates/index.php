@@ -13,9 +13,7 @@
     <h1>Core Questions App</h1>
 
     <h2>Show Existing Users</h2>
-    <!-- hwo to call this ??? the Controller for this page ie HomePageController is where these array variables are coming from eg $userList 
-    Make link to Route dynamic - /showUserHistory/{q_id}
-    -->
+
     <?php
     echo '<ul>';
     foreach($usersList as $user) {
@@ -27,7 +25,7 @@
 
 
     <h2>Add A New User</h2>
-    <!-- where is item being refered to, when getting data from Form ? -->
+
     <form method="post" action="/saveUser">
         <label for="item">Name of New User:</label>
         <input type="text" name="itemName" id="itemName">
@@ -44,33 +42,6 @@
     <h2>Answer GP-Core Questions</h2>
     <div id="core_form">
 
-<!--  TEMP FLEX BOX for LAYOUR -->
-        <div class="flex-grid">
-          <div class="col">
-            <!-- can i put simmple for each in here? -->
-            <?php
-            $tmp = [1,2,3,4,5];
-            foreach($tmp as $item )
-                echo '<p>hello' . $item . '</p>';
-            ?>
-          <p>This little piggy went to market.</p>
-        </div>
-          <div class="col">
-            <input type="radio" id="huey" name="drone" value="huey"
-         checked>
-            <label for="huey">Huey</label>
-            <input type="radio" id="dewey" name="drone" value="dewey">
-            <label for="dewey">Dewey</label>
-          <p>This little piggy stayed home.</p>
-        </div>
-        </div>
-    <!-- what will these fields be named?  
-        Should i include the gp_order here or is it enought that qs are already sorted in the right order?
-        maybe try writing out hte html and just using php for the variable values? 
-        Need to get linked css working so can style this
-        On next iteration, get labels from DB
-        Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns
-    -->
 
     <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
     <br>Please read each statement and think how often you felt that way last week.
@@ -85,6 +56,7 @@
         <div class="formNameDate">
             <label for="existingUserID">Name of Existing User:</label>
             <select name="existingUserID">
+                <!-- caveat - this gives an error if u dont select a user, as it means thers no user_id to query! need validation & error checking! -->
               <option value="">Select...</option>
                 <?php
                 foreach($usersList as $user) { ?>
@@ -115,16 +87,9 @@
                     ?>
                     <!-- // <?php echo $radioButtonGroupName ?> -->
                     <?php echo $singleQuestionPoints["question"]  ?>
-                    <!-- each radio button group for each answer needs a  unique name!! 
-                    need var name based on Q id, then name radiobutton group based on that eg radioQ1AnswerPoints, radioQ2AnswerPoints
-                    <input type="radio" name="optradio[<?php echo $i; ?>]" value="b">Option 2</label>
-                    INSTEAD start by using the array here eg radioAnswerPoints[x], so its easier to access from Controller page
-                    name="radioAnswerPoints[<?php echo $singleQuestionPoints["q_id"] ?>]" 
-           
-                    -->
+
                 </div>  <!-- for col flex grid -->
 
-                    <!-- this is now working well; BUT is echo  better syntax than short < ? = syntax  - YES per Mike  -->
                     <div class="radioGroupAnswers col">
                         <input type="radio" id="answerNot" 
                         name="radioAnswerPoints[<?php echo $q_id ?>]" 
@@ -163,39 +128,6 @@
 
     </div>
     </div>
-
-    <!-- <h2>Alt way of making table</h2> -->
-    <?php
-    // echo '<ol>';
-    // foreach($coreQuestionsAndPoints as $singleQuestionPoints) {
-    //     echo '<li>' 
-    //     . $singleQuestionPoints["question"] 
-    //     . '<div class="radioGroupAnswers">'
-    //       . ' <input type="radio" id="answerNot" name="answerPoints" value="' . $singleQuestionPoints["pointsA_not"] . '">'
-    //       .  '<label for="answerNot">Not</label>'
-    //         . '<input type="radio" id="answerOnly" name="radioAnswerPoints" value="'. $singleQuestionPoints["pointsB_only"] .'">'
-    //        . '<label for="answerOnly">Only</label>'
-    //       . '</div>'
-
-    //     .' </li>';
-    //     }
-    // echo '</ol>';
-    ?>
-
-
-    <!-- <h2>Tasks To Do</h2> -->
-    <!-- <?php
-    // echo '<ol>';
-    // foreach($tasks as $task) {
-    // //        echo '<li>' . $task["item"] . '</li>';
-    // //        echo '<a href="/markAsComplete/' . $task["id"] . '">Completed</a>';
-
-    // //show task in a list, with a link to Complete each task
-    //     echo '<li>' . $task["item"] . ' &nbsp <a href="/markAsComplete/' . $task["id"] . '">Completed</a> </li>';
-    // }
-    // echo '</ol>';
-    ?> -->
-
 
 </body>
 </html>

@@ -29,11 +29,6 @@ class ShowUserHistoryController
         $userAnswerHistory = $this->answerModel->getUserAnswers($args['q_id']);
         // $userHistory = $this->userModel->getUserHistory($args['q_id']);
 
-//        var_dump($tasks); // cant vardump  if u want to redirect!!
-        //redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
-
-//         $tasks = $this->taskModel->getCompletedTasks();
-// //        var_dump($tasks);
         $assocArrayArgs = [];
         $assocArrayArgs['userName'] = $userName; 
         $assocArrayArgs['userHistory'] = $userAnswerHistory; 

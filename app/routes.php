@@ -22,10 +22,4 @@ return function (App $app) {
 
     $app->get('/showUserHistory/{q_id}', 'ShowUserHistoryController');
 
-    // $app->get('/markAsComplete/{id}', 'MarkCompleteController');
-    // $app->get('/completedTasks', 'CompletedTasksPageController');
-
-    //need to create controller & factory for this ToDo route
-    // $app->get('/deleteTask/{id}', 'DeleteTaskController');
-
 };

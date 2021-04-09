@@ -22,16 +22,6 @@
     }
     ?>
 
-<!--  alt syntax
-   <?php
-    echo '<ul>';
-    foreach($usersList as $user) {
-        echo '<li>' . $user["name"] . ' Date Joined: ' . $user["date_joined"] .' </li>';
-        }
-    echo '</ul>';
-    ?>
- -->
-
 
 <h6><a href="/">Return to Core Questions Homepage</a></h6>
 
