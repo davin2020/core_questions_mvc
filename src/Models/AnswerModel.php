@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+require_once './../vendor/autoload.php';
+use Amenadiel\JpGraph\Graph;
+use Amenadiel\JpGraph\Plot;
+//above stuff is for graphs
+
 // updated for CoreQuestions wrt Answers- but should i have a QuestionModel and a UserModeL that are separte ??
 class AnswerModel
 {
@@ -40,6 +45,30 @@ public function getUserAnswers(int $userID)
         $result = $query->fetchAll();
         return $result;
     }
+
+// new graph stuff f9april
+    //redit - One thing I ran into frequently during development was that jpgraph outputs binary. So any text you echo (including error messages) in your script will cause a jpgraph error. Just use output buffering, then ob_end_clean() before stroking the graph.
+public function getUserAnswersGraph(int $userID) {
+    
+    // Create the Pie Graph.
+   $graph = new Graph\PieGraph(350, 250);
+   $graph->title->Set("A Simple Pie Plot");
+   $graph->SetBox(true);
+   //changing Frame/Box stuff here doenst seem to make much differnece?
+   // $graph->SetFrame(false);
+    // $graph->SetFrame(true,'gray',0);
+
+   $data = array(40, 21, 17, 14, 23);
+   $p1   = new Plot\PiePlot($data);
+   $p1->ShowBorder();
+   $p1->SetColor('black');
+   $p1->SetSliceColors(array('#1E90FF', '#2E8B57', '#ADFF2F', '#DC143C', '#BA55D3'));
+
+   $graph->Add($p1);
+   // $graph->Stroke();
+   return $graph;
+}
+
 
 //replaced from saveTask, saveAnswers needs to take an array of Q & points values, plus user_id and score_date and calculate the overall_score BUT socre is based on sum of answer points - so how to deal with that? ie put logic in model or elswhere eg Controller? ask Mike
 
