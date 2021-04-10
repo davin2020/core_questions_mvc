@@ -10,6 +10,15 @@
 <body>
 <h1>Core Questions App</h1>
 
+<h2>User Graph for <?php echo $userName ?></h2>
+<!-- make graph based on array of data, then use above data -->
+
+<div>
+    <!-- dyanmic graph showing overall score, if present - needs error handling! -->
+    <img src="data:image/png;base64,<?php echo(base64_encode($userLineGraph)); ?>" />
+</div>
+
+
 <h2>User History for <?php echo $userName ?></h2>
 <!-- output date & score, show username above -->
 
@@ -23,6 +32,12 @@
     }
     ?>
 
+
+<h6><a href="/">Return to Core Questions Homepage</a></h6>
+
+
+<!--  EXTRA STUFF  -->
+
 <!--  alt syntax
    <?php
     echo '<ul>';
@@ -33,9 +48,8 @@
     ?>
  -->
 
-<h2>User Graph</h2>
-<!-- make graph based on array of data, then use above data -->
-<div>
+
+
 <?php
 // $assocArrayArgs['graphTest'] = $userGraph; 
 // $graphTest;
@@ -44,19 +58,16 @@
     // $graphTest->Stroke();
  ?>
 
+
+
 <!-- static graph -->
 <!-- <img src="data:image/png;base64,<?php echo(base64_encode($graphTest)); ?>" /> -->
-
-<!-- dyanmic graph showing overall score, if present - needs error handling! -->
-<img src="data:image/png;base64,<?php echo(base64_encode($lineGraphTest)); ?>" />
 
 
 <!-- alt otpion to embed chart , likely needs php page with graph already in it??-->
 <!-- <img src="linear_graph_customer.php?values=1,2,3,4|1,2,3,4|1,2,3,4&title=CHART&width=500&height=300" width="500" height="300" class="img" /> -->
 
-</div>
 
-<h6><a href="/">Return to Core Questions Homepage</a></h6>
 
 </body>
 </html>

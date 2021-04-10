@@ -56,16 +56,21 @@ class ShowUserHistoryController
 
 
         // april 9 - get some graphs - uncommenting thsi make sth whole page become a graph
-        $userGraph = $this->answerModel->getUserAnswersGraph($args['q_id']);
         //this makes the graph visisble but then it takes over teh whole page!
+        // no longer need thsi static pie chart
+        // $userGraph = $this->answerModel->getUserAnswersGraph($args['q_id']);
+
 
         // ISSUE FIXED! needed to do some stuff about embedding an image - see https://stackoverflow.com/questions/7323976/how-to-embed-a-graph-jpgraph-in-a-web-page
-        $userGraphImg = $userGraph->Stroke(_IMG_HANDLER);
+        
+        //redit - One thing I ran into frequently during development was that jpgraph outputs binary. So any text you echo (including error messages) in your script will cause a jpgraph error. Just use output buffering, then ob_end_clean() before stroking the graph. -- is this still relevant to me??
 
-        ob_start();
-        imagepng($userGraphImg);
-        $imageGraphData = ob_get_contents();
-        ob_end_clean();
+        //dont need this static pie chart any more
+        // $userGraphImg = $userGraph->Stroke(_IMG_HANDLER);
+        // ob_start();
+        // imagepng($userGraphImg);
+        // $imageGraphData = ob_get_contents();
+        // ob_end_clean();
 
         // var_dump($imageData);
         // exit;
@@ -85,8 +90,8 @@ class ShowUserHistoryController
         $assocArrayArgs['userName'] = $userName; 
         $assocArrayArgs['userHistory'] = $userAnswerHistory; 
         // $assocArrayArgs['graphTest'] = $userGraphImg;
-        $assocArrayArgs['graphTest'] = $imageGraphData; 
-        $assocArrayArgs['lineGraphTest'] = $imageLineGraphData; 
+        // $assocArrayArgs['graphTest'] = $imageGraphData; //dont need this graph any more
+        $assocArrayArgs['userLineGraph'] = $imageLineGraphData; 
 
         // stay on current page??
         // return $response->withHeader('Location', './')->withStatus(302);
