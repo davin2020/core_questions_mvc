@@ -64,18 +64,29 @@ class ShowUserHistoryController
 
         ob_start();
         imagepng($userGraphImg);
-        $imageData = ob_get_contents();
+        $imageGraphData = ob_get_contents();
         ob_end_clean();
 
         // var_dump($imageData);
         // exit;
 
+    //line graph 10april   
+        $userLineGraph = $this->answerModel->getUserAnswersLineGraph($args['q_id']);
+        //do stuff with output buffering & encoding
+        $userLineGraphImg = $userLineGraph->Stroke(_IMG_HANDLER);
+        ob_start();
+        imagepng($userLineGraphImg);
+        $imageLineGraphData = ob_get_contents();
+        ob_end_clean();
 
+
+        //build AssocArgs array & add items to it, for actual page to render
         $assocArrayArgs = [];
         $assocArrayArgs['userName'] = $userName; 
         $assocArrayArgs['userHistory'] = $userAnswerHistory; 
         // $assocArrayArgs['graphTest'] = $userGraphImg;
-        $assocArrayArgs['graphTest'] = $imageData; 
+        $assocArrayArgs['graphTest'] = $imageGraphData; 
+        $assocArrayArgs['lineGraphTest'] = $imageLineGraphData; 
 
         // stay on current page??
         // return $response->withHeader('Location', './')->withStatus(302);

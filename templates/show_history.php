@@ -44,8 +44,11 @@
     // $graphTest->Stroke();
  ?>
 
-<img src="data:image/png;base64,<?php echo(base64_encode($graphTest)); ?>" />
+<!-- static graph -->
+<!-- <img src="data:image/png;base64,<?php echo(base64_encode($graphTest)); ?>" /> -->
 
+<!-- dyanmic graph showing overall score, if present - needs error handling! -->
+<img src="data:image/png;base64,<?php echo(base64_encode($lineGraphTest)); ?>" />
 
 
 <!-- alt otpion to embed chart , likely needs php page with graph already in it??-->

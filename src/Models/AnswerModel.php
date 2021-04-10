@@ -3,8 +3,16 @@
 namespace App\Models;
 
 require_once './../vendor/autoload.php';
+// require_once ('jpgraph/jpgraph.php');
+// require_once ('jpgraph/jpgraph_line.php');
+// require_once( "jpgraph/jpgraph_date.php" );
 use Amenadiel\JpGraph\Graph;
 use Amenadiel\JpGraph\Plot;
+// use Amenadiel\JpGraph\LinePlot;
+use Amenadiel\JpGraph\Themes;
+use Amenadiel\JpGraph\UniversalTheme;
+// dir C:\wamp64\www\nvc_project\gp_core\php_mvc_questions\core_questions_mvc\vendor\amenadiel\jpgraph\src\themes
+
 //above stuff is for graphs
 
 // updated for CoreQuestions wrt Answers- but should i have a QuestionModel and a UserModeL that are separte ??
@@ -68,6 +76,88 @@ public function getUserAnswersGraph(int $userID) {
    // $graph->Stroke();
    return $graph;
 }
+
+//10april Davin from tutorial - https://jpgraph.net/features/src/show-example.php?target=new_line1.php
+// prob best to have a function that generates the graph, when u pass it a 1D array of numbers ?
+
+private function makeGraph(array $values) {
+    // $datay1 = array(55,45,52,40); //pretned this is overall score
+
+    $datay1 = $values; //pretned this is overall score
+    $datay2 = array(12,9,16); //pretend this is Wellness score etc
+    $datay3 = array(25,37,32,30);
+
+    // Setup the graph - have to call Graph\Graph for some reason?
+    $graph = new Graph\Graph(350,250);
+    // $graph->SetScale("textlin");
+    $graph->SetScale("datlin"); //for dates
+
+    // it cant seem to find this class
+    $theme_class=new Themes\UniversalTheme;
+
+    $graph->SetTheme($theme_class);
+    $graph->img->SetAntiAliasing(false);
+    $graph->title->Set('Overall Score Over Time');
+    $graph->SetBox(false);
+
+    //only first digit seems to affect anything ie left margin
+    $graph->SetMargin(40,20,36,63);
+
+    $graph->img->SetAntiAliasing();
+
+    $graph->yaxis->HideZeroLabel();
+    $graph->yaxis->HideLine(false);
+    $graph->yaxis->HideTicks(false,false);
+
+    //need to do stuff with x axis dates here
+    $graph->xgrid->Show();
+    $graph->xgrid->SetLineStyle("solid");
+    $graph->xaxis->SetTickLabels(array('Mar 7','Mar 14','Mar 21','Mar 28'));
+    $graph->xgrid->SetColor('#E3E3E3');
+
+    // Create the first line - search for LInePlot in directory and found it insdie Plot folder - C:\wamp64\www\nvc_project\gp_core\php_mvc_questions\core_questions_mvc\vendor\amenadiel\jpgraph\src\plot
+    $p1 = new Plot\LinePlot($datay1);
+    $graph->Add($p1);
+    $p1->SetColor("#6495ED");
+    $p1->SetLegend('Overall Score');
+
+    // Create the second line
+    $p2 = new Plot\LinePlot($datay2);
+    $graph->Add($p2);
+    $p2->SetColor("#B22222");
+    $p2->SetLegend('Wellness Score');
+
+    // Create the third line
+    $p3 = new Plot\LinePlot($datay3);
+    $graph->Add($p3);
+    $p3->SetColor("#FF1493");
+    $p3->SetLegend('Productivity Score');
+
+    $graph->legend->SetFrameWeight(1);
+
+    // Output line - need to stroke/render graph later!
+    // $graph->Stroke(); 
+    return $graph;
+}
+
+//syntax - foreach (iterable_expression as $key => $value)
+public function getUserAnswersLineGraph(int $userID) {
+    $tmpArray = [];
+
+    $tmpResults = $this->getUserAnswers($userID);
+    foreach($tmpResults as $index => $value) {
+        $tmpArray[$index] = $value['overall_score'];
+    }
+    // var_dump($tmpArray);
+    // exit;
+
+    // $tmpArray = [25,45,52,30];
+    // $tmpArray = [55,45,52,40];
+    // $this->db = $db;
+    $tmpGraph = $this->makeGraph($tmpArray);
+    return $tmpGraph;
+}
+
 
 
 //replaced from saveTask, saveAnswers needs to take an array of Q & points values, plus user_id and score_date and calculate the overall_score BUT socre is based on sum of answer points - so how to deal with that? ie put logic in model or elswhere eg Controller? ask Mike
