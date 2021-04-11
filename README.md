@@ -19,7 +19,8 @@ This To Do app is live here - (not yet)
 - Add a new user to the DB
 - View all existing Core Questions
 - Answer the Core Questions on the form (using radio buttons) and submit the form to save the data to the DB
-- View user history data, and dynamic graph of previous dates & scores - **NEW!**
+- View user history data ie previous dates & scores
+- View dynamic line graph of previous dates & scores - **NEW!**
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory

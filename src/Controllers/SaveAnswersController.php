@@ -16,6 +16,7 @@ class SaveAnswersController
     {
         //get userid and date from completed Form, plus selected radio buttons for each answer, then add those args to the saveAnswers function
         $userID = $request->getParsedBody()['existingUserID'];
+
         $dateFormCompleted = $request->getParsedBody()['dateCompleted'];
 
         $dataArrayAnswers = $request->getParsedBody()['radioAnswerPoints'];

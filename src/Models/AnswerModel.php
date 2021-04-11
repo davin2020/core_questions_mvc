@@ -25,9 +25,9 @@ class AnswerModel
     }
 
 
-// get date & overall score based on user id
-public function getUserAnswers(int $userID)
-    {
+  // get date & overall score based on user id
+  public function getUserAnswers(int $userID)
+  {
         //why cant i also just get the name out here and return it all in one go?
         $query = $this->db->prepare('SELECT `ucs_id`, `score_date`, `overall_score` FROM `user_core_score` WHERE `user_id` = :pl_user_id ORDER BY `score_date`;');
 
@@ -35,11 +35,12 @@ public function getUserAnswers(int $userID)
         $query->setFetchMode(\PDO::FETCH_CLASS, 'AnswerModel'); 
         $result = $query->fetchAll();
         return $result;
-    }
+  }
 
 
-// this actually generates the line graph itself
-private function makeLineGraph(array $values) {
+  // this actually generates the line graph itself
+  private function makeLineGraph(array $values) 
+  {
     //y is dates from table - 
     //ISSUES - how to specify them in DMY format and how to show relevant amount of space if some weeks/months have been missed withn the scale? 
     $data_ydates = $values[1];
@@ -52,7 +53,6 @@ private function makeLineGraph(array $values) {
     // $graph->SetScale("datlin"); //for dates on x and linear on y
     //show y scale from 0 until 60 for GP-Core with only 14Qs, otherwise it starts at lowest value eg 40
     $graph->SetScale('datlin',0,60,0,0);
-
 
     //is this not working cos it doenst know its really a date? - maybe read in data from db and ensure that s date?
     //CAVEAT - graph may not plot lines if there are only 2 inputs/dates, not sure if this is related 
@@ -104,11 +104,12 @@ private function makeLineGraph(array $values) {
     //this is with legend at theh very bottom
     $graph->legend->SetPos(0.5,0.98,'center','bottom');
     return $graph;
-}
+  }
 
 
-// get line graph based on user id and their answers over time
-public function getUserAnswersLineGraph(int $userID) {
+  // get line graph based on user id and their answers over time
+  public function getUserAnswersLineGraph(int $userID) 
+  {
     $tmpArray = [];
     $tmpArrayScores = [];
     $tmpArrayDates = [];
@@ -125,12 +126,11 @@ public function getUserAnswersLineGraph(int $userID) {
 
     $tmpGraph = $this->makeLineGraph($tmpArray);
     return $tmpGraph;
-}
+  }
 
 
-
-// this is really SaveUserAnswers
-public function saveAnswers(int $userID, string $scoreDate, array $dataArrayAnswers, int $totalScore)
+  // this is really SaveUserAnswers ie Answers cannot exist without the User
+  public function saveAnswers(int $userID, string $scoreDate, array $dataArrayAnswers, int $totalScore)
     {
 
         $query = $this->db->prepare('INSERT INTO `user_core_score` (`user_id`, `score_date`, `overall_score`) VALUES (:pl_user_id, :pl_score_date, :pl_overall_score);');
@@ -151,14 +151,14 @@ public function saveAnswers(int $userID, string $scoreDate, array $dataArrayAnsw
     }
  
 
-public function calculateScore(array $questionPoints) 
-{
-        $sum = 0;
-        //iterate over array and sum points
-        foreach($questionPoints as $item )
-            $sum += $item;
-        return $sum;
+  public function calculateScore(array $questionPoints) 
+  {
+          $sum = 0;
+          //iterate over array and sum points
+          foreach($questionPoints as $item )
+              $sum += $item;
+          return $sum;
+  }
+
 }
 
-
-}
