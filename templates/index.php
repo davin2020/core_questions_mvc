@@ -4,7 +4,7 @@
 <!-- Davin updated this file for CoreQuestions -->
 <head>
     <meta charset="utf-8"/>
-    <title>Core Question Form</title>
+    <title>GP-Core Question Form</title>
     <link href="style.css" type="text/css" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
 </head>
@@ -42,8 +42,6 @@
     <h2>Answer GP-Core Questions</h2>
     <div id="core_form">
 
-    <!--  Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns -->
-
     <p>This form has multiple statements about how you have been OVER THE LAST WEEK.
     <br>Please read each statement and think how often you felt that way last week.
     <br>Then tick the box which is closest to this.</p>
@@ -51,8 +49,10 @@
     <div>
 
     <!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
-    <!-- needs flex grid or similar here to layout QA better - form submits to saveUser
-      need success msg whne form is submittd ok!  -->
+
+    <!-- needs flex grid or similar here to layout QA better for mobile, plus put labels at the top of the columns - form submits to saveUser 
+      form needs success message for user when its submitted ok-->
+
     <div class="flex-grid">
     <form method="post" action="/saveAnswers">
         <div class="formNameDate">
@@ -83,16 +83,15 @@
                     <!-- foreach is likely messing up flex divs! -->
                 <div class="col" id="question_id">
                     <!-- need to show actual q_id here & explicitly save it later  -->
-                    <?php $q_id = $singleQuestionPoints["q_id"];
-                    echo $singleQuestionPoints["q_id"];  
-
-                    // $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
+                    <?php 
+                    $q_id = $singleQuestionPoints["q_id"];
+                    echo $q_id;
                     ?>
-                    <!-- // <?php echo $radioButtonGroupName ?> -->
+
                     <?php echo $singleQuestionPoints["question"]  ?>
 
                 </div>  <!-- for col flex grid -->
-
+                    <!-- radio button answers -->
                     <div class="radioGroupAnswers col">
                         <input type="radio" id="answerNot" 
                         name="radioAnswerPoints[<?php echo $q_id ?>]" 

@@ -3,7 +3,7 @@
 ## About
 This will be a web form where you can submit answers to the 'GP-Core Questions', which is used to report subjective wellbeing. 
 
-NB: This repo is very much a work in progress.
+**NB: This repo is very much a work in progress.**
 
 It uses the LAMP stack, and will have basic CRUD functionality, storing data in a MYSQL db.
 
@@ -16,10 +16,11 @@ This To Do app is live here - (not yet)
 
 ## End User Features
 - View a list of existing users
-- View user history ie previous dates & scores - **NEW!**
 - Add a new user to the DB
 - View all existing Core Questions
 - Answer the Core Questions on the form (using radio buttons) and submit the form to save the data to the DB
+- View user history data ie previous dates & scores
+- View dynamic line graph of previous dates & scores - **NEW!**
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory

@@ -16,8 +16,6 @@ class ShowUserHistoryControllerFactory
         $showUserHistoryController = new ShowUserHistoryController($userModel, $answerModel, $renderer);
         return $showUserHistoryController;
     }
-    // $saveAnswersController = new SaveAnswersController($answerModel);
-    //     return $saveAnswersController;
-    // }
+
 
 }
