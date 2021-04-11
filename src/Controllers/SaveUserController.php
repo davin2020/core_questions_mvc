@@ -15,16 +15,11 @@ class SaveUserController
     public function __invoke($request, $response, $args)
     {
         $dataName = $request->getParsedBody()['itemName'];
-        //why i s this  a string and not a date?
+        //why is this  a string and not a date? how to cast it to a php date?
         $dataDate = $request->getParsedBody()['itemDate'];
-//        $data = $request->getParsedBody();
-//        $x = $data['item'];
-//        var_dump($data);
-        var_dump($dataDate);
+        // var_dump($dataDate);
 
        $result = $this->userModel->saveUser($dataName, $dataDate);
-//       var_dump($result);
-//        $tasks = $this->taskModel->saveTask($args['taskDetails']);
         //redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
         return $response->withHeader('Location', '/')->withStatus(302);
     }
