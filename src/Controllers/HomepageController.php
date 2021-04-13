@@ -6,48 +6,46 @@ namespace App\Controllers;
 
 class HomepageController
 {
-    private $userModel;
-    private $questionModel;
-    private $renderer;
-    //do i also need a UserModel here?
+	private $userModel;
+	private $questionModel;
+	private $renderer;
 
-    /**
-     * CompletedTasksPageController constructor.
-     * @param $questionModel
-     * @param $renderer
-     */
-    // need to update constructor btu where isit being called from, as need to pass in extra args!
-    public function __construct($userModel, $questionModel, $renderer)
-    {
-        $this->userModel = $userModel;
-        $this->questionModel = $questionModel;
-        $this->renderer = $renderer;
-    }
+	/**
+	 * HomePageController constructor.
+	 * @param $userModel
+	 * @param $questionModel
+	 * @param $renderer
+	 */
 
-    public function __invoke($request, $response, $args)
-    {//need to return response via render method
+	public function __construct($userModel, $questionModel, $renderer)
+	{
+		$this->userModel = $userModel;
+		$this->questionModel = $questionModel;
+		$this->renderer = $renderer;
+	}
 
-        $assocArrayArgs = [];
+	//invoke only ever does 1 thing, each page has own controler thus own invoke method, where the stuff for the actual page gets done eg display users & questions or save answers etc
+	public function __invoke($request, $response, $args)
+	{
+		//need to return response with args[] via render method
+		$assocArrayArgs = [];
 
-        //get & show all questions
-        //invoke only ever does 1 thing, each page has own controler thus own invoke method - invoke is where the stuff for the actual page gets done eg display uncomplete questions etc - prev code was - taskModel object accessor to getUncompletedTasks
-        $allQuestions = $this->questionModel->getQuestions();
-//        var_dump($questions);
-        
-        $assocArrayArgs['coreQuestions'] = $allQuestions; //add questions to assoc array, for php renderer to display stuff - can have 2 diff keys if u needed to display more stuff here
+		//get & show all questions - is this still being used?
+		$allQuestions = $this->questionModel->getQuestions();
+		//add questions to assoc array, for php renderer to display stuff - can have multiple keys if u needed to display more stuff later
+		$assocArrayArgs['coreQuestions'] = $allQuestions; 
 
-        $allQuestionsAndPoints = $this->questionModel->getQuestionsAndPoints();
-        $assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
+		//get questions and associated points for each possible answer
+		$allQuestionsAndPoints = $this->questionModel->getQuestionsAndPoints();
+		$assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
+		// var_dump($allQuestionsAndPoints);
 
-        // Dav 5April add in stuff about all users
-        $allUsers = $this->userModel->getUsers();
-//      var_dump($allUsers);
-        // $assocArrayArgs = [];
-        $assocArrayArgs['usersList'] = $allUsers;
+		// get all users so they can be displayed
+		$allUsers = $this->userModel->getUsers();
+		$assocArrayArgs['usersList'] = $allUsers;
 
-
-        //last param $args is the data to return to the index page
-        return $this->renderer->render($response, 'index.php', $assocArrayArgs);
-    }
+		//last param $args is the data to return to the next page
+		return $this->renderer->render($response, 'index.php', $assocArrayArgs);
+	}
 
 }

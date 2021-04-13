@@ -11,54 +11,44 @@ use Psr\Log\LoggerInterface;
 use Slim\Views\PhpRenderer;
 
 return function (ContainerBuilder $containerBuilder) {
-    $container = [];
+	$container = [];
 
-    $container[LoggerInterface::class] = function (ContainerInterface $c) {
-        $settings = $c->get('settings');
+	$container[LoggerInterface::class] = function (ContainerInterface $c) {
+		$settings = $c->get('settings');
 
-        $loggerSettings = $settings['logger'];
-        $logger = new Logger($loggerSettings['name']);
+		$loggerSettings = $settings['logger'];
+		$logger = new Logger($loggerSettings['name']);
 
-        $processor = new UidProcessor();
-        $logger->pushProcessor($processor);
+		$processor = new UidProcessor();
+		$logger->pushProcessor($processor);
 
-        $handler = new StreamHandler($loggerSettings['path'], $loggerSettings['level']);
-        $logger->pushHandler($handler);
+		$handler = new StreamHandler($loggerSettings['path'], $loggerSettings['level']);
+		$logger->pushHandler($handler);
 
-        return $logger;
-    };
+		return $logger;
+	};
 
-    $container['renderer'] = function (ContainerInterface $c) {
-        $settings = $c->get('settings')['renderer'];
-        $renderer = new PhpRenderer($settings['template_path']);
-        return $renderer;
-    };
+	$container['renderer'] = function (ContainerInterface $c) {
+		$settings = $c->get('settings')['renderer'];
+		$renderer = new PhpRenderer($settings['template_path']);
+		return $renderer;
+	};
 
-    //original stuff for ToDos
-    $container['HomepageController'] = DI\Factory('App\Factories\HomepageControllerFactory');
-    $container['DBConnector'] = DI\Factory('App\DBConnector'); //technically a factoy
+	//original stuff for ToDos
+	$container['HomepageController'] = DI\Factory('App\Factories\HomepageControllerFactory');
+	$container['DBConnector'] = DI\Factory('App\DBConnector'); //technically a factoy
  
-    //updaetd for Questions instead of Tasks - added UserModel too
-    $container['QuestionModel'] = DI\Factory('App\Factories\QuestionModelFactory');
-    $container['UserModel'] = DI\Factory('App\Factories\UserModelFactory');
+	//updated for CoreQuestions - added 3 new models each of which requires its own factory
+	$container['QuestionModel'] = DI\Factory('App\Factories\QuestionModelFactory');
+	$container['UserModel'] = DI\Factory('App\Factories\UserModelFactory');
+	$container['AnswerModel'] = DI\Factory('App\Factories\AnswerModelFactory');
 
-    //dont forget to make a AnswerModelFactory for the new AnswerModel!
-    $container['AnswerModel'] = DI\Factory('App\Factories\AnswerModelFactory');
+	//dont forget to add new models & controllers here!
+	$container['SaveUserController'] = DI\Factory('App\Factories\SaveUserControllerFactory');
 
-    //dont forget to add new models & controllers here!
-    $container['SaveUserController'] = DI\Factory('App\Factories\SaveUserControllerFactory');
+	$container['SaveAnswersController'] = DI\Factory('App\Factories\SaveAnswersControllerFactory');
 
-    $container['SaveAnswersController'] = DI\Factory('App\Factories\SaveAnswersControllerFactory');
+	$container['ShowUserHistoryController'] = DI\Factory('App\Factories\ShowUserHistoryControllerFactory');
 
-    $container['ShowUserHistoryController'] = DI\Factory('App\Factories\ShowUserHistoryControllerFactory');
-
-
-
-    // $container['MarkCompleteController'] = DI\Factory('App\Factories\MarkCompleteControllerFactory');
-
-    // $container['CompletedTasksPageController'] = DI\Factory('App\Factories\CompletedTasksPageControllerFactory');
-
-    // $container['DeleteTaskController'] = DI\Factory('App\Factories\DeleteTaskControllerFactory');
-
-    $containerBuilder->addDefinitions($container);
+	$containerBuilder->addDefinitions($container);
 };
