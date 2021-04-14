@@ -1,59 +1,61 @@
 * {
   box-sizing: border-box;
 }
+
 body {
-    margin: 10px;
-    padding: 5px;
-    width: 90%;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    /*text-align: center;*/
-    color: #000;
-    font-size: 18px;
-    background-color: #a5e0f7 ; /*#FCFFCD  */
+	margin: 10px;
+	padding: 5px;
+	width: 90%;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	/*text-align: center;*/
+	color: #000;
+	font-size: 18px;
+	background-color: #a5e0f7 ; /*#FCFFCD  */
 } 
 
 h1 {
-    color: #4115c4;
-    font-family: 'Lato', sans-serif;
-    /*letter-spacing: -3px;*/
-    /*font-size: 100px;*/
-    /*font-weight: 200;*/
-    /*margin-bottom: 0;*/
+	color: #4115c4;
+	font-family: 'Lato', sans-serif;
+	/*letter-spacing: -3px;*/
+	/*font-size: 100px;*/
+	/*font-weight: 200;*/
+	/*margin-bottom: 0;*/
 }
 
 h2 {
-    color: #4115c4;
+	color: #4115c4;
 }
 
 ul, ol {
-    list-style-position:inside;
+	list-style-position:inside;
 }
 
 span {
-    /*border: 1px solid orange;*/
+	/*border: 1px solid orange;*/
 }
 
 div {
-    border: 1px solid green;
-    padding: 5px;
+	border: 1px solid green;
+	padding: 5px;
 }
 
 #core_form {
-    border: 3px solid #4115c4;
+	border: 3px solid #4115c4;
 }
 
 .flex-grid {
   display: flex;
   border: 3px solid red;
 }
+
 .flex-grid .col {
   flex: 1;
   border: 3px solid yellow;
 }
 
 .submitButton {
-    padding: 10px 20px;
-    background-color: gray;
+	padding: 10px 20px;
+	background-color: gray;
 }
 
 /* 
