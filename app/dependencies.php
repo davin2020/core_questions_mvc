@@ -14,6 +14,7 @@ return function (ContainerBuilder $containerBuilder) {
 	$container = [];
 
 	$container[LoggerInterface::class] = function (ContainerInterface $c) {
+		// $settings is array that contains key/value pairs like logger, renderer, and now dbDetails
 		$settings = $c->get('settings');
 
 		$loggerSettings = $settings['logger'];
