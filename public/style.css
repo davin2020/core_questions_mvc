@@ -35,7 +35,7 @@ span {
 }
 
 div {
-	border: 1px solid green;
+	/*border: 1px solid green;*/
 	padding: 5px;
 }
 
@@ -50,12 +50,12 @@ em {
 
 .flex-grid {
   display: flex;
-  border: 3px solid red;
+  /*border: 3px solid red;*/
 }
 
 .flex-grid .col {
   flex: 1;
-  border: 3px solid yellow;
+  /*border: 3px solid yellow;*/
 }
 
 .submitButton {

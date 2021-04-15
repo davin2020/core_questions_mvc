@@ -30,8 +30,6 @@ class QuestionModel
 	// seems php doesnt like ` in query string
 	public function getQuestionsAndPoints()
 	{
-		// $queryGetQuestionPoints = 'SELECT rcq.q_id, `rcq.question`, `rcq.points_type`, `rcp.pointsA_not`, `rcp.pointsB_only`, `rcp.pointsC_sometimes`, `rcp.pointsD_often`, `rcp.pointsE_most` FROM `ref_core_questions` AS rcq INNER JOIN `ref_core_points` AS rcp ON `rcq.points_type` = `rcp.points_id`;';
-
 		$queryGetQuestionPoints = 'SELECT rcq.q_id, rcq.gp_order, rcq.question, rcq.points_type, rcp.pointsA_not, rcp.pointsB_only, rcp.pointsC_sometimes, rcp.pointsD_often, rcp.pointsE_most 
 			FROM ref_core_questions AS rcq 
 			INNER JOIN ref_core_points AS rcp 
@@ -39,7 +37,7 @@ class QuestionModel
 			ORDER BY rcq.gp_order;';
 		$query = $this->db->prepare($queryGetQuestionPoints);
 		$query->execute();
-		$query->setFetchMode(\PDO::FETCH_CLASS, 'QuestionModel'); //wher is class CoreQuestions actually defined?? should this be QuestionModel instead of CoreQuestion ??
+		$query->setFetchMode(\PDO::FETCH_CLASS, 'QuestionModel'); 
 		$result = $query->fetchAll();
 		return $result;
 	}
