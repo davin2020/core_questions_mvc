@@ -21,17 +21,18 @@ class ShowUserHistoryController
 	//FYI any data sent to this Controller will be inside the assoc array $args, with a key matching the {q_id} var from the routes file
 	public function __invoke($request, $response, $args)
 	{
-		
 		//why do i need to get this from db, why not just pass in Name from prev page ie index/HomePageController?
-		$user = $this->userModel->getUserFromID($args['q_id']);
+		// var name user_id in args is taken from routes.php file
+		$user = $this->userModel->getUserFromID($args['user_id']);
 		$userName = $user['name'];
 
 		//find history - should this be from answerModel or userModel?
-		$userAnswerHistory = $this->answerModel->getUserAnswers($args['q_id']);
-		// $userHistory = $this->userModel->getUserHistory($args['q_id']);
+		$userAnswerHistory = $this->answerModel->getUserAnswers($args['user_id']);
+		// $userHistory = $this->userModel->getUserHistory($args['q_id']); //method never written/doesnt exist
 
-		//line graph based on users overall_score  
-		$userLineGraph = $this->answerModel->getUserAnswersLineGraph($args['q_id']);
+		//make line graph based on users overall_score  
+		$userLineGraph = $this->answerModel->getUserAnswersLineGraph($args['user_id']);
+
 		//do stuff with output buffering & encoding to embed the graph-image, so graph doesnt take over the whole web page
 		$userLineGraphImg = $userLineGraph->Stroke(_IMG_HANDLER);
 		ob_start();

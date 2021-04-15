@@ -16,6 +16,6 @@ return function (App $app) {
 
 	$app->post('/saveAnswers', 'SaveAnswersController');
 
-	$app->get('/showUserHistory/{q_id}', 'ShowUserHistoryController');
+	$app->get('/showUserHistory/{user_id}', 'ShowUserHistoryController');
 
 };
