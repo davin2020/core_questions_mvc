@@ -39,6 +39,11 @@ div {
 	padding: 5px;
 }
 
+em {
+	font-weight: bold;
+	color: green;
+}
+
 #core_form {
 	border: 3px solid #4115c4;
 }

@@ -28,11 +28,12 @@ class SaveAnswersController
 		//now sum the answer values in the array, to plot on the graph later
 		$totalScore = $this->answerModel->calculateScore($dataArrayAnswers);
 
-		//needs to save ARRAY of values ie $dataArrayAnswers to tables user_core_answers after updating user_core_score & getting newest primary id
+		//needs to save ARRAY of values ie $dataArrayAnswers to tables user_core_answers after updating user_core_score & getting newest primary id - need to check if $result is true/succeeded ok?
 		$result = $this->answerModel->saveAnswers($userID, $dateFormCompleted, $dataArrayAnswers, $totalScore);
 
 		//redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
-		return $response->withHeader('Location', '/')->withStatus(302);
+
+		return $response->withHeader('Location', '/?success=1')->withStatus(302);
 	}
 
 }
