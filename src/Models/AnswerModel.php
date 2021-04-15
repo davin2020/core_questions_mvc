@@ -4,25 +4,18 @@ namespace App\Models;
 
 require_once './../vendor/autoload.php';
 
-//why dont these imports work?
-// require_once ('jpgraph/jpgraph.php');
-// require_once ('jpgraph/jpgraph_line.php');
-// stuff about dates & scales
-// require_once( "./../vendor/amenadiel/jpgrap/src/graph/DateScale.php" ); 
-// require_once( "./../vendor/jpgraph/jpgraph_date.php" ); 
-
 //stuff required for plotting line graphs
 use Amenadiel\JpGraph\Graph;
 use Amenadiel\JpGraph\Plot;
 use Amenadiel\JpGraph\Graph\DateScale; //is this actually being included/used/referenced?
-use Amenadiel\JpGraph\LinePlot; //is this actually being used?
+use Amenadiel\JpGraph\LinePlot; 
 use Amenadiel\JpGraph\Themes;
 use Amenadiel\JpGraph\UniversalTheme;
 // dir C:\wamp64\www\nvc_project\gp_core\php_mvc_questions\core_questions_mvc\vendor\amenadiel\jpgraph\src\themes
 
 // updated for CoreQuestions wrt Answers - but should this be part of the UserModel instead?
 // TODO rename to UserAnswerModel ?
-// or use chart JS - php to return json to page - can output html xml or json - php5 was 2005 which is how old JPGraph library is
+// Per Mike - can use chart JS - php to return json to page - can output html xml or json - php5 was 2005 which is how old JPGraph library is
 class AnswerModel
 {
 	private $db;
@@ -76,7 +69,7 @@ class AnswerModel
 		// $xdata = array('1125810000', '1125896400', '1125982800', '1126414800', '1126501200');
 		// Per http://www.timelordz.com/jpdocs/html/8101Usingtheautomaticdatetimescale.html - 
 		// It is important to note that the input data on the X-axis must be a in the form of timestamp data, i.e. the number of seconds from the system epoch. In PHP the current timestamp value is returned by the function time().
-		$data_y_dates = $values[1];
+		$data_y_dates = $values[1]; //if there are no values how to not show graph?
 		$data_x_values = $values[0]; // this is overall score
 
 		// Setup the graph - have to call Graph\Graph for some reason?
@@ -183,6 +176,7 @@ class AnswerModel
 		// $userAnswerHistory = $this->answerModel->getUserAnswers($args['q_id']);
 		$tmpResults = $this->getUserAnswers($userID);
 
+		//maybe this doenst get called if its null/empty?
 		foreach($tmpResults as $index => $value) {
 			$tmpArrayScores[$index] = $value['overall_score'];
 			//this doesnt work, neitherh does casting to (date) in front of $value
@@ -191,6 +185,15 @@ class AnswerModel
 			
 			//13April - chagne date format to include day - ok but graph needs more space at bottom now
 			//what would this chart look like in Excel??
+
+			// 15april errror handing if no data fro graph 
+				// // $d=mktime(8, 12, 2014);
+				// $d = strtotime('today');
+				// // $currentDate = new date("Y-m-d");
+				// $scoreDate = (isset($value["score_date"])) ? $value["score_date"] : $d;
+				// var_dump($scoreDate);
+				// exit;
+
 			$scoreDate =  $value["score_date"];
 			$tmpDate2 = date_create($scoreDate);
 			// $phpTimestamp = time($scoreDate);
@@ -213,12 +216,29 @@ class AnswerModel
 			// $tmpArrayDates[$index] = $value['score_date'];
 		}
 
+		//show teimstamtp for today - this works to make a fake/empty graph
+		if (count($tmpArrayScores) == 0) {
+			$d = strtotime('today');
+			$tmpArrayScores = [0,0];
+			$tmpArrayDates = [$d,$d];
+		}
+
 		//make assoc array instead of indexed array?
 		$arrayGraphValues[0] = $tmpArrayScores;
 		$arrayGraphValues[1] = $tmpArrayDates; 
 		//these should be Dates not Strings now, but they are not, they are dates formatted as Strings like Fri 9 April 21, cause it wont let me pass Date objs around
 		// var_dump($arrayGraphValues);
 		// exit;
+
+		//handle error of no line graph data
+		// $userHistoryGraph = null;
+		// try {
+		// 	$userHistoryGraph = $this->makeLineGraph($arrayGraphValues);
+		// }
+		// //JpGraphExceptionL
+		// catch (Error $e) {
+		// 	echo '<em>No graph data to display</em>';
+		// }
 
 		//build the line graph with the values specified
 		$userHistoryGraph = $this->makeLineGraph($arrayGraphValues);
@@ -279,128 +299,5 @@ class AnswerModel
 		// "This line instructs the library to actually create the graph as an image, encode it in the chosen image format (e.g. png, jpg, gif, etc) and stream it back to the browser with the correct header identifying the data stream that the client receives as a valid image stream. When the client (most often a browser) calls the PHP script it will return data that will make the browser think it is receiving an image and not, as you might have done up to now from PHP scripts, text."
 		// $graph->Stroke(); 
 
-
-/*
-//10april Davin from tutorial - https://jpgraph.net/features/src/show-example.php?target=new_line1.php
-
-	//used this method to experiement with graphs
-	private function makeGraph(array $values) 
-	{
-		// $datay1 = array(55,45,52,40); //pretned this is overall score
-		// $values array contains these 2 other arrays
-		// $tmpArray[0] = $tmpArrayScores;
-		// $tmpArray[1] = $tmpArrayDates;
-
-		//y is dates from table - 
-		//ISSUES - how to specify them in DMY format and how to show relevant amount of space if some weeks/months have been missed withn the scale? - need to amke scale slanted so words dont overlap each other
-		$data_ydates = $values[1];
-
-		$datay1 = $values[0]; //pretned this is overall score
-		$datay2 = array(12,9,16); //pretend this is Wellness score etc
-		$datay3 = array(25,37,32,30); //pretend this is productivyt score etc
-
-		// Setup the graph - have to call Graph\Graph for some reason?
-		//graph w width & height - height best at 400 so legend doesnt cover y axis labels
-		$graph = new Graph\Graph(500,400);
-		// $graph->SetScale("textlin");
-		//x y = dat lin , or datint, wher lin=linear ie decimals not ints
-		// $graph->SetScale("datlin"); //for dates
-		//show y scale from 0 until 60, otherwise it starts at lowest value - 60 is for GP-CORE with 14Qs, 130 is for CORE-OM with 34Qs
-		$graph->SetScale('datlin',0,60,0,0);
-		 // $graph->yaxis->scale->SetAutoMin(0);
-		// DateScale::SetTimeAlign($aStartAlign,$aEndAlign)
-		// DateScale::SetDateAlign($aStartAlign,$aEndAlign)
-		// DAYADJ_1, Align on the start of a day
-		// MONTHADJ_1, Align on a month start
-		// $graph->xaxis->scale->SetTimeAlign( HOURADJ_2 );
-
-		//is this not working cos it doenst know its really a date? - maybe read in data from db and ensure that s date?
-		$graph->xaxis->scale->SetDateAlign( DAYADJ_1 );
-		$graph->xaxis->scale->ticks->Set(1);
-
-
-		// it cant seem to find this class
-		$theme_class=new Themes\UniversalTheme;
-
-		$graph->SetTheme($theme_class);
-		$graph->img->SetAntiAliasing(false);
-		$graph->title->Set('Overall Score Over Time');
-		$graph->title->SetMargin(12);
-		$graph->SetBox(false);
-
-		//added titles - 'dates' is written over slatned text-dates so hidden it for now
-		// $graph->xaxis->title->Set('(dates)');
-		$graph->yaxis->title->Set('Overall Score');
-
-		//set angle of text on x axis - butnow  text is behind labls & overflowing the graph area
-		$graph->xaxis->SetLabelAngle(45);
-
-		//only first digit seems to affect anything ie left margin
-		//args are left margin, right, top, last doesnt seem to do much?
-		//3rs arg is top margin, 2nd is right
-		// this is with legend just under title
-		// $graph->SetMargin(60,30,70,63);
-		//this is with legend at theh very bottom
-		$graph->SetMargin(60,30,40,63);
-
-		$graph->img->SetAntiAliasing();
-
-	// y graph needs to start at 0
-		$graph->yaxis->HideZeroLabel();
-		$graph->yaxis->HideLine(false);
-		$graph->yaxis->HideTicks(false,false);
-
-		//need to do stuff with x axis dates here
-		$graph->xgrid->Show();
-		$graph->xgrid->SetLineStyle("solid");
-		// data_ydates
-		$graph->xaxis->SetTickLabels($data_ydates);
-		//original y labels
-		// $graph->xaxis->SetTickLabels(array('Mar 7','Mar 14','Mar 21','Mar 28'));
-		$graph->xgrid->SetColor('#E3E3E3');
-
-		// Create the first line - search for LInePlot in directory and found it insdie Plot folder - C:\wamp64\www\nvc_project\gp_core\php_mvc_questions\core_questions_mvc\vendor\amenadiel\jpgraph\src\plot
-		//create the linear plot - orig color 6495ED 417fea
-		$p1 = new Plot\LinePlot($datay1);
-		//add the plot to the graph
-		$graph->Add($p1); 
-		$p1->SetColor("#3167bf");
-		$p1->SetFillColor('blue@0.8');
-		//how to move label down?
-		$p1->SetLegend('Overall Score');
-
-		//set legend positino
-		// Legend::SetPos($aX,$aY,$aHAlign='right',$aVAlign='top')
-
-		// // Create the second line
-		// $p2 = new Plot\LinePlot($datay2);
-		// $graph->Add($p2);
-		// $p2->SetColor("#6495ED");
-		// $p2->SetLegend('Wellness Score');
-
-		// // Create the third line
-		// $p3 = new Plot\LinePlot($datay3);
-		// $graph->Add($p3);
-		// $p3->SetColor("#FF1493");
-		// $p3->SetLegend('Productivity Score');
-
-		$graph->legend->SetFrameWeight(1);
-
-		//set legend positino - syntax, max value is 1
-		// Legend::SetPos($aX,$aY,$aHAlign='right',$aVAlign='top')
-		//this is with legend just under title
-		// $graph->legend->SetPos(0.5,0.15,'center','bottom');
-		//this is with legend at theh very bottom
-		$graph->legend->SetPos(0.5,0.98,'center','bottom');
-
-		// Output line - need to stroke/render graph later!
-		//This important line displays the graph - 
-		// from tutorial at https://jpgraph.net/download/manuals/chunkhtml/ch04s02.html#fig.sunspotsex1 -  
-		// "This line instructs the library to actually create the graph as an image, encode it in the chosen image format (e.g. png, jpg, gif, etc) and stream it back to the browser with the correct header identifying the data stream that the client receives as a valid image stream. When the client (most often a browser) calls the PHP script it will return data that will make the browser think it is receiving an image and not, as you might have done up to now from PHP scripts, text."
-		// $graph->Stroke(); 
-		return $graph;
-	}
-
-*/
 
 }
