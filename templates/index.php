@@ -74,7 +74,14 @@
 
 	<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
 	<!-- needs flex grid or similar here to layout QA better - form submits to saveUser -->
+
+	<?php  if ( isset($_GET['success']) && $_GET['success']== 1) {
+			echo '<em>Form Questions saved ok</em>';
+		} ?>
+
 	<div class="flex-grid">
+		<!-- success msg if question are saved ok -->
+		
 		<form method="post" action="/saveAnswers">
 
 			<div class="formNameDate">
@@ -130,10 +137,13 @@
 
 				<!-- TODO add col labels taken from DB -->
 				<div class="radioGroupAnswers col">
-					<input type="radio" id="answerNot" 
+					<!-- rearrange this to stop dom error in console -->
+					<label>
+						<input type="radio"
 					name="radioAnswerPoints[<?php echo $q_id ?>]" 
 					value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
-					<label for="answerNot">Not at all</label>
+						Not at all
+					</label>
 
 					<input type="radio" id="answerOnly" 
 					name="radioAnswerPoints[<?php echo $q_id?>]" 

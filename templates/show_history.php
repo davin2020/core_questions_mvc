@@ -14,7 +14,7 @@
 	<!-- make graph based on array of data from db (dates & scores shown below) -->
 
 	<div>
-		<!-- dyanmic graph showing overall scores, if present - needs error handling ie at least 3 data points are needed to draw graph, otherwise gets slim error -->
+		<!-- dyanmic graph showing overall scores, if present - or blank graph if no data points exist to draw graph from -->
 		<img src="data:image/png;base64,<?php echo(base64_encode($userLineGraph)); ?>" />
 	</div>
 
@@ -23,37 +23,24 @@
 	<!-- for this user name - output date & score -->
 
 		<?php
+		if (count($userHistory) == 0 ) {
+			echo '<em>No dates or scores to display and above graph will be blank</em>';
+		}
 		foreach ($userHistory as $item) { 
+			//change String rep of date into actual Date object (DateTimeInterface), then format it nicely
+			$stringDate =  $item["score_date"];
+			$dateObj = date_create($stringDate);
+			// format date syntax - l = full name of day, j = day of month, F = full month name, Y = year in 4 digits, eg Saturday 20 February 2021
+			$formattedDate = date_format($dateObj, 'l j F Y');
 		?>
 			<!-- <p>RowID: <?php echo $item["ucs_id"] ?> --  -->
-			 <p>Date: <?php echo $item["score_date"] ?> -- 
+			<p>Date: <?php echo $formattedDate ?> -- 
 				Score: <?php echo $item["overall_score"] ?> </p>
 		<?php 
 		}
 		?>
 
-
 	<h6><a href="/">Return to Core Questions Homepage</a></h6>
-
-
-	<!--  EXTRA STUFF  -->
-
-	<?php
-	// issue that graph over writes the whole page!
-	// $assocArrayArgs['graphTest'] = $userGraph; 
-	// $graphTest;
-	// var_dump($graphTest);
-	// exit;
-	// $graphTest->Stroke();
-	 ?>
-
-
-	<!-- original static graph -->
-	<!-- <img src="data:image/png;base64,<?php echo(base64_encode($graphTest)); ?>" /> -->
-
-
-	<!-- alt otpion to embed chart , likely needs php page with graph already in it??-->
-	<!-- <img src="linear_graph_customer.php?values=1,2,3,4|1,2,3,4|1,2,3,4&title=CHART&width=500&height=300" width="500" height="300" class="img" /> -->
 
 
 </body>
