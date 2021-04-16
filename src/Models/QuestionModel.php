@@ -19,7 +19,8 @@ class QuestionModel
 
 	// TODO Later - only get the questions if they are active, or only get GP Questions vs OM questions etc
 	// this isnt currently being used/called on HomepageController
-  public function getQuestions()
+
+	public function getQuestions()
 	{
 		$query = $this->db->prepare('SELECT `q_id`, `question`, `gp_order`, `points_type` FROM `ref_core_questions`;');
 		$query->execute();

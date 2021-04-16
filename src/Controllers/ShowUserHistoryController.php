@@ -7,7 +7,7 @@ namespace App\Controllers; //namespace must be first stmt!
 
 class ShowUserHistoryController
 {
-  // am i gettig the user model or the answer model here?
+  	// am i gettig the user model or the answer model here?
 	private $userModel;
 	private $answerModel;
 	private $renderer;

@@ -21,8 +21,8 @@ return function (ContainerBuilder $containerBuilder) {
 			'dbDetails' => [
 				'dbServer' => '127.0.0.1',
 				'dbName' => 'corelifedb',
-				'dbUsername' => 'YOUR_USERNAME',
-				'dbPassword' => 'YOUR_PASSWORD'
+				'dbUsername' => 'root',
+				'dbPassword' => 'password'
 			]
 		],
 	]);
