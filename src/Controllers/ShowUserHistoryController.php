@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Controllers; //namespace must be first stmt!
 
-error_reporting(E_ALL); ini_set('display_errors', '1');
+// is this still required ?
+//error_reporting(E_ALL); ini_set('display_errors', '1');
 
 class ShowUserHistoryController
 {
+  // am i gettig the user model or the answer model here?
 	private $userModel;
 	private $answerModel;
 	private $renderer;

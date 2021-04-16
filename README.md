@@ -22,6 +22,7 @@ This To Do app is live here - (coming soon, hopefully by the end of April 2021)
 - View user history data ie previous dates & score (added 9 April)
 - View dynamic graph of previous dates & scores (added 11 April) **NEW!**
 
+
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory
 2. Run `composer install`
