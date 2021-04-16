@@ -1,48 +1,55 @@
 <?php
-namespace App\Controllers; //namespace must be firststmt!
 
-// error_reporting(E_ALL); ini_set('display_errors', '1');
+namespace App\Controllers; //namespace must be first stmt!
+
+// is this still required ?
+//error_reporting(E_ALL); ini_set('display_errors', '1');
 
 class ShowUserHistoryController
 {
-    // am i gettig the user model or the answer model here?
-    private $userModel;
-    private $answerModel;
-    private $renderer;
+  // am i gettig the user model or the answer model here?
+	private $userModel;
+	private $answerModel;
+	private $renderer;
 
-    public function __construct($userModel, $answerModel, $renderer)
-    {   //do  i really need both models?
-        $this->userModel = $userModel;
-        $this->answerModel = $answerModel;
-        $this->renderer = $renderer;
-    }
+	public function __construct($userModel, $answerModel, $renderer)
+	{   
+		//do  i really need both models? will an answer ever exist without a user?
+		$this->userModel = $userModel;
+		$this->answerModel = $answerModel;
+		$this->renderer = $renderer;
+	}
 
-    public function __invoke($request, $response, $args)
-    {
-        //fyi any data sent to this controller eg q_id will be inside the assoc array $args, with a key matching the {q_id} var from the routes file
-        
-        //find user from name - need to rename this its really use_id
-        $user = $this->userModel->getUserFromID($args['q_id']);
-        $userName = $user['name'];
-        //find history from AnswerModel, but should it be from UserModel?
-        $userAnswerHistory = $this->answerModel->getUserAnswers($args['q_id']);
+	//FYI any data sent to this Controller will be inside the assoc array $args, with a key matching the {user_id} var from the routes file
+	public function __invoke($request, $response, $args)
+	{
+		//why do i need to get this from db, why not just pass in Name from prev page ie index/HomePageController?
+		// var name user_id in args is taken from routes.php file
+		$user = $this->userModel->getUserFromID($args['user_id']);
+		$userName = $user['name'];
 
-        //get new line graph based on db data   
-        $userLineGraph = $this->answerModel->getUserAnswersLineGraph($args['q_id']);
-        //do stuff with output buffering & encoding, so that graph doenst take over the whole webpage
-        $userLineGraphImg = $userLineGraph->Stroke(_IMG_HANDLER);
-        ob_start();
-        imagepng($userLineGraphImg);
-        $imageLineGraphData = ob_get_contents();
-        ob_end_clean();
+		//find history - should this be from answerModel or userModel?
+		$userAnswerHistory = $this->answerModel->getUserAnswers($args['user_id']);
+		// $userHistory = $this->userModel->getUserHistory($args['q_id']); //method never written/doesnt exist
 
-        //build AssocArgs array & add items to it, for actual page to render
-        $assocArrayArgs = [];
-        $assocArrayArgs['userName'] = $userName; 
-        $assocArrayArgs['userHistory'] = $userAnswerHistory; 
-        $assocArrayArgs['userLineGraph'] = $imageLineGraphData; 
+		//make line graph based on users overall_score  
+		$userLineGraph = $this->answerModel->getUserAnswersLineGraph($args['user_id']);
 
-        return $this->renderer->render($response, 'show_history.php', $assocArrayArgs);
-    }
+		//do stuff with output buffering & encoding to embed the graph-image, so graph doesnt take over the whole web page
+		$userLineGraphImg = $userLineGraph->Stroke(_IMG_HANDLER);
+		ob_start();
+		imagepng($userLineGraphImg);
+		$imageLineGraphData = ob_get_contents();
+		ob_end_clean();
+
+		//build AssocArgs array & add items to it, for actual php page to render
+		$assocArrayArgs = [];
+		$assocArrayArgs['userName'] = $userName; 
+		$assocArrayArgs['userHistory'] = $userAnswerHistory; 
+		$assocArrayArgs['userLineGraph'] = $imageLineGraphData; 
+
+		//last param $args is the data to return/pass to the next page
+		return $this->renderer->render($response, 'show_history.php', $assocArrayArgs);
+	}
 
 }

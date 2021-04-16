@@ -1,18 +1,17 @@
 <?php
 
-
 namespace App\Factories;
-// Davin updated this file for CoreQuestions
+// Davin updated this file for CoreQuestions wrt QuestionModelFactory
 
 use App\Models\QuestionModel;
 
 class QuestionModelFactory
 {
-    public function __invoke($container)
-    {
-        //ok to break DI here & create a new QuestionModel object - any dependencies can be gotten from the DIC/container later eg DBConn, renderer, TM for other classes etc
-        $db = $container->get('DBConnector');
-        $questionModel = new QuestionModel($db);
-        return $questionModel;
-    }
+	public function __invoke($container)
+	{
+		//ok to break DI here & create a new QuestionModel object - any dependencies can be gotten from the DIC/container later eg DBConn, renderer, TM for other classes etc
+		$db = $container->get('DBConnector');
+		$questionModel = new QuestionModel($db);
+		return $questionModel;
+	}
 }

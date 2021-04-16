@@ -6,16 +6,16 @@ use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function (App $app) {
-    $container = $app->getContainer();
+	$container = $app->getContainer();
 
-    // add in custom routes here for CoreQuestions app
-    //Homepage also does getQuestions
-    $app->get('/', 'HomepageController');
+	// add in custom routes here for CoreQuestions app
+	//Homepage also does getQuestions()
+	$app->get('/', 'HomepageController');
 
-    $app->post('/saveUser', 'SaveUserController');
-    
-    $app->post('/saveAnswers', 'SaveAnswersController');
+	$app->post('/saveUser', 'SaveUserController');
 
-    $app->get('/showUserHistory/{q_id}', 'ShowUserHistoryController');
+	$app->post('/saveAnswers', 'SaveAnswersController');
+
+	$app->get('/showUserHistory/{user_id}', 'ShowUserHistoryController');
 
 };

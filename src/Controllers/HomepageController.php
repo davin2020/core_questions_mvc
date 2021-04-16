@@ -6,43 +6,41 @@ namespace App\Controllers;
 
 class HomepageController
 {
-    private $userModel;
-    private $questionModel;
-    private $renderer;
 
-    /**
-     * CompletedTasksPageController constructor.
-     * @param $questionModel
-     * @param $renderer
-     */
+	private $userModel;
+	private $questionModel;
+	private $renderer;
 
-    public function __construct($userModel, $questionModel, $renderer)
-    {
-        $this->userModel = $userModel;
-        $this->questionModel = $questionModel;
-        $this->renderer = $renderer;
-    }
+	/**
+	 * HomePageController constructor.
+	 * @param $userModel
+	 * @param $questionModel
+	 * @param $renderer
+	 */
 
-    public function __invoke($request, $response, $args)
-    {
-        //need to return response via render method at end
+	public function __construct($userModel, $questionModel, $renderer)
+	{
+		$this->userModel = $userModel;
+		$this->questionModel = $questionModel;
+		$this->renderer = $renderer;
+	}
 
-        $assocArrayArgs = [];
+	public function __invoke($request, $response, $args)
+	{
+		//need to return response with args[] via render method
+		$assocArrayArgs = [];
 
-        //get & show all questions - replaced with getQuestionsAndPoints() for now
-        // $allQuestions = $this->questionModel->getQuestions();
-        // $assocArrayArgs['coreQuestions'] = $allQuestions; 
+		//get questions and associated points for each possible answer & add to assoc array for renderer to display stuff
+		$allQuestionsAndPoints = $this->questionModel->getQuestionsAndPoints();
+		$assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
+		// var_dump($allQuestionsAndPoints);
 
-        //add questions and answer-points to assoc array, for php renderer to display stuff - can have 2 diff keys if u needed to display more stuff here
-        $allQuestionsAndPoints = $this->questionModel->getQuestionsAndPoints();
-        $assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
+		// get all users so they can be displayed
+		$allUsers = $this->userModel->getUsers();
+		$assocArrayArgs['usersList'] = $allUsers;
 
-        // get all users & add to assoc array
-        $allUsers = $this->userModel->getUsers();
-        $assocArrayArgs['usersList'] = $allUsers;
-
-        //last param $args is the data to return to the index page
-        return $this->renderer->render($response, 'index.php', $assocArrayArgs);
-    }
+		//last param $args is the data to return to the next page
+		return $this->renderer->render($response, 'index.php', $assocArrayArgs);
+	}
 
 }

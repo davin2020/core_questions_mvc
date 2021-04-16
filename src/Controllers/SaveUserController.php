@@ -5,25 +5,25 @@ namespace App\Controllers;
 
 class SaveUserController
 {
-    private $userModel;
 
-    public function __construct($userModel)
-    {
-        $this->userModel = $userModel;
-    }
+	private $userModel;
 
-    public function __invoke($request, $response, $args)
-    {
-        $dataName = $request->getParsedBody()['itemName'];
+	public function __construct($userModel)
+	{
+		$this->userModel = $userModel;
+	}
 
-        //why i s this a string and not a date? - try casting to date?
-        $dataDate = $request->getParsedBody()['itemDate'];
-        // var_dump($dataDate);
+	public function __invoke($request, $response, $args)
+	{
+		$dataName = $request->getParsedBody()['itemName'];
 
-        $result = $this->userModel->saveUser($dataName, $dataDate);
+		$dataDate = $request->getParsedBody()['itemDate'];
 
-        //redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
-        return $response->withHeader('Location', '/')->withStatus(302);
-    }
+		$result = $this->userModel->saveUser($dataName, $dataDate);
+		// var_dump($result); //this is just true or false depending on whether save worked or not - need checking and success/failure message shown on next page
+
+		//redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
+		return $response->withHeader('Location', '/')->withStatus(302);
+	}
 
 }

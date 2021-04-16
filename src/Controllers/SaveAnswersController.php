@@ -5,30 +5,30 @@ namespace App\Controllers;
 
 class SaveAnswersController
 {
-    private $answerModel;
+	private $answerModel;
 
-    public function __construct($answerModel)
-    {
-        $this->answerModel = $answerModel;
-    }
+	public function __construct($answerModel)
+	{
+		$this->answerModel = $answerModel;
+	}
 
-    public function __invoke($request, $response, $args)
-    {
-        //get userid and date from completed Form, plus selected radio buttons for each answer, then add those args to the saveAnswers function
-        $userID = $request->getParsedBody()['existingUserID'];
+	public function __invoke($request, $response, $args)
+	{
+    //collect data from form fields needed to pass to saveAnswers()
+		$userID = (int) $request->getParsedBody()['existingUserID'];
+		$dateFormCompleted = $request->getParsedBody()['dateCompleted'];
 
-        $dateFormCompleted = $request->getParsedBody()['dateCompleted'];
+		//only need the selected radio button from each group of buttons
+		$dataArrayAnswers = $request->getParsedBody()['radioAnswerPoints'];
 
-        $dataArrayAnswers = $request->getParsedBody()['radioAnswerPoints'];
+		//now sum the answer values in the array, to plot on the graph later
+		$totalScore = $this->answerModel->calculateScore($dataArrayAnswers);
 
-        //now sum the numbers in the array - working ok
-        $totalScore = $this->answerModel->calculateScore($dataArrayAnswers);
+		//needs to save ARRAY of values ie $dataArrayAnswers to tables user_core_answers after updating user_core_score & getting newest primary id - need to check if $result is true/succeeded ok?
+		$result = $this->answerModel->saveAnswers($userID, $dateFormCompleted, $dataArrayAnswers, $totalScore);
 
-        //needs to save ARRAY of values to db ie $dataArrayAnswers - and save to tables user_core_answers and user_core_score 
-        $result = $this->answerModel->saveAnswers($userID, $dateFormCompleted, $dataArrayAnswers, $totalScore);
-
-        //redirects back to homepage
-        return $response->withHeader('Location', '/')->withStatus(302);
-    }
+		//redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
+		return $response->withHeader('Location', '/?success=1')->withStatus(302);
+	}
 
 }
