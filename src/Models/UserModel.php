@@ -5,6 +5,7 @@ namespace App\Models;
 // updated for CoreQuestions wrt Users
 class UserModel
 {
+
 	// do models need indiv vars that correspond to fields in db entity?
 	private $db;
 

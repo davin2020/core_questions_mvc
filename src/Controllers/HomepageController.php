@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 class HomepageController
 {
+
 	private $userModel;
 	private $questionModel;
 	private $renderer;
@@ -29,7 +30,7 @@ class HomepageController
 		//need to return response with args[] via render method
 		$assocArrayArgs = [];
 
-		//get questions and associated points for each possible answer
+		//get questions and associated points for each possible answer & add to assoc array for renderer to display stuff
 		$allQuestionsAndPoints = $this->questionModel->getQuestionsAndPoints();
 		$assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
 		// var_dump($allQuestionsAndPoints);
