@@ -22,6 +22,18 @@ This To Do app is live here - (coming soon, hopefully by the end of April 2021)
 - View user history data ie previous dates & score (added 9 April)
 - View dynamic graph of previous dates & scores (added 11 April) **NEW!**
 
+## Screenshots
+Users: 
+![Image of Users](core_questions_app_users.PNG)
+Questions: 
+![Image of Core Questions](core_questions_app_questions.PNG)
+User History Graph:
+![Image of Users](core_questions_app_graph.PNG)
+<!-- core_questions_app_questions.PNG
+core_questions_app_users.PNG
+core_questions_app_graph.PNG -->
+
+
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory
 2. Run `composer install`
