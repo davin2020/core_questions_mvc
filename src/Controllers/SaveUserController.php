@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 class SaveUserController
 {
+
 	private $userModel;
 
 	public function __construct($userModel)
@@ -15,11 +16,11 @@ class SaveUserController
 	public function __invoke($request, $response, $args)
 	{
 		$dataName = $request->getParsedBody()['itemName'];
-		//why is this  a string on the form and not a date?
+
 		$dataDate = $request->getParsedBody()['itemDate'];
 
 		$result = $this->userModel->saveUser($dataName, $dataDate);
-		// var_dump($result); //this is just true or false depending on whether save worked or not - need checking and success/failure message shown on next page, but how to send a msg to the next page?
+		// var_dump($result); //this is just true or false depending on whether save worked or not - need checking and success/failure message shown on next page
 
 		//redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
 		return $response->withHeader('Location', '/')->withStatus(302);

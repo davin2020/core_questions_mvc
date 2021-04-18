@@ -10,12 +10,11 @@
 </head>
 
 <body>
+
 	<h1>Core Questions App</h1>
 
 	<h2>Show Existing Users</h2>
-	<!-- hwo to call this ??? the Controller for this page ie HomePageController is where these array variables are coming from eg $userList 
-	Make link to Route dynamic - /showUserHistory/{q_id}
-	-->
+
 		<?php
 		echo '<ul>';
 		foreach($usersList as $user) {
@@ -27,7 +26,7 @@
 
 
 	<h2>Add A New User</h2>
-		<!-- where is item being refered to, when getting data from Form ? -->
+
 		<form method="post" action="/saveUser">
 			<label for="item">Name of New User:</label>
 			<input type="text" name="itemName" id="itemName">
@@ -46,26 +45,6 @@
 	<h2>Answer GP-Core Questions</h2>
 	<div id="core_form">
 
-		<!--  TEMP FLEX BOX for TESTING LAYOUT -->
-		<div class="flex-grid">
-			<div class="col">
-				<!-- can i put simmple for each in here? -->
-				<?php
-					$tmp = [1,2,3,4,5];
-					foreach($tmp as $item )
-						echo '<p>hello' . $item . '</p>';
-				?>
-			  	<p>This little piggy went to market.</p>
-			</div>
-		  	<div class="col">
-				<input type="radio" id="huey" name="drone" value="huey" checked>
-				<label for="huey">Huey</label>
-				<input type="radio" id="dewey" name="drone" value="dewey">
-				<label for="dewey">Dewey</label>
-				<p>This little piggy stayed home.</p>
-			</div>
-		</div>
-
 
 	<p>This form has multiple statements about how you have been OVER THE LAST WEEK.
 	<br>Please read each statement and think how often you felt that way last week.
@@ -75,12 +54,12 @@
 	<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
 	<!-- needs flex grid or similar here to layout QA better - form submits to saveUser -->
 
+	<!-- success msg if question are saved ok -->
 	<?php  if ( isset($_GET['success']) && $_GET['success']== 1) {
 			echo '<em>Form Questions saved ok</em>';
 		} ?>
 
 	<div class="flex-grid">
-		<!-- success msg if question are saved ok -->
 		
 		<form method="post" action="/saveAnswers">
 
@@ -108,32 +87,22 @@
 			-->
 			<p>Over the last week...</p>
 
-			<!-- btw db query does sort qs by gp_order -->
 			<?php 
 			foreach($coreQuestionsAndPoints as $singleQuestionPoints) { 
 			?>
 					
 				<!-- ISSUE foreach is likely messing up flex divs! -->
 				<div class="col" id="question_id">
-					<!-- need to show actual q_id here (rather than using numbes from ol) & explicitly save it later to db 
-					alt syntax: echo "{$test}y"; -->
+
 					<?php 
 					$q_id = $singleQuestionPoints["q_id"];
 					$q_id_label = $singleQuestionPoints["q_id"] . ": ";
 					echo $q_id_label;
-					// $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
 					echo $singleQuestionPoints["question"]
 					?>
-					<!-- // <?php echo $radioButtonGroupName ?> -->
+
 				</div>  <!-- for col with flex grid questions -->
 
-					<!-- 
-					each radio button group for each answer needs a  unique name!! 
-					need var name based on Q id, then name radiobutton group based on that eg radioQ1AnswerPoints, radioQ2AnswerPoints
-					<input type="radio" name="optradio[<?php echo $i; ?>]" value="b">Option 2</label>
-					INSTEAD start by using the array here eg radioAnswerPoints[x], so its easier to access from Controller page
-					name="radioAnswerPoints[<?php echo $singleQuestionPoints["q_id"] ?>]" 
-					-->
 
 				<!-- TODO add col labels taken from DB -->
 				<div class="radioGroupAnswers col">

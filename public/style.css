@@ -7,19 +7,14 @@ body {
 	padding: 5px;
 	width: 90%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	/*text-align: center;*/
 	color: #000;
 	font-size: 18px;
-	background-color: #a5e0f7 ; /*#FCFFCD  */
+	background-color: #a5e0f7 ; 
 } 
 
 h1 {
 	color: #4115c4;
 	font-family: 'Lato', sans-serif;
-	/*letter-spacing: -3px;*/
-	/*font-size: 100px;*/
-	/*font-weight: 200;*/
-	/*margin-bottom: 0;*/
 }
 
 h2 {
@@ -35,7 +30,7 @@ span {
 }
 
 div {
-	border: 1px solid green;
+	/*border: 1px solid green;*/
 	padding: 5px;
 }
 
@@ -50,12 +45,12 @@ em {
 
 .flex-grid {
   display: flex;
-  border: 3px solid red;
+  /*border: 3px solid red;*/
 }
 
 .flex-grid .col {
   flex: 1;
-  border: 3px solid yellow;
+  /*border: 3px solid yellow;*/
 }
 
 .submitButton {

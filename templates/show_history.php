@@ -41,7 +41,7 @@
 		?>
 
 	<h6><a href="/">Return to Core Questions Homepage</a></h6>
-
+  
 
 </body>
 </html>
