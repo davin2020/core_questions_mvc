@@ -43,7 +43,7 @@ core_questions_app_graph.PNG -->
 2. Run `composer install`
 3. Create a new MYSQL database called `corelifedb`
 4. Adjust the DB connection details in the file `app/settings.php` according to your local setup
-5. Import the file `db/corequestions.sql` into your database and run it to create multiple tables and add some example data
+5. Import the file `db/core_questions_db.sql` into your database and run it to create multiple tables and add some example data
 6. Run this from a normal command prompt to start the app `composer start`
 7. Access this url in your browser `http://localhost:8087/`
 
