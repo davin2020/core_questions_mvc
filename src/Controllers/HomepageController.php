@@ -40,6 +40,10 @@ class HomepageController
 		$assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
 		// var_dump($allQuestionsAndPoints);
 
+		// get labels for columns of answers to questions eg Sometimes, Often etc
+		$allQuestionLabels = $this->questionModel->getQuestionLabels();
+		$assocArrayArgs['questionAnswerLabels'] = $allQuestionLabels; 
+
 		// get all users so they can be displayed
 		$allUsers = $this->userModel->getUsers();
 		$assocArrayArgs['usersList'] = $allUsers;

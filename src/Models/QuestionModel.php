@@ -44,4 +44,13 @@ class QuestionModel
 		return $result;
 	}
 
+	//added 20april2021 but what type of class do i return? eg Label class?
+	public function getQuestionLabels() {
+		$query = $this->db->prepare('SELECT `scale_id`, `label` FROM `ref_core_scale` ORDER BY `scale_id`;');
+		$query->execute();
+		// $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion'); //where is this class CoreQuestions actually defined?? what if thers isnt a direct model/entity?
+		$result = $query->fetchAll();
+		return $result;
+	}
+
 }
