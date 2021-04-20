@@ -5,11 +5,11 @@
 body {
 	margin: 10px;
 	padding: 5px;
-	width: 90%;
+	width: 100%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	/*text-align: center;*/
 	color: #000;
-	font-size: 18px;
+	font-size: 1.2rem; /* was 18px */
 	background-color: #a5e0f7 ; /*#FCFFCD  */
 } 
 
@@ -37,6 +37,7 @@ span {
 div {
 	border: 1px solid green;
 	padding: 5px;
+	width: auto;
 }
 
 em {
@@ -49,9 +50,91 @@ em {
 }
 
 .flex-grid {
-  display: flex;
+  display: flex; /*flex*/
   border: 3px solid red;
 }
+
+
+/*#Flexbox is for alignment. #CSSGrid is for layout. */
+/*Use grid when you already have the layout structure in mind, and flex when you just want everything to fit. Layout first vs content first.*/
+/*for flex, parent does work*/
+
+.flex-parent-qa {
+  	display: flex; /*flex*/
+  	width: 100%;
+  	border: 3px solid red;
+  	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-around;
+}
+
+.flex-child-qa {
+	width: 50%;
+	border: 1px solid orange;
+}
+
+.flex-child-qa-questions {
+	width: 40%;
+	border: 1px solid orange;
+}
+
+.flex-child-qa-answers {
+	width: 60%;
+	border: 1px solid orange;
+}
+
+@media only screen and (max-width: 400px) {
+	.flex-child-qa {
+		width: 100%;
+		border: 1px solid white;
+		font-size: 0.9rem;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.flex-child-qa-questions {
+		width: 100%;
+		border: 1px solid white;
+		font-size: 0.9rem;
+	}
+	.flex-child-qa-answers {
+		width: 100%;
+		border: 1px solid white;
+		font-size: 0.9rem;
+	}
+}
+
+
+/*@media (min-width: 30em) and (orientation: landscape)*/
+/*@media only screen and (min-width: 200px) and (orientation: landscape) {
+	.flex-child-qa {
+		width: 50%;
+		border: 1px solid black;
+	}
+}*/
+
+
+.col-piggy {
+	display: flex;
+/*	flex-direction: row;
+	flex-wrap: wrap;*/
+	/*justify-content: space-evenly;*/
+	/*align-content: space-around;*/
+	width: 100%;
+	flex: 1 1 100px;
+  	/*flex: 50%;*/
+  	border: 3px solid orange;
+}
+
+/* when width is under 400px */
+@media screen and (max-width: 400px) {
+	.col-piggy  {
+		width: 50%;
+		/*flex: 100%;*/
+		border: 3px solid black;
+	}
+}
+
 
 .flex-grid .col {
   flex: 1;
@@ -61,6 +144,18 @@ em {
 .submitButton {
 	padding: 10px 20px;
 	background-color: gray;
+}
+
+
+/*label display:block or white-space:nowrap.*/
+/*how to stop radio label from being on line below radio button? - this only affects the radio button circle itself not its lable*/
+input[type="radio"] {
+/*input:radio {  styles here  */
+	/*display: block;*/
+	width: auto;
+	/*display: inline;*/
+	/*display:inline;*/
+	white-space:nowrap;
 }
 
 /* 
