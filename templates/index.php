@@ -103,12 +103,11 @@
 			</div>
 
 			<!-- 
-			On next iteration, get labels from DB
 			Later - Need to org table into 2 columns using flex or grid for mobile & swop div for span, plus put labels at the top of the columns
 			-->
 			<p>Over the last week...</p>
 
-			<!-- btw db query does sort qs by gp_order -->
+			<!-- btw db query does sort qs by gp_order, maybe rename function so its clearer? -->
 			<?php 
 			foreach($coreQuestionsAndPoints as $singleQuestionPoints) { 
 			?>
@@ -122,50 +121,45 @@
 					$q_id_label = $singleQuestionPoints["q_id"] . ": ";
 					echo $q_id_label;
 					// $radioButtonGroupName = 'radioQ' . $singleQuestionPoints["q_id"] . 'AnswerPoints'
-					echo $singleQuestionPoints["question"]
+					echo $singleQuestionPoints["question"];
+
+					//shows the lable eg Somes, Often, Not at all etc
+					// echo $questionAnswerLabels['label'];
 					?>
 					<!-- // <?php echo $radioButtonGroupName ?> -->
 				</div>  <!-- for col with flex grid questions -->
 
-					<!-- 
-					each radio button group for each answer needs a  unique name!! 
-					need var name based on Q id, then name radiobutton group based on that eg radioQ1AnswerPoints, radioQ2AnswerPoints
-					<input type="radio" name="optradio[<?php echo $i; ?>]" value="b">Option 2</label>
-					INSTEAD start by using the array here eg radioAnswerPoints[x], so its easier to access from Controller page
-					name="radioAnswerPoints[<?php echo $singleQuestionPoints["q_id"] ?>]" 
-					-->
-
-				<!-- TODO add col labels taken from DB -->
+				<!-- TODO add col labels taken from DB - should labels be gotten via QuestionModel or AnswerModel? -->
 				<div class="radioGroupAnswers col">
 					<label>
 						<input type="radio"
 						name="radioAnswerPoints[<?php echo $q_id ?>]" 
 						value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
-						Not at all
+						<?php echo $questionAnswerLabels[0]['label']; ?>
 					</label>
 					<label>
 						<input type="radio"
 						name="radioAnswerPoints[<?php echo $q_id ?>]" 
 						value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
-						Only ocassionally
+						<?php echo $questionAnswerLabels[1]['label']; ?>
 					</label>
 					<label>
 						<input type="radio"
 						name="radioAnswerPoints[<?php echo $q_id ?>]" 
 						value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
-						Sometimes
+						<?php echo $questionAnswerLabels[2]['label']; ?>
 					</label>
 					<label>
 						<input type="radio"
 						name="radioAnswerPoints[<?php echo $q_id ?>]" 
 						value="<?php echo $singleQuestionPoints["pointsD_often"] ?>">
-						Often
+						<?php echo $questionAnswerLabels[3]['label']; ?>
 					</label>
 					<label>
 						<input type="radio"
 						name="radioAnswerPoints[<?php echo $q_id ?>]" 
 						value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
-						Most or all the time
+						<?php echo $questionAnswerLabels[4]['label']; ?>
 					</label>
 
 				</div>
