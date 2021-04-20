@@ -137,33 +137,37 @@
 
 				<!-- TODO add col labels taken from DB -->
 				<div class="radioGroupAnswers col">
-					<!-- rearrange this to stop dom error in console -->
 					<label>
 						<input type="radio"
-					name="radioAnswerPoints[<?php echo $q_id ?>]" 
-					value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
+						name="radioAnswerPoints[<?php echo $q_id ?>]" 
+						value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
 						Not at all
 					</label>
+					<label>
+						<input type="radio"
+						name="radioAnswerPoints[<?php echo $q_id ?>]" 
+						value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
+						Only ocassionally
+					</label>
+					<label>
+						<input type="radio"
+						name="radioAnswerPoints[<?php echo $q_id ?>]" 
+						value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
+						Sometimes
+					</label>
+					<label>
+						<input type="radio"
+						name="radioAnswerPoints[<?php echo $q_id ?>]" 
+						value="<?php echo $singleQuestionPoints["pointsD_often"] ?>">
+						Often
+					</label>
+					<label>
+						<input type="radio"
+						name="radioAnswerPoints[<?php echo $q_id ?>]" 
+						value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
+						Most or all the time
+					</label>
 
-					<input type="radio" id="answerOnly" 
-					name="radioAnswerPoints[<?php echo $q_id?>]" 
-					value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
-					<label for="answerOnly">Only ocassionally</label>
-
-					<input type="radio" id="answerSometimes" 
-					name="radioAnswerPoints[<?php echo $q_id?>]" 
-					value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
-					<label for="answerSometimes">Sometimes</label>
-
-					<input type="radio" id="answerOften" 
-					name="radioAnswerPoints[<?php echo $q_id?>]" 
-					value="<?php echo $singleQuestionPoints["pointsD_often"] ?>">
-					<label for="answerOften">Often</label>
-
-					<input type="radio" id="answerMost" 
-					name="radioAnswerPoints[<?php echo $q_id?>]" 
-					value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
-					<label for="answerMost">Most or all the time</label>
 				</div>
 
 			<?php 
