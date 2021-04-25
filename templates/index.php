@@ -29,13 +29,15 @@
 	<h2>Add A New User</h2>
 		<!-- where is item being refered to, when getting data from Form ? -->
 		<form method="post" action="/saveUser">
-			<label for="item">Name of New User:</label>
-			<input type="text" name="itemName" id="itemName">
+			<label>Name of New User:
+				<input type="text" name="itemName" id="itemName" required>
+			</label>
 			<br>
 
-			<label for="item">Date Joined:</label>
-			<input type="Date" name="itemDate" id="itemDate" 
-			value="<?php echo date('Y-m-d');?>">
+			<label>Date Joined:
+				<input type="Date" name="itemDate" id="itemDate" 
+				value="<?php echo date('Y-m-d');?>" required>
+			</label>
 			<br>
 
 			<button name="btnAddItem" type="submit" class="submitButton">Add</button>
@@ -61,27 +63,36 @@
 	<!-- needs flex grid or similar here to layout QA better - form submits to saveUser -->
 
 
-	<!-- new flexy grid stuff starts here  -->
+	<!-- new flexy grid stuff starts here, 
+		ISSUE do i need 2 lots of this class here? what class did this div used to have? -->
 	<div class="flex-parent-qa">
 
 		<form method="post" action="/saveAnswers">
 
 			<div class="formNameDate">
-				<label for="existingUserID">Name of Existing User:</label>
-				<select name="existingUserID">
-				  <option value="">Select...</option>
-					<?php
-					foreach($usersList as $user) { ?>
-					  <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
-					<?php 
-					}
-					?>
-				</select>
+				<label for="existingUserID">Name of Existing User:
+					<select name="existingUserID">
+					  <option value="">Select...</option>
+						<?php
+						foreach($usersList as $user) { ?>
+						  <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+						<?php 
+						}
+						?>
+					</select>
+				</label>
 
 				<br>
-				<label for="dateCompleted">Date Form Completed:</label>
-				<input type="Date" name="dateCompleted" id="dateCompleted" 
-				value="<?php echo date('Y-m-d');?>">
+				<!--  need to make name & date compulsoyr & in the future! -->
+				<label for="dateCompleted" >Date Form Completed:
+					<input type="Date" name="dateCompleted" id="dateCompleted" 
+					value="<?php echo date('Y-m-d');?>" required>
+				</label>
+				<!-- 
+				<label>Date Form Completed
+					<input type="date" id="date" name="date" required>
+				</label> -->
+
 			</div>
 
 			<p>Over the last week...</p>
@@ -89,9 +100,6 @@
 			<!-- NEW STUFF -->
 			<div class="flex-parent-qa">
 
-				<!-- better question table layout starts here 
-				need to move this into actual form and check htat submission still saves to db etc
-				-->
 				<?php 
 				foreach($coreQuestionsAndPoints as $singleQuestionPoints) { 
 				?>
@@ -106,9 +114,10 @@
 					</div> 
 
 					<div class="flex-child-qa-answers">
-						<!-- TODO add col labels taken from DB - should labels be gotten via QuestionModel or AnswerModel? -->
+						<!-- Question Answer Labels are now being retrieved from DB via QuestionModel 
+						ISSUE how to keep radio button circle with text label? -->
 						<label>
-							<input type="radio"
+							<input type="radio" required
 							name="radioAnswerPoints[<?php echo $q_id ?>]" 
 							value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
 							<?php echo $questionAnswerLabels[0]['label']; ?> 
@@ -142,7 +151,7 @@
 				<?php
 				}
 				?>
-			</div> <!-- div above for each loop, flex-parent-qa -->
+			</div> <!-- div above foreach loop, flex-parent-qa -->
 
 			<button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>
 
