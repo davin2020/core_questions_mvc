@@ -68,14 +68,15 @@ em {
 	align-content: space-around;
 }
 
+/*is this being used/neede anymore? */
 .flex-child-qa {
 	width: 50%;
-	border: 1px solid orange;
+	/*border: 1px solid orange;*/
 }
 
 .flex-child-qa-questions {
 	width: 40%;
-	border: 1px solid orange;
+	border: 1px solid yellow;
 }
 
 .flex-child-qa-answers {
@@ -83,23 +84,32 @@ em {
 	border: 1px solid orange;
 }
 
-@media only screen and (max-width: 400px) {
+/*@media only screen and (max-width: 400px) {
 	.flex-child-qa {
 		width: 100%;
 		border: 1px solid white;
 		font-size: 0.9rem;
 	}
 }
+*/
+/* writing 500px makes this actually changes about 400px but why? */
+@media only screen and (max-width: 500px) {
 
-@media only screen and (max-width: 400px) {
+	.flex-child-qa {
+		width: 100%;
+		/*border: 1px solid white;*/
+		font-size: 0.9rem;
+	}
+
 	.flex-child-qa-questions {
 		width: 100%;
 		border: 1px solid white;
 		font-size: 0.9rem;
 	}
+
 	.flex-child-qa-answers {
 		width: 100%;
-		border: 1px solid white;
+		border: 1px solid blue;
 		font-size: 0.9rem;
 	}
 }
@@ -113,33 +123,6 @@ em {
 	}
 }*/
 
-
-.col-piggy {
-	display: flex;
-/*	flex-direction: row;
-	flex-wrap: wrap;*/
-	/*justify-content: space-evenly;*/
-	/*align-content: space-around;*/
-	width: 100%;
-	flex: 1 1 100px;
-  	/*flex: 50%;*/
-  	border: 3px solid orange;
-}
-
-/* when width is under 400px */
-@media screen and (max-width: 400px) {
-	.col-piggy  {
-		width: 50%;
-		/*flex: 100%;*/
-		border: 3px solid black;
-	}
-}
-
-
-.flex-grid .col {
-  flex: 1;
-  border: 3px solid yellow;
-}
 
 .submitButton {
 	padding: 10px 20px;
