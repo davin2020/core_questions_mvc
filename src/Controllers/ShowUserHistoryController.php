@@ -1,15 +1,17 @@
 <?php
+
 namespace App\Controllers; //namespace must be first stmt!
 
-error_reporting(E_ALL); ini_set('display_errors', '1');
+// is this still required ?
+//error_reporting(E_ALL); ini_set('display_errors', '1');
 
 class ShowUserHistoryController
 {
+  // am i gettig the user model or the answer model here?
 	private $userModel;
 	private $answerModel;
 	private $renderer;
 
-	// public function __construct($userModel, $answerModel)
 	public function __construct($userModel, $answerModel, $renderer)
 	{   
 		//do  i really need both models? will an answer ever exist without a user?
@@ -18,7 +20,7 @@ class ShowUserHistoryController
 		$this->renderer = $renderer;
 	}
 
-	//FYI any data sent to this Controller will be inside the assoc array $args, with a key matching the {q_id} var from the routes file
+	//FYI any data sent to this Controller will be inside the assoc array $args, with a key matching the {user_id} var from the routes file
 	public function __invoke($request, $response, $args)
 	{
 		//why do i need to get this from db, why not just pass in Name from prev page ie index/HomePageController?

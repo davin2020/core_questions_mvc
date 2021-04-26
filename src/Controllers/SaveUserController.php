@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 class SaveUserController
 {
+
 	private $userModel;
 
 	public function __construct($userModel)

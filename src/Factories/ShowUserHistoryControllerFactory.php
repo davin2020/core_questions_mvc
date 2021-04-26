@@ -7,6 +7,7 @@ use App\Controllers\ShowUserHistoryController;
 
 class ShowUserHistoryControllerFactory
 {
+
 	public function __invoke($container)
 	{
 		$userModel = $container->get('UserModel');
