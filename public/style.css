@@ -7,19 +7,14 @@ body {
 	padding: 5px;
 	width: 100%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	/*text-align: center;*/
 	color: #000;
-	font-size: 1.2rem; /* was 18px */
+	font-size: 1.2rem; 
 	background-color: #a5e0f7 ; /*#FCFFCD  */
 } 
 
 h1 {
 	color: #4115c4;
 	font-family: 'Lato', sans-serif;
-	/*letter-spacing: -3px;*/
-	/*font-size: 100px;*/
-	/*font-weight: 200;*/
-	/*margin-bottom: 0;*/
 }
 
 h2 {
@@ -30,12 +25,8 @@ ul, ol {
 	list-style-position:inside;
 }
 
-span {
-	/*border: 1px solid orange;*/
-}
-
 div {
-	border: 1px solid green;
+	border: 1px /*s*/olid green;
 	padding: 5px;
 	width: auto;
 }
@@ -50,79 +41,54 @@ em {
 }
 
 .flex-grid {
-  display: flex; /*flex*/
-  border: 3px solid red;
+  display: flex; 
+  /*border: 3px solid brown;*/
 }
 
-
-/*#Flexbox is for alignment. #CSSGrid is for layout. */
-/*Use grid when you already have the layout structure in mind, and flex when you just want everything to fit. Layout first vs content first.*/
-/*for flex, parent does work*/
-
+/* flex boxes to line up Questions & Answers on Form */
 .flex-parent-qa {
-  	display: flex; /*flex*/
+  	display: flex; 
   	width: 100%;
-  	border: 3px solid red;
+  	/*border: 3px solid red;*/
   	flex-direction: row;
 	flex-wrap: wrap;
 	align-content: space-around;
 }
 
-/*is this being used/neede anymore? */
+
 .flex-child-qa {
 	width: 50%;
-	/*border: 1px solid orange;*/
 }
 
 .flex-child-qa-questions {
 	width: 40%;
-	border: 1px solid yellow;
+	border: 2px solid gray;
 }
 
 .flex-child-qa-answers {
 	width: 60%;
-	border: 1px solid orange;
+	border: 2px solid gray;
 }
 
-/*@media only screen and (max-width: 400px) {
-	.flex-child-qa {
-		width: 100%;
-		border: 1px solid white;
-		font-size: 0.9rem;
-	}
-}
-*/
-/* writing 500px makes this actually changes about 400px but why? */
+/* writing 500px makes this actually change/flex about 400px but why? */
 @media only screen and (max-width: 500px) {
-
 	.flex-child-qa {
 		width: 100%;
-		/*border: 1px solid white;*/
 		font-size: 0.9rem;
 	}
 
 	.flex-child-qa-questions {
 		width: 100%;
-		border: 1px solid white;
+		/*border: 1px solid white;*/
 		font-size: 0.9rem;
 	}
 
 	.flex-child-qa-answers {
 		width: 100%;
-		border: 1px solid blue;
+		/*border: 1px solid blue;*/
 		font-size: 0.9rem;
 	}
 }
-
-
-/*@media (min-width: 30em) and (orientation: landscape)*/
-/*@media only screen and (min-width: 200px) and (orientation: landscape) {
-	.flex-child-qa {
-		width: 50%;
-		border: 1px solid black;
-	}
-}*/
-
 
 .submitButton {
 	padding: 10px 20px;
@@ -130,15 +96,16 @@ em {
 }
 
 
-/*label display:block or white-space:nowrap.*/
-/*how to stop radio label from being on line below radio button? - this only affects the radio button circle itself not its lable*/
 input[type="radio"] {
-/*input:radio {  styles here  */
-	/*display: block;*/
-	width: auto;
-	/*display: inline;*/
-	/*display:inline;*/
-	white-space:nowrap;
+	display: inline-block; 
+	/*width: auto;*/
+	/*white-space: nowrap;*/
+}
+
+/* need to apply inline-block to BOTH label and radio button to keep them together on same line */
+label {
+	display: inline-block;
+	/*width: auto;*/
 }
 
 /* 

@@ -5,6 +5,7 @@ namespace App\Models;
 // updated for CoreQuestions wrt Users
 class UserModel
 {
+
 	// do models need indiv vars that correspond to fields in db entity?
 	private $db;
 
@@ -27,7 +28,7 @@ class UserModel
 		return $result;
 	}
 
-	//get single user based on their id - 8april
+	//get single user based on their id 
 	public function getUserFromID(int $userID)
 	{
 		$query = $this->db->prepare('SELECT `user_id`, `name`, `date_joined` FROM `users` WHERE `user_id` = :pl_user_id;');
@@ -37,7 +38,6 @@ class UserModel
 		return $result;
 	}
 
-	//can date be string representation of a date? YES but how to make the string-date on the html Form into a php Date datatype eg casting?
 	// TODO form need validation to stop future dates from being entered
 	public function saveUser(string $user, string $date_joined)
 	{
