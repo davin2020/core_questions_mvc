@@ -40,7 +40,6 @@ class AnswerModel
 		$result = $query->fetchAll();
 		return $result; // are dates in the resultset actually Dates or Strings?
 	}
-
 	
 	// prob best to have a function that generates the graph, when u pass it a one Dimensional array of numbers/values taken from db
 	// BUT whats if theres a years worth of data, might need to break it down into 3 month chunks, and pass in arg about timeframe/timescale ?
@@ -144,7 +143,7 @@ class AnswerModel
 			// exit;
 		}
 
-		//show teimstamtp for today - this works to make a fake/empty graph
+		//show timestamp for today - this works to make a fake/empty graph if no scores are present
 		if (count($tmpArrayScores) == 0) {
 			$d = strtotime('today');
 			$tmpArrayScores = [0,0];

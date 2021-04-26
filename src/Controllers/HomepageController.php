@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 class HomepageController
 {
+
 	private $userModel;
 	private $questionModel;
 	private $renderer;

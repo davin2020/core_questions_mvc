@@ -18,7 +18,6 @@ return function (ContainerBuilder $containerBuilder) {
 				'level' => Logger::DEBUG,
 			],
 			//added array for db connection settings - so can easily change between local test and remote prod server later
-			// host needs to be 127 instead of localhost, but why?
 			'dbDetails' => [
 				'dbServer' => '127.0.0.1',
 				'dbName' => 'corelifedb',

@@ -5,6 +5,7 @@ namespace App\Models;
 // updated for CoreQuestions 
 class QuestionModel
 {
+
 	private $db;
 
 	/**
@@ -17,7 +18,8 @@ class QuestionModel
 	}
 
 	// TODO Later - only get the questions if they are active, or only get GP Questions vs OM questions etc
-	public function getQuestions()
+	// this isnt currently being used/called on HomepageController
+  public function getQuestions()
 	{
 		$query = $this->db->prepare('SELECT `q_id`, `question`, `gp_order`, `points_type` FROM `ref_core_questions`;');
 		$query->execute();
@@ -26,7 +28,7 @@ class QuestionModel
 		return $result;
 	}
 
-	// get all the questions and the number of poinst assigned to each possible answer for that question
+	// get all the questions and the number of points assigned to each possible answer for that question
 	// seems php doesnt like ` in query string
 	public function getQuestionsAndPoints()
 	{
@@ -46,6 +48,7 @@ class QuestionModel
 	public function getQuestionLabels() {
 		$query = $this->db->prepare('SELECT `scale_id`, `label` FROM `ref_core_scale` ORDER BY `scale_id`;');
 		$query->execute();
+
 		$result = $query->fetchAll();
 		return $result;
 	}
