@@ -5,11 +5,11 @@
 body {
 	margin: 10px;
 	padding: 5px;
-	width: 90%;
+	width: 100%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
-	font-size: 18px;
-	background-color: #a5e0f7 ; 
+	font-size: 1.2rem; 
+	background-color: #a5e0f7 ; /*#FCFFCD  */
 } 
 
 h1 {
@@ -25,13 +25,10 @@ ul, ol {
 	list-style-position:inside;
 }
 
-span {
-	/*border: 1px solid orange;*/
-}
-
 div {
-	/*border: 1px solid green;*/
+	border: 1px solid green;
 	padding: 5px;
+	width: auto;
 }
 
 em {
@@ -44,18 +41,71 @@ em {
 }
 
 .flex-grid {
-  display: flex;
-  /*border: 3px solid red;*/
+  display: flex; 
+  /*border: 3px solid brown;*/
 }
 
-.flex-grid .col {
-  flex: 1;
-  /*border: 3px solid yellow;*/
+/* flex boxes to line up Questions & Answers on Form */
+.flex-parent-qa {
+  	display: flex; 
+  	width: 100%;
+  	/*border: 3px solid red;*/
+  	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-around;
+}
+
+
+.flex-child-qa {
+	width: 50%;
+}
+
+.flex-child-qa-questions {
+	width: 40%;
+	border: 2px solid gray;
+}
+
+.flex-child-qa-answers {
+	width: 60%;
+	border: 2px solid gray;
+}
+
+/* writing 500px makes this actually change/flex about 400px but why? */
+@media only screen and (max-width: 500px) {
+	.flex-child-qa {
+		width: 100%;
+		font-size: 0.9rem;
+	}
+
+	.flex-child-qa-questions {
+		width: 100%;
+		/*border: 1px solid white;*/
+		font-size: 0.9rem;
+	}
+
+	.flex-child-qa-answers {
+		width: 100%;
+		/*border: 1px solid blue;*/
+		font-size: 0.9rem;
+	}
 }
 
 .submitButton {
 	padding: 10px 20px;
 	background-color: gray;
+}
+
+
+input[type="radio"] {
+	display: inline-block; 
+	/*width: auto;*/
+	/*white-space: nowrap;*/
+}
+
+/* need to apply inline-block to BOTH label and radio button to keep them together on same line */
+label {
+	display: inline-block;
+	/*width: auto;*/
 }
 
 /* 

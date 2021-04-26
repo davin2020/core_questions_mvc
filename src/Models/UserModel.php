@@ -28,7 +28,7 @@ class UserModel
 		return $result;
 	}
 
-	//get single user based on their id - 8april
+	//get single user based on their id 
 	public function getUserFromID(int $userID)
 	{
 		$query = $this->db->prepare('SELECT `user_id`, `name`, `date_joined` FROM `users` WHERE `user_id` = :pl_user_id;');

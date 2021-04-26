@@ -88,7 +88,7 @@ class AnswerModel
 		$graph->xgrid->Show();
 		$graph->xgrid->SetLineStyle("solid");
 
-		// $graph->xaxis->SetTickLabels($data_y_dates); // not needed any more
+		// $graph->xaxis->SetTickLabels($data_y_dates); // not needed any more?
 		$graph->xgrid->SetColor('#E3E3E3');
 
 		//create the linear plot - orig color 6495ED 417fea
@@ -118,7 +118,6 @@ class AnswerModel
 
 
 	// this function can be called by external controllers, to start building a history graph for a given userID
-	//can unit test thing, returns $graph - can't as gets stuff from DB!
 	public function getUserAnswersLineGraph(int $userID) 
 	{
 		//setup arrays to hold values/data that will be used to build the line graph
