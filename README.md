@@ -20,16 +20,19 @@ This To Do app is live here - (coming soon, hopefully by the end of April 2021)
 - View all existing Core Questions (added 5 April)
 - Answer the Core Questions and submit the form to save the details to the DB (added 8 April)
 - View user history data ie previous dates & score (added 9 April)
-- View dynamic graph of previous dates & scores (added 11 April) **NEW!**
+- View dynamic graph of previous dates & scores (added 11 April)
+- Improved layout of Core Questions form (Answer options now move below each Question on smaller screens) - added 26 April **NEW!**
 
 ## Screenshots
 Users: 
 
 ![Image of Users](core_questions_app_users.PNG)
 
-Questions: 
+Core Questions Form: 
 
-![Image of Core Questions](core_questions_app_questions.PNG)
+<!-- ![Image of Core Questions](core_questions_app_questions_layout.PNG) -->
+![Image of Core Questions Form](core_questions_app_form_layout_smaller.PNG)
+
 
 User History Graph:
 
