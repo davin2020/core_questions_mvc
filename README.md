@@ -33,13 +33,10 @@ Core Questions Form:
 <!-- ![Image of Core Questions](core_questions_app_questions_layout.PNG) -->
 ![Image of Core Questions Form](core_questions_app_form_layout_smaller.PNG)
 
-
 User History Graph:
 
 ![Image of Users](core_questions_app_graph.PNG)
-<!-- core_questions_app_questions.PNG
-core_questions_app_users.PNG
-core_questions_app_graph.PNG -->
+
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory

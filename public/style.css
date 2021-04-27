@@ -7,7 +7,6 @@ body {
 	padding: 5px;
 	width: 100%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	/*text-align: center;*/
 	color: #000;
 	font-size: 1.2rem; /* was 18px */
 	background-color: #a5e0f7 ; /*#FCFFCD  */
@@ -16,10 +15,6 @@ body {
 h1 {
 	color: #4115c4;
 	font-family: 'Lato', sans-serif;
-	/*letter-spacing: -3px;*/
-	/*font-size: 100px;*/
-	/*font-weight: 200;*/
-	/*margin-bottom: 0;*/
 }
 
 h2 {
@@ -28,10 +23,6 @@ h2 {
 
 ul, ol {
 	list-style-position:inside;
-}
-
-span {
-	/*border: 1px solid orange;*/
 }
 
 div {
@@ -50,7 +41,7 @@ em {
 }
 
 .flex-grid {
-  display: flex; /*flex*/
+  display: flex; 
   border: 3px solid red;
 }
 
@@ -60,7 +51,7 @@ em {
 /*for flex, parent does work*/
 
 .flex-parent-qa {
-  	display: flex; /*flex*/
+  	display: flex; 
   	width: 100%;
   	border: 3px solid red;
   	flex-direction: row;
@@ -97,7 +88,6 @@ em {
 
 	.flex-child-qa {
 		width: 100%;
-		/*border: 1px solid white;*/
 		font-size: 0.9rem;
 	}
 
@@ -129,16 +119,16 @@ em {
 	background-color: gray;
 }
 
-
-/*label display:block or white-space:nowrap.*/
-/*how to stop radio label from being on line below radio button? - this only affects the radio button circle itself not its lable*/
 input[type="radio"] {
-/*input:radio {  styles here  */
-	/*display: block;*/
+	display: inline-block;
 	width: auto;
-	/*display: inline;*/
-	/*display:inline;*/
 	white-space:nowrap;
+}
+
+/* need to apply inline-block to BOTH label and radio button - only actually required for lables it seems */
+label {
+	display: inline-block;
+	/*width: auto;*/
 }
 
 /* 

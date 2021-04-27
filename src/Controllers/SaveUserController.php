@@ -19,9 +19,10 @@ class SaveUserController
 		$dataDate = $request->getParsedBody()['itemDate'];
 
 		$result = $this->userModel->saveUser($dataName, $dataDate);
-		// var_dump($result); //this is just true or false depending on whether save worked or not - need checking and success/failure message shown on next page, but how to send a msg to the next page?
+		// var_dump($result); //this is just true or false depending on whether save worked or not - need to do something else if this fails!
 
 		//redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
+		// need to add success message if user  is saved ok!
 		return $response->withHeader('Location', '/')->withStatus(302);
 	}
 

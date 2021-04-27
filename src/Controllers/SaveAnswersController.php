@@ -15,8 +15,8 @@ class SaveAnswersController
 	public function __invoke($request, $response, $args)
 	{
 
-		// existingUser - cast to int and check its still ok! 
-		// should i also cast form date to a php Date object? - how to get Date object and not a String for the date?
+		// do i need to cast Form string-date to a php Date object? 
+		//collect data from form fields needed to pass to saveAnswers()
 		$userID = (int) $request->getParsedBody()['existingUserID'];
 		$dateFormCompleted = $request->getParsedBody()['dateCompleted'];
 
