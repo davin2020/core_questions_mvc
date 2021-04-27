@@ -35,7 +35,7 @@ class HomepageController
 		//add questions to assoc array, for php renderer to display stuff - can have multiple keys if u needed to display more stuff later
 		$assocArrayArgs['coreQuestions'] = $allQuestions; 
 
-		//get questions and associated points for each possible answer
+		//get questions and associated points for each possible answer & add to assoc array for renderer to display stuff
 		$allQuestionsAndPoints = $this->questionModel->getQuestionsAndPoints();
 		$assocArrayArgs['coreQuestionsAndPoints'] = $allQuestionsAndPoints;
 		// var_dump($allQuestionsAndPoints);

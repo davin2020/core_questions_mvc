@@ -44,7 +44,7 @@ class QuestionModel
 		return $result;
 	}
 
-	//added 20april2021 but what type of class do i return? eg Label class?
+	//added this to retrieve Labels eg Often, Somtimes, but what type of class do i need to return, eg Label class? what if there isnt a direct model/entity?
 	public function getQuestionLabels() {
 		$query = $this->db->prepare('SELECT `scale_id`, `label` FROM `ref_core_scale` ORDER BY `scale_id`;');
 		$query->execute();
