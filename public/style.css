@@ -5,7 +5,7 @@
 body {
 	margin: 10px;
 	padding: 5px;
-	width: 100%;
+	width: 95%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
 	font-size: 1.2rem; /* was 18px */
@@ -36,13 +36,14 @@ em {
 	color: green;
 }
 
+/*contents is overflowign, need to combine with flex grid below ? */
 #core_form {
 	border: 3px solid #4115c4;
 }
 
 .flex-grid {
   display: flex; 
-  border: 3px solid red;
+  /*border: 3px solid red;*/
 }
 
 
@@ -67,12 +68,12 @@ em {
 
 .flex-child-qa-questions {
 	width: 40%;
-	border: 1px solid yellow;
+	border: 1px solid gray;
 }
 
 .flex-child-qa-answers {
 	width: 60%;
-	border: 1px solid orange;
+	border: 1px solid gray;
 }
 
 /*@media only screen and (max-width: 400px) {
