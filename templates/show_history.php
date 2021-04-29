@@ -35,7 +35,7 @@
 		?>
 			<!-- <p>RowID: <?php echo $item["ucs_id"] ?> --  -->
 			<p>Date: <?php echo $formattedDate ?> -- 
-				Score: <?php echo $item["overall_score"] ?> </p>
+				Total Score: <?php echo $item["overall_score"] ?> </p>
 		<?php 
 		}
 		?>
