@@ -11,8 +11,11 @@ Its been cloned from an existing To Do app based on the Slim 4 framework.
 
 It uses Routing, the Dependency Injection Container, Factories, Controllers & Views to implement CRUD funtionality
 
+NB: CORE forms are owned, created & copyrighted by -
+© CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
+
 ## Live Demo
-This To Do app is live here - (coming soon, hopefully by the end of April 2021)
+This Wellbeing Tracking Form is live here - (coming soon, hopefully by the end of April 2021)
 
 ## End User Features
 - View a list of existing users (added 5 April)
