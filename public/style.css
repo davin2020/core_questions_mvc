@@ -26,7 +26,7 @@ ul, ol {
 }
 
 div {
-	/*border: 1px solid green;*/
+	border: 1px solid green;
 	padding: 5px;
 	width: auto;
 }
@@ -36,9 +36,32 @@ em {
 	color: green;
 }
 
+.copyright {
+	text-align: center;
+	font-size: 0.9rem;
+}
+
+/*parent contains child of logo and instructions*/
+.block_instructions {
+	/* differnce between flex & inline-flex ? */
+	display: flex;
+	flex-direction: row;
+	/*flex-wrap: wrap;*/
+}
+
+/* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
+.instructions {
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+	background-color: #d1d2d4;
+	border: 1px solid gray;
+}
+
 /*contents is overflowign, need to combine with flex grid below ? */
 #core_form {
 	border: 3px solid #4115c4;
+	background-color: #f7f5e3;
 }
 
 .flex-grid {
@@ -54,7 +77,7 @@ em {
 .flex-parent-qa {
   	display: flex; 
   	width: 100%;
-  	border: 3px solid red;
+  	/*border: 3px solid red;*/
   	flex-direction: row;
 	flex-wrap: wrap;
 	align-content: space-around;
@@ -94,14 +117,15 @@ em {
 
 	.flex-child-qa-questions {
 		width: 100%;
-		border: 1px solid white;
-		font-size: 0.9rem;
+		/*border: 1px solid white;*/
+		font-size: 1rem;
 	}
 
 	.flex-child-qa-answers {
 		width: 100%;
-		border: 1px solid blue;
+		/*border: 1px solid blue;*/
 		font-size: 0.9rem;
+		padding-bottom: 20px;
 	}
 }
 
@@ -116,8 +140,14 @@ em {
 
 
 .submitButton {
+	/*how to center align button in its parent? */
 	padding: 10px 20px;
-	background-color: gray;
+	margin: 10px auto;
+	background-color: #9279e0; /* 9279e0 purple, d1d2d4 gray  */
+	color: black;
+	font-size: 1.1rem;
+	font-weight: bold;
+	align-content: center;
 }
 
 input[type="radio"] {

@@ -55,9 +55,7 @@
 
 	<div id="core_form">
 
-		<p>This form has multiple statements about how you have been OVER THE LAST WEEK.
-		<br>Please read each statement and think how often you felt that way last week.
-		<br>Then tick the box which is closest to this.</p>
+		
 
 		<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
 
@@ -84,11 +82,27 @@
 						<input type="Date" name="dateCompleted" id="dateCompleted" 
 						value="<?php echo date('Y-m-d');?>" required>
 					</label>
+					<br>
 					<!-- 
 					<label>Date Form Completed
 						<input type="date" id="date" name="date" required>
 					</label> -->
 
+				</div>
+				
+				<div class="block_instructions">
+					<div class="core_logo">
+						<img src="gp_core_logo.png" alt="Logo for GP Core Form">
+					</div>
+					<!-- need to flex this on smaller screens -->
+					<div class="instructions">
+						<strong>IMPORTANT - PLEASE READ THIS FIRST</strong>
+						<!-- need to make 14 a dynamic number, based on the number of questions that this Core form has -->
+						<?php $maxQuestions = count($coreQuestionsAndPoints); ?>
+						<p>This form has <?php echo $maxQuestions ?> statements about how you have been OVER THE LAST WEEK.
+						<br>Please read each statement and think how often you felt that way last week.
+						<br>Then tick the box which is closest to this.</p>
+					</div>
 				</div>
 
 				<p>Over the last week...</p>
@@ -103,7 +117,7 @@
 							<!-- btw db query does sort qs by gp_order, maybe rename function so its clearer? -->
 							<?php 
 							$q_id = $singleQuestionPoints["q_id"];
-							$q_id_label = $singleQuestionPoints["q_id"] . ": ";
+							$q_id_label = $singleQuestionPoints["q_id"] . ". ";
 							echo $q_id_label;
 							echo $singleQuestionPoints["question"];
 							?>
@@ -148,7 +162,13 @@
 					?>
 				</div> <!-- div above foreach loop, flex-parent-qa -->
 
+				<div class="instructions">
+					<p>THANK YOU FOR YOUR TIME IN COMPLETING THIS QUESTIONNAIRE</p>
+				</div>
+
 				<button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>
+
+				<p class="copyright">© CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf</p>
 
 			</form>
 		</div> <!-- eof flex-grid div -->
