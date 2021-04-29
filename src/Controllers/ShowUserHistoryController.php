@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers; //namespace must be first stmt!
 
+// is this still required ?
 error_reporting(E_ALL); ini_set('display_errors', '1');
 
 class ShowUserHistoryController
@@ -9,7 +10,6 @@ class ShowUserHistoryController
 	private $answerModel;
 	private $renderer;
 
-	// public function __construct($userModel, $answerModel)
 	public function __construct($userModel, $answerModel, $renderer)
 	{   
 		//do  i really need both models? will an answer ever exist without a user?
@@ -33,8 +33,10 @@ class ShowUserHistoryController
 		//make line graph based on users overall_score  
 		$userLineGraph = $this->answerModel->getUserAnswersLineGraph($args['user_id']);
 
-		//do stuff with output buffering & encoding to embed the graph-image, so graph doesnt take over the whole web page
+		//Stroke() actually 'creates the graph as an image, encodes it in the chosen image format eg png, and stream it back to the browser with the correct header identifying the data stream that the client receives as a valid image stream'
 		$userLineGraphImg = $userLineGraph->Stroke(_IMG_HANDLER);
+
+		//must do stuff with output buffering & encoding to embed the graph-image, otherwise graph will take over/overwrite the whole web page, as JpGraph library outputs binary (stream)
 		ob_start();
 		imagepng($userLineGraphImg);
 		$imageLineGraphData = ob_get_contents();

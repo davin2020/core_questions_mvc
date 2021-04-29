@@ -43,6 +43,7 @@ class AnswerModel
 		return $result; // are dates in the resultset actually Dates or Strings?
 	}
 
+//  NEEED TO TIDY & REDUCE COMMENTS BELOW HERE ! @27april
 
 	//core outcomes wrt Subjective Wellbeing, Problems/Symptoms, Functioning, Risk
 	//which questions are for what type, then add scores?

@@ -15,7 +15,7 @@ class SaveUserController
 	public function __invoke($request, $response, $args)
 	{
 		$dataName = $request->getParsedBody()['itemName'];
-		//why is this  a string on the form and not a date?
+		//should this string date be converted to a Date object before being passed into saveUser()?
 		$dataDate = $request->getParsedBody()['itemDate'];
 
 		$result = $this->userModel->saveUser($dataName, $dataDate);
