@@ -27,21 +27,24 @@
 
 
 	<h2>Add A New User</h2>
-		
-		<form method="post" action="/saveUser">
-			<label>Name of New User:
-				<input type="text" name="itemName" id="itemName" required>
-			</label>
-			<br>
+		<div class="core_form">
+			<form method="post" action="/saveUser">
+				<label>Name of New User:
+					<input type="text" name="itemName" id="itemName" required>
+				</label>
+				<br>
 
-			<label>Date Joined:
-				<input type="Date" name="itemDate" id="itemDate" 
-				value="<?php echo date('Y-m-d');?>" required>
-			</label>
-			<br>
+				<label>Date Joined:
+					<input type="Date" name="itemDate" id="itemDate" 
+					value="<?php echo date('Y-m-d');?>" required>
+				</label>
+				<br>
+				<div class="buttonContainer">
+					<button name="btnAddItem" type="submit" class="submitButton">Add</button>
+				</div>
 
-			<button name="btnAddItem" type="submit" class="submitButton">Add</button>
-		</form>
+			</form>
+		</div>
 		<br>
 
 
@@ -53,13 +56,13 @@
 			echo '<em>Form Questions saved ok</em>';
 	} ?>
 
-	<div id="core_form">
+	<div class="core_form flex_container">
 
 		
 
 		<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
 
-		<div class="flex-grid">
+		<!-- <div class="flex_container"> -->
 
 			<form method="post" action="/saveAnswers">
 
@@ -140,7 +143,7 @@
 							<label>
 								<input type="radio"
 								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">&nbsp
+								value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
 								<?php echo $questionAnswerLabels[2]['label']; ?>
 							</label>
 							<label>
@@ -163,15 +166,19 @@
 				</div> <!-- div above foreach loop, flex-parent-qa -->
 
 				<div class="instructions">
-					<p>THANK YOU FOR YOUR TIME IN COMPLETING THIS QUESTIONNAIRE</p>
+					<!-- <p>THANK YOU FOR YOUR TIME IN COMPLETING THIS QUESTIONNAIRE</p> -->
+					<p>Thank you for your time in completing this questionnaire</p>
 				</div>
 
-				<button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>
+				<div class="buttonContainer">
+					<button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>
+				</div>
 
 				<p class="copyright">© CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf</p>
 
 			</form>
-		</div> <!-- eof flex-grid div -->
+		<!-- </div>  -->
+		<!-- eof flex-grid div -->
 	</div> <!--  eof id=core-form div -->
 
 </body>
