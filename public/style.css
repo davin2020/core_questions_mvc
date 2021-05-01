@@ -8,7 +8,7 @@ body {
 	width: 95%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
-	font-size: 1.2rem; /* was 18px */
+	font-size: 1rem; /* was 18px */
 	background-color: #a5e0f7 ; /*#FCFFCD  */
 } 
 
@@ -26,7 +26,7 @@ ul, ol {
 }
 
 div {
-	border: 1px solid green;
+	/*border: 1px solid green;*/
 	padding: 5px;
 	width: auto;
 }
@@ -59,12 +59,13 @@ em {
 }
 
 /*contents is overflowign, need to combine with flex grid below ? */
-#core_form {
+.core_form {
 	border: 3px solid #4115c4;
 	background-color: #f7f5e3;
+	padding: 10px;
 }
 
-.flex-grid {
+.flex_container {
   display: flex; 
   /*border: 3px solid red;*/
 }
@@ -142,12 +143,17 @@ em {
 .submitButton {
 	/*how to center align button in its parent? */
 	padding: 10px 20px;
-	margin: 10px auto;
-	background-color: #9279e0; /* 9279e0 purple, d1d2d4 gray  */
+	margin: 10px auto; 
+	background-color: #45C5AF; /* 9279e0 purple, d1d2d4 gray  */
 	color: black;
 	font-size: 1.1rem;
 	font-weight: bold;
 	align-content: center;
+}
+
+/* needed to center button within its parent */
+.buttonContainer {
+	text-align: center;
 }
 
 input[type="radio"] {
