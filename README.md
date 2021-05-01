@@ -15,7 +15,7 @@ NB: CORE forms are owned, created & copyrighted by -
 © CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
 
 ## Live Demo
-This Wellbeing Tracking Form is live here - (coming soon, hopefully by the end of April 2021)
+This Wellbeing Tracking Form is live here - (coming soon, hopefully by mid May 2021)
 
 ## End User Features
 - View a list of existing users (added 5 April)
