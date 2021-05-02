@@ -83,6 +83,8 @@ class AnswerModel
 		$graph->yaxis->HideZeroLabel();
 		$graph->yaxis->HideLine(false);
 		$graph->yaxis->HideTicks(false,false);
+		// add tick marks to x axis
+		$graph->xaxis->HideTicks(false,false);
 
 		//need to do stuff with x axis dates here
 		$graph->xgrid->Show();
