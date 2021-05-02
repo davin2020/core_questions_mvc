@@ -53,12 +53,10 @@
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
 		if ( isset($_GET['success']) && $_GET['success']== 1) {
-			echo '<em>Form Questions saved ok</em>';
+			echo '<em>Your Answers have been Saved</em>';
 	} ?>
 
 	<div class="core_form flex_container">
-
-		
 
 		<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
 
@@ -69,10 +67,11 @@
 				<div class="formNameDate">
 					<label for="existingUserID">Name of Existing User:
 						<select name="existingUserID">
-						  <option value="">Select...</option>
+							<!-- Need to make choosing a name mandatory -->
+						  	<option value="">Select...</option>
 							<?php
 							foreach($usersList as $user) { ?>
-							  <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+							 	<option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
 							<?php 
 							}
 							?>
