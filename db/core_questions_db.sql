@@ -43,23 +43,28 @@ CREATE TABLE IF NOT EXISTS `ref_core_questions` (
   `q_id` int NOT NULL AUTO_INCREMENT,
   `question` varchar(255) NOT NULL,
   `gp_order` int NOT NULL,
-  `do_points_ascend` int NOT NULL DEFAULT '0',
   `points_type` int NOT NULL DEFAULT '0',
-  `domain` char(1) DEFAULT NULL,
   PRIMARY KEY (`q_id`) USING BTREE,
   KEY `points_type` (`points_type`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table corelifedb.ref_core_questions: 7 rows
 /*!40000 ALTER TABLE `ref_core_questions` DISABLE KEYS */;
-INSERT INTO `ref_core_questions` (`q_id`, `question`, `gp_order`, `do_points_ascend`, `points_type`, `domain`) VALUES
-	(1, 'I have felt tense, anxious or nervous', 1, 1, 123, NULL),
-	(2, 'I have felt I have someone to turn to for support when needed', 2, 0, 321, NULL),
-	(3, 'I have felt ok about myself', 3, 0, 321, NULL),
-	(4, 'I have felt able to cope when things go wrong', 4, 0, 321, NULL),
-	(5, 'I have been troubled by aches, pains or other physical problems	', 5, 1, 123, NULL),
-	(6, 'I have been happy with the things I have done', 6, 0, 321, NULL),
-	(7, 'I have had difficulty getting to sleep or staying asleep', 7, 1, 123, NULL);
+INSERT INTO `ref_core_questions` (`q_id`, `question`, `gp_order`, `points_type`) VALUES
+	(1, 'I have felt tense, anxious or nervous', 1, 123),
+	(2, 'I have felt I have someone to turn to for support when needed', 2, 321),
+	(3, 'I have felt ok about myself', 3, 321),
+	(4, 'I have felt able to cope when things go wrong', 4, 321),
+	(5, 'I have been troubled by aches, pains or other physical problems	', 5, 123),
+	(6, 'I have been happy with the things I have done', 6, 321),
+	(7, 'I have had difficulty getting to sleep or staying asleep', 7, 123),
+	(8, 'I have felt warmth or affection for someone', 8, 321),
+	(9, 'I have been able to do most things I needed to', 9, 321),
+	(10, 'I have felt criticised by other people', 10, 123),
+	(11, 'I have felt unhappy', 11, 123),
+	(12, 'I have been irritable when with other people', 12, 123),
+	(13, 'I have felt optimistic about my future', 13, 321),
+	(14, 'I have achieved the things I wanted to', 14, 321);
 /*!40000 ALTER TABLE `ref_core_questions` ENABLE KEYS */;
 
 -- Dumping structure for table corelifedb.ref_core_scale
@@ -67,18 +72,17 @@ DROP TABLE IF EXISTS `ref_core_scale`;
 CREATE TABLE IF NOT EXISTS `ref_core_scale` (
   `scale_id` int NOT NULL AUTO_INCREMENT,
   `label` varchar(255) DEFAULT NULL,
-  `points` int DEFAULT NULL,
   PRIMARY KEY (`scale_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table corelifedb.ref_core_scale: 5 rows
 /*!40000 ALTER TABLE `ref_core_scale` DISABLE KEYS */;
-INSERT INTO `ref_core_scale` (`scale_id`, `label`, `points`) VALUES
-	(1, 'Not at all', NULL),
-	(2, 'Only occasionally', NULL),
-	(3, 'Sometimes', NULL),
-	(4, 'Often', NULL),
-	(5, 'Most or All the time', NULL);
+INSERT INTO `ref_core_scale` (`scale_id`, `label`) VALUES
+	(1, 'Not at all'),
+	(2, 'Only occasionally'),
+	(3, 'Sometimes'),
+	(4, 'Often'),
+	(5, 'Most or All the time');
 /*!40000 ALTER TABLE `ref_core_scale` ENABLE KEYS */;
 
 -- Dumping structure for table corelifedb.users
@@ -88,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `date_joined` date NOT NULL,
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table corelifedb.users: 6 rows
+-- Dumping data for table corelifedb.users: 8 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`user_id`, `name`, `date_joined`) VALUES
 	(1, 'Alvis', '2020-12-15'),
@@ -111,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `user_core_answers` (
   KEY `FK1_q_id` (`q_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table corelifedb.user_core_answers: 171 rows
+-- Dumping data for table corelifedb.user_core_answers: 216 rows
 /*!40000 ALTER TABLE `user_core_answers` DISABLE KEYS */;
 INSERT INTO `user_core_answers` (`ucs_id`, `q_id`, `points`) VALUES
 	(2, 1, 1),
@@ -124,6 +128,10 @@ INSERT INTO `user_core_answers` (`ucs_id`, `q_id`, `points`) VALUES
 	(3, 3, 1),
 	(3, 4, 1),
 	(3, 5, 0),
+	(35, 1, 4),
+	(35, 4, 4),
+	(35, 3, 3),
+	(35, 2, 4),
 	(12, 1, 0),
 	(12, 2, 4),
 	(12, 3, 4),
@@ -280,7 +288,66 @@ INSERT INTO `user_core_answers` (`ucs_id`, `q_id`, `points`) VALUES
 	(34, 4, 3),
 	(34, 5, 2),
 	(34, 6, 3),
-	(34, 7, 1);
+	(34, 7, 1),
+	(35, 5, 3),
+	(35, 6, 4),
+	(35, 7, 4),
+	(36, 1, 0),
+	(36, 2, 3),
+	(36, 3, 2),
+	(36, 4, 1),
+	(36, 5, 4),
+	(36, 6, 1),
+	(36, 7, 4),
+	(37, 1, 2),
+	(37, 2, 0),
+	(37, 3, 1),
+	(37, 4, 3),
+	(37, 5, 0),
+	(37, 6, 2),
+	(37, 7, 1),
+	(38, 1, 0),
+	(38, 2, 2),
+	(38, 3, 4),
+	(38, 4, 1),
+	(38, 5, 2),
+	(38, 6, 0),
+	(38, 7, 0),
+	(39, 1, 2),
+	(39, 2, 3),
+	(39, 3, 2),
+	(39, 4, 3),
+	(39, 5, 1),
+	(39, 6, 2),
+	(39, 7, 1),
+	(40, 1, 1),
+	(40, 2, 2),
+	(40, 3, 4),
+	(40, 4, 0),
+	(40, 5, 2),
+	(40, 6, 0),
+	(40, 7, 0),
+	(41, 1, 0),
+	(41, 2, 1),
+	(41, 3, 2),
+	(41, 4, 0),
+	(41, 5, 1),
+	(41, 6, 0),
+	(41, 7, 3),
+	(42, 1, 1),
+	(42, 2, 2),
+	(42, 3, 2),
+	(42, 4, 2),
+	(42, 5, 1),
+	(42, 6, 1),
+	(42, 7, 0),
+	(42, 8, 2),
+	(42, 9, 2),
+	(42, 10, 0),
+	(42, 11, 1),
+	(42, 12, 1),
+	(42, 13, 2),
+	(42, 14, 1);
 /*!40000 ALTER TABLE `user_core_answers` ENABLE KEYS */;
 
 -- Dumping structure for table corelifedb.user_core_score
@@ -292,9 +359,9 @@ CREATE TABLE IF NOT EXISTS `user_core_score` (
   `overall_score` int DEFAULT NULL,
   PRIMARY KEY (`ucs_id`) USING BTREE,
   KEY `FK1_userid` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table corelifedb.user_core_score: 32 rows
+-- Dumping data for table corelifedb.user_core_score: 39 rows
 /*!40000 ALTER TABLE `user_core_score` DISABLE KEYS */;
 INSERT INTO `user_core_score` (`ucs_id`, `user_id`, `score_date`, `overall_score`) VALUES
 	(1, 1, '2021-02-15', 20),
@@ -328,7 +395,15 @@ INSERT INTO `user_core_score` (`ucs_id`, `user_id`, `score_date`, `overall_score
 	(31, 5, '2021-03-15', 12),
 	(32, 10, '2021-04-14', 8),
 	(33, 5, '2021-03-20', 26),
-	(34, 5, '2021-02-22', 19);
+	(34, 5, '2021-02-22', 19),
+	(35, 5, '2021-03-25', 26),
+	(36, 5, '2021-04-01', 15),
+	(37, 5, '2021-04-02', 9),
+	(38, 0, '2021-04-24', 9),
+	(39, 10, '2021-04-25', 14),
+	(40, 5, '2021-04-07', 9),
+	(41, 5, '2021-04-10', 7),
+	(42, 10, '2021-05-01', 18);
 /*!40000 ALTER TABLE `user_core_score` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
