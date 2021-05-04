@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+
+use DI\ContainerBuilder;
+use Monolog\Logger;
+
+return function (ContainerBuilder $containerBuilder) {
+	// Global Settings Object
+	$containerBuilder->addDefinitions([
+		'settings' => [
+			'displayErrorDetails' => true, // Should be set to false in production
+			'renderer' => [
+				'template_path' => __DIR__ . '/../templates/',
+			],
+			'logger' => [
+				'name' => 'slim-app',
+				'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
+				'level' => Logger::DEBUG,
+			],
+			//added array for db connection settings - so can easily change between local test and remote prod server later
+			// host needs to be 127 instead of localhost, but why?
+			'dbDetails' => [
+				'dbServer' => '127.0.0.1',
+				'dbName' => 'corelifedb',
+				'dbUsername' => 'YOUR_USERNAME',
+				'dbPassword' => 'YOUR_PASSWORD'
+			]
+		],
+	]);
+};

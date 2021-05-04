@@ -1,12 +1,12 @@
 # Davin specific Files #
-######################
+########################
 _*
 *.txt
 q
 
-# Davin exclude local db settings #
-######################
-app/settings.php
+# Exclude local DB connection details  #
+########################################
+# app/settings.php
 
 
 # Standard Files #
