@@ -1,13 +1,13 @@
 # Core Questions Form - Using PHP & MVC
 
 ## About
-This will be a web form where you can submit answers to the 'GP-Core Questions', which is used to report subjective wellbeing. 
+This is a web form where you can submit answers to the 'GP-Core Questions', which is used to report subjective wellbeing. 
 
 **NB: This repo is very much a work in progress.**
 
 It uses the LAMP stack, and will have basic CRUD functionality, storing data in a MYSQL db.
 
-Its been cloned from an existing To Do app based on the Slim 4 framework.
+Its been cloned from an existing To Do app based on the Slim 4 framework and MVC Pattern.
 
 It uses Routing, the Dependency Injection Container, Factories, Controllers & Views to implement CRUD funtionality
 
@@ -24,7 +24,8 @@ This Wellbeing Tracking Form is live here - (coming soon, hopefully by mid May 2
 - Answer the Core Questions and submit the form to save the details to the DB (added 8 April)
 - View user history data ie previous dates & score (added 9 April)
 - View dynamic graph of previous dates & scores (added 11 April)
-- Improved layout of Core Questions form (Answer options now move below each Question on smaller screens) - added 26 April **NEW!**
+- Improved layout of Core Questions form (Answer options now move below each Question on smaller screens) - added 26 April
+- Improve formatting of GP-Core Questions form, added all GP-CORE questions to DB and added copyright info for Core Systems Trust - added 2 May **NEW!**
 
 ## Screenshots
 Users: 
