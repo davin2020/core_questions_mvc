@@ -1,3 +1,16 @@
+# Davin specific Files #
+########################
+_*
+*.txt
+q
+
+# Exclude local DB connection details  #
+########################################
+# app/settings.php
+
+
+# Standard Files #
+######################
 .idea/
 .DS_Store
 /coverage/
