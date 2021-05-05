@@ -6,7 +6,7 @@ q
 
 # Exclude local DB connection details  #
 ########################################
-# app/settings.php
+app/settings.php
 
 
 # Standard Files #
