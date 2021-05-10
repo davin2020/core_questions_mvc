@@ -30,12 +30,13 @@ This Wellbeing Tracking Form is live here - (coming soon, hopefully by mid May 2
 ## Screenshots
 Users: 
 
-![Image of Users](core_questions_app_users.PNG)
+![Image of Users](core_questions_app_users2.png)
 
 Core Questions Form: 
 
 <!-- ![Image of Core Questions](core_questions_app_questions_layout.PNG) -->
-![Image of Core Questions Form](core_questions_app_form_layout_smaller.PNG)
+<!-- ![Image of Core Questions Form](core_questions_app_form_layout_smaller.PNG) -->
+![Image of Core Questions Form](wellbeing_tracker_questions.png)
 
 
 User History Graph:
