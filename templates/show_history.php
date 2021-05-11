@@ -34,8 +34,11 @@
 			$formattedDate = date_format($dateObj, 'l j F Y');
 		?>
 			<!-- <p>RowID: <?php echo $item["ucs_id"] ?> --  -->
-			<p>Date: <?php echo $formattedDate ?> -- 
-				Total Score: <?php echo $item["overall_score"] ?> </p>
+			<p>
+				Date: <?php echo $formattedDate ?> -- 
+				Total Score: <?php echo $item["overall_score"] ?> --
+				Mean Score: <?php echo $item["mean_score"] ?> 
+			</p>
 		<?php 
 		}
 		?>

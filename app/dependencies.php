@@ -51,5 +51,8 @@ return function (ContainerBuilder $containerBuilder) {
 
 	$container['ShowUserHistoryController'] = DI\Factory('App\Factories\ShowUserHistoryControllerFactory');
 
+	//dont forget to add new models & controllers here! esp when restructuring!
+	$container['DashboardController'] = DI\Factory('App\Factories\DashboardControllerFactory');
+
 	$containerBuilder->addDefinitions($container);
 };
