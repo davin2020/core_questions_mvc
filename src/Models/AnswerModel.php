@@ -31,12 +31,15 @@ class AnswerModel
 	}
 
 	//need to get all answers for a given user, incl dates of different answers
-	// do i need to change query or db field?  shoudd score_date be just a Date or a DateTime?
+	// do i need to change query or db field?  shoudd score_date be just a Date or a DateTime? - updated to get mean_score too
 	public function getUserAnswers(int $userID)
 	{
 
 		//why cant i just get the name out here too and return it all in one go?
-		$query = $this->db->prepare('SELECT `ucs_id`, `score_date`, `overall_score` FROM `user_core_score` WHERE `user_id` = :pl_user_id ORDER BY `score_date`; ');
+		$query = $this->db->prepare('SELECT `ucs_id`, `score_date`, `overall_score`, `mean_score` 
+			FROM `user_core_score` 
+			WHERE `user_id` = :pl_user_id 
+			ORDER BY `score_date`; ');
 		$result = $query->execute(['pl_user_id' => $userID]);
 		$query->setFetchMode(\PDO::FETCH_CLASS, 'AnswerModel'); //should this really be part of the UserModel?
 		$result = $query->fetchAll();
@@ -173,14 +176,15 @@ class AnswerModel
 	}
 
 	
-	// maybe rename this to SaveUserAnswers ? as it saves the uses answer to each of the core questions
-	public function saveAnswers(int $userID, string $scoreDate, array $dataArrayAnswers, int $totalScore)
+	// maybe rename this to SaveUserAnswers ? as it saves the uses answer to each of the core questions - how to make floats stop at 2dp, or just store it all and format it later?
+	public function saveAnswers(int $userID, string $scoreDate, array $dataArrayAnswers, int $totalScore, float $meanScore)
 	{
 		//update table user_core_score with user_id, score_date & overall_score
+		// TO DO need to insert $meanScore into table
 		$query = $this->db->prepare('INSERT INTO `user_core_score` 
-			(`user_id`, `score_date`, `overall_score`) 
-			VALUES (:pl_user_id, :pl_score_date, :pl_overall_score);');
-		$result = $query->execute(['pl_user_id' => $userID, 'pl_score_date' => $scoreDate, 'pl_overall_score' => $totalScore]);
+			(`user_id`, `score_date`, `overall_score`, `mean_score`) 
+			VALUES (:pl_user_id, :pl_score_date, :pl_overall_score, :pl_mean_score);');
+		$result = $query->execute(['pl_user_id' => $userID, 'pl_score_date' => $scoreDate, 'pl_overall_score' => $totalScore, 'pl_mean_score' => $meanScore]);
 
 		//need to return new unique id ucs_id from table ser_core_score, but ONLY if $result returns true - ie needs success checking
 		$lastID = $this->db->lastInsertId();
@@ -201,11 +205,20 @@ class AnswerModel
 	//adds up all the individual points for each answer the user selected  
 	// FYI GP-CORE form only requires one Total score but other forms like OM-CORE has 34 Questions and so needs Subtotals for Subjective Wellbeing, Problems/Symptoms, Functioning and Risk - so need to know which questions are for which type then can calculate Score
 	//can unit test this, as doesnt touch db
-	public function calculateScore(array $questionPoints) 
+	public function calculateTotalScore(array $questionPoints) 
 	{
 		$sum = array_sum($questionPoints);
 		return $sum;
 	}
 
+	// (Total score divided by number of items completed provided that 13 or all 14 items have been completed. Don’t compute scores if more than one item omitted.)
+	public function calculateMeanScore(int $totalScore, int $numberOfQuestions): float 
+	{	
+		$mean = 0.00;
+		if ($numberOfQuestions > 0) {
+			$mean = (float) $totalScore / $numberOfQuestions;
+		}
+		return $mean;
+	}
 
 }
