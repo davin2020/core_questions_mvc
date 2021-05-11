@@ -12,14 +12,22 @@
 <body>
 	<h1>Core Questions App</h1>
 
-	<h2>Show Existing Users</h2>
+<!-- 	<h2>Dashboards</h2>
+	Dutch
+	<br>
+	<a href="/dashboard/10">DAVIN</a>
+	<br> -->
+
+	<h2>Show Existing Users & Dashboard Links</h2>
 	<!--  fyi Controller for index page ie HomePageController is where array variables like $userList are coming from 
 	Show list of users with individual link to user history page at /showUserHistory/{q_id}
 	-->
 		<?php
 		echo '<ul>';
 		foreach($usersList as $user) {
-			echo '<li>' . $user["name"] . ' -- Joined: ' . $user["date_joined"] .
+			echo '<li>' . $user["name"] . 
+			' -- <a href="/dashboard/'. $user["user_id"]  .'">Dashboard</a>' .
+			' -- Joined: ' . $user["date_joined"] .
 			' -- <a href="/showUserHistory/'. $user["user_id"] .'">User History</a></li>';
 			}
 		echo '</ul>';
