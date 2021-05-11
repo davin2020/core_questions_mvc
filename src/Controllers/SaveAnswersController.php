@@ -29,7 +29,21 @@ class SaveAnswersController
 		$result = $this->answerModel->saveAnswers($userID, $dateFormCompleted, $dataArrayAnswers, $totalScore, $meanScore);
 
 		//redirects back to homepage, no need to render anything! ./ means current page, / means root/main page
-		return $response->withHeader('Location', '/?success=1')->withStatus(302);
+		// thhis works ok
+		// return $response->withHeader('Location', '/dashboard/5')->withStatus(302);
+
+		//maybe i need to pre build the url??
+		// return $response->withHeader('Location', '/dashboard/' . $userID)->withStatus(302);
+
+		//TO DO should only return success if saving to db has actually worked! also review status codes
+		return $response->withHeader('Location', '/dashboard/' . $userID . '?success=1' )->withStatus(302);
+
+		//  these ursl are totally differnt, top one is right, bottom is a whole diff route that doesnt exist!
+		// http://localhost:8087/dashboard/5?success=1
+		// http://localhost:8087/dashboard/5/?success=1
+
+		// return $response->withHeader('Location', '/?success=1')->withStatus(302);
+		# return $response->withHeader('Location', '/dashboard/' . $userID . '/?success=1')->withStatus(302);
 	}
 
 }
