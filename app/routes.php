@@ -20,4 +20,7 @@ return function (App $app) {
 
 	//restructuring app
 	$app->get('/dashboard/{user_id}', 'DashboardController');
+	$app->get('/questionForm/{user_id}', 'QuestionFormController');
+	// !questionForm > !QuestionFormController question_form.php
+
 };
