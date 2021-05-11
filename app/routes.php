@@ -18,4 +18,6 @@ return function (App $app) {
 
 	$app->get('/showUserHistory/{user_id}', 'ShowUserHistoryController');
 
+	//restructuring app
+	$app->get('/dashboard/{user_id}', 'DashboardController');
 };
