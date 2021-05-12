@@ -25,22 +25,41 @@
 		$name = $user['name'];
 		$userID = $user['user_id'];
 		$dateObj = date_create($dateJoined);
-			// format date syntax eg Saturday 20 February 2021
+		// format date syntax eg Saturday 20 February 2021 - maybe this should be a method? ie pass in string date, convert to Date obj & get nicely formatted string back?
 		$formattedDate = date_format($dateObj, 'l j F Y');
 	?>
 
-	<h2>Profile</h2>
+	<h2>My Profile</h2>
 		<p>ID: <?php echo $userID ?> </p>
 		<p>Full Name: <?php echo $name ?></p>
 		<!-- format date in DMY -->
 		<p>Date joined - <?php echo $formattedDate ?> </p>
 
+		<!-- show date when questions were last anaswers & last score? -->
 
-	<!-- <h2>Answer CORE Questions</h2> -->
+	<h2>Answer Questions</h2>
+	<!-- on dashboard page, add  link to quiz page/question form -->
 	<!-- what if there are other forms? -->
 
+	<!-- success msg if answeres to questions are saved ok -->
+	<?php  
+		if ( isset($_GET['success']) && $_GET['success']== 1) {
+			echo '<em>Your Answers have been Saved</em>';
+	} ?>
 
-	<h2>User History</h2>
+<!-- questionForm -->
+		<form method="GET" action="/questionForm/<?php echo $userID; ?>">
+		<div class="buttonContainer">
+				<button name="btnShowQuestions" type="submit" class="submitButton">Answer Questions</button>
+			</div>
+
+		</form>
+	
+
+
+	<h2>My History</h2>
+	<!-- show last date & overall score -->
+
 	<!-- for this user name - output date & score -->
 
 	
@@ -67,7 +86,7 @@
 				</label>
 				<br> -->
 				<div class="buttonContainer">
-					<button name="btnShowHistory" type="submit" class="submitButton">Show User History</button>
+					<button name="btnShowHistory" type="submit" class="submitButton">Show My History</button>
 				</div>
 
 			</form>

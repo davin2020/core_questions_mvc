@@ -54,5 +54,7 @@ return function (ContainerBuilder $containerBuilder) {
 	//dont forget to add new models & controllers here! esp when restructuring!
 	$container['DashboardController'] = DI\Factory('App\Factories\DashboardControllerFactory');
 
+	$container['QuestionFormController'] = DI\Factory('App\Factories\QuestionFormControllerFactory');
+
 	$containerBuilder->addDefinitions($container);
 };
