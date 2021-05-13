@@ -4,22 +4,59 @@
 <!-- Davin updated this file for CoreQuestions -->
 <head>
 	<meta charset="utf-8"/>
-	<title>GP-Core Question Form</title>
-	<link href="../style.css" type="text/css" rel="stylesheet">
-	<!-- <link href="style.css" type="text/css" rel="stylesheet"> -->
+	<title>ADMIN PAGE - GP-Core Question Form</title>
+	<link href="style.css" type="text/css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<h1>Core Questions App</h1>
+	<h1>ADMIN PAGE - Core Questions App</h1>
 
-	<?php
-	$userID = $user['user_id'];
-	?>
+<!-- 	<h2>Dashboards</h2>
+	Dutch
+	<br>
+	<a href="/dashboard/10">DAVIN</a>
+	<br> -->
 
-		<!-- <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option> -->
+	<h2>Show Existing Users & Dashboard Links</h2>
+	<!--  fyi Controller for index page ie HomePageController is where array variables like $userList are coming from 
+	Show list of users with individual link to user history page at /showUserHistory/{q_id}
+	-->
+		<?php
+		echo '<ul>';
+		foreach($usersList as $user) {
+			echo '<li>' . $user["name"] . 
+			' -- <a href="/dashboard/'. $user["user_id"]  .'">Dashboard</a>' .
+			' -- Joined: ' . $user["date_joined"] .
+			' -- <a href="/showUserHistory/'. $user["user_id"] .'">User History</a></li>';
+			}
+		echo '</ul>';
+		?>
 
-	<h2>Answer GP-Core Questions for <?php echo $userName ?> </h2>
+
+	<h2>Add A New User</h2>
+		<div class="core_form">
+			<form method="post" action="/saveUser">
+				<label>Name of New User:
+					<input type="text" name="itemName" id="itemName" required>
+				</label>
+				<br>
+
+				<label>Date Joined:
+					<input type="Date" name="itemDate" id="itemDate" 
+					value="<?php echo date('Y-m-d');?>" required>
+				</label>
+				<br>
+				<div class="buttonContainer">
+					<button name="btnAddItem" type="submit" class="submitButton">Add</button>
+				</div>
+
+			</form>
+		</div>
+		<br>
+
+
+	<h2>Answer GP-Core Questions</h2>
 
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
@@ -33,26 +70,25 @@
 
 		<!-- <div class="flex_container"> -->
 
-			<!-- need to make it redirect back to dashbord!  -->
 			<form method="post" action="/saveAnswers">
 
 				<div class="formNameDate">
-
-					<!-- remove name & embed in link/route/url to get here -->
-					<!--  label isnt really needed anymore if select field is hidden? -->
-					<!-- <label for="existingUserID">Name of Existing User: -->
-
-						<select name="existingUserID" hidden="true">
+					<label for="existingUserID">Name of Existing User:
+						<select name="existingUserID">
 							<!-- Need to make choosing a name mandatory -->
-						  	<!-- <option value="<?php echo $userID ?>"><?php echo $userName ?>...</option> -->
-						  	
-							 <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+						  	<option value="">Select...</option>
+							<?php
+							foreach($usersList as $user) { ?>
+							 	<option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+							<?php 
+							}
+							?>
 						</select>
-					<!-- </label> -->
+					</label>
 
 					<br>
 					<!--  need to make name & date compulsoyr & in the future! -->
-					<label for="dateCompleted">Date Form Completed:
+					<label for="dateCompleted" >Date Form Completed:
 						<input type="Date" name="dateCompleted" id="dateCompleted" 
 						value="<?php echo date('Y-m-d');?>" required>
 					</label>
@@ -66,8 +102,7 @@
 				
 				<div class="block_instructions">
 					<div class="core_logo">
-						<!-- why does this ref to img file need to go up 1 level as in same dir as index.php?? -->
-						<img src="../gp_core_logo.png" alt="Logo for GP Core Form">
+						<img src="gp_core_logo.png" alt="Logo for GP Core Form">
 					</div>
 					<!-- need to flex this on smaller screens -->
 					<div class="instructions">
@@ -138,7 +173,7 @@
 				</div> <!-- div above foreach loop, flex-parent-qa -->
 
 				<div class="instructions">
-					<!-- maybe show Thank You after form has been submitted -->
+					<!-- <p>THANK YOU FOR YOUR TIME IN COMPLETING THIS QUESTIONNAIRE</p> -->
 					<p>Thank you for your time in completing this questionnaire</p>
 				</div>
 
@@ -149,13 +184,9 @@
 				<p class="copyright">© CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf</p>
 
 			</form>
-
 		<!-- </div>  -->
 		<!-- eof flex-grid div -->
 	</div> <!--  eof id=core-form div -->
-
-	<br>
-	<a href="/dashboard/<?php echo $userID ?>">Return to Dashboard</a>
 
 </body>
 </html>

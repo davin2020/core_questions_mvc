@@ -43,8 +43,11 @@
 		}
 		?>
 
+	<a href="/dashboard/<?php echo $currentUser['user_id'] ?>">Return to Dashboard</a>
+	
 	<h6><a href="/">Return to Core Questions Homepage</a></h6>
-
+	 <!-- <?php echo $currentUser['user_id'] ?> -->
+	
 
 </body>
 </html>

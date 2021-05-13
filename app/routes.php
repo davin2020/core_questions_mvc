@@ -9,7 +9,7 @@ return function (App $app) {
 	$container = $app->getContainer();
 
 	// add in custom routes here for CoreQuestions app
-	//Homepage also does getQuestions()
+	//Homepage also does getQuestions() - could be named LoginController?
 	$app->get('/', 'HomepageController');
 
 	$app->post('/saveUser', 'SaveUserController');
@@ -23,4 +23,7 @@ return function (App $app) {
 	$app->get('/questionForm/{user_id}', 'QuestionFormController');
 	// !questionForm > !QuestionFormController question_form.php
 
+	$app->get('/admin', 'AdminPageController');
+
+	//  need /loginUser route
 };
