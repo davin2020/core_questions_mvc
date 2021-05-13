@@ -56,5 +56,7 @@ return function (ContainerBuilder $containerBuilder) {
 
 	$container['QuestionFormController'] = DI\Factory('App\Factories\QuestionFormControllerFactory');
 
+	$container['AdminPageController'] = DI\Factory('App\Factories\AdminPageControllerFactory');
+
 	$containerBuilder->addDefinitions($container);
 };
