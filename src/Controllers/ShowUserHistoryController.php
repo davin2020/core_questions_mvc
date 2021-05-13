@@ -44,6 +44,7 @@ class ShowUserHistoryController
 
 		//build AssocArgs array & add items to it, for actual php page to render
 		$assocArrayArgs = [];
+		$assocArrayArgs['currentUser'] = $user; 
 		$assocArrayArgs['userName'] = $userName; 
 		$assocArrayArgs['userHistory'] = $userAnswerHistory; 
 		$assocArrayArgs['userLineGraph'] = $imageLineGraphData; 

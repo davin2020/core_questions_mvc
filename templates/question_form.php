@@ -19,7 +19,7 @@
 
 		<!-- <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option> -->
 
-	<h2>Answer GP-Core Questions for <?php echo $userName ?> - <?php echo $userID ?> </h2>
+	<h2>Answer GP-Core Questions for <?php echo $userName ?> </h2>
 
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
@@ -39,20 +39,20 @@
 				<div class="formNameDate">
 
 					<!-- remove name & embed in link/route/url to get here -->
+					<!--  label isnt really needed anymore if select field is hidden? -->
+					<!-- <label for="existingUserID">Name of Existing User: -->
 
-					<label for="existingUserID">Name of Existing User:
-						<select name="existingUserID">
+						<select name="existingUserID" hidden="true">
 							<!-- Need to make choosing a name mandatory -->
 						  	<!-- <option value="<?php echo $userID ?>"><?php echo $userName ?>...</option> -->
 						  	
 							 <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
-							
 						</select>
-					</label>
+					<!-- </label> -->
 
 					<br>
 					<!--  need to make name & date compulsoyr & in the future! -->
-					<label for="dateCompleted" >Date Form Completed:
+					<label for="dateCompleted">Date Form Completed:
 						<input type="Date" name="dateCompleted" id="dateCompleted" 
 						value="<?php echo date('Y-m-d');?>" required>
 					</label>
@@ -149,9 +149,13 @@
 				<p class="copyright">© CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf</p>
 
 			</form>
+
 		<!-- </div>  -->
 		<!-- eof flex-grid div -->
 	</div> <!--  eof id=core-form div -->
+
+	<br>
+	<a href="/dashboard/<?php echo $userID ?>">Return to Dashboard</a>
 
 </body>
 </html>

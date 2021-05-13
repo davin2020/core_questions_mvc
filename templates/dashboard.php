@@ -92,7 +92,7 @@
 			</form>
 
 
-	<h6><a href="/">Return to Core Questions Homepage</a></h6>
+	<h6><a href="/admin">TEMP LINK - Return to Core Questions Homepage</a></h6>
 
 
 </body>
