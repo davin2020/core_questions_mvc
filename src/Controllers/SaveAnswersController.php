@@ -35,8 +35,12 @@ class SaveAnswersController
 		//maybe i need to pre build the url??
 		// return $response->withHeader('Location', '/dashboard/' . $userID)->withStatus(302);
 
+		//show history page instead of dashboard page
+		return $response->withHeader('Location', '/showUserHistory/' . $userID . '?success=1' )->withStatus(302);
+
 		//TO DO should only return success if saving to db has actually worked! also review status codes
-		return $response->withHeader('Location', '/dashboard/' . $userID . '?success=1' )->withStatus(302);
+		// return $response->withHeader('Location', '/dashboard/' . $userID . '?success=1' )->withStatus(302);
+
 
 		//  these ursl are totally differnt, top one is right, bottom is a whole diff route that doesnt exist!
 		// http://localhost:8087/dashboard/5?success=1
