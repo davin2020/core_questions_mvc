@@ -22,6 +22,12 @@
 	<h2>User History for <?php echo $userName ?></h2>
 	<!-- for this user name - output date & score -->
 
+	<!-- success msg if answeres to questions are saved ok -->
+	<?php  
+		if ( isset($_GET['success']) && $_GET['success']== 1) {
+			echo '<em>Your Answers have been Saved</em>';
+	} ?>
+
 		<?php
 		if (count($userHistory) == 0 ) {
 			echo '<em>No dates or scores to display and above graph will be blank</em>';
@@ -44,8 +50,8 @@
 		?>
 
 	<a href="/dashboard/<?php echo $currentUser['user_id'] ?>">Return to Dashboard</a>
-	
-	<h6><a href="/">Return to Core Questions Homepage</a></h6>
+
+	<h6><a href="/admin">Return to ADMIN Core Questions Homepage</a></h6>
 	 <!-- <?php echo $currentUser['user_id'] ?> -->
 	
 
