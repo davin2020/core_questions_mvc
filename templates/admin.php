@@ -25,7 +25,7 @@
 		<?php
 		echo '<ul>';
 		foreach($usersList as $user) {
-			echo '<li>' . $user["name"] . 
+			echo '<li>' . $user["nickname"] . 
 			' -- <a href="/dashboard/'. $user["user_id"]  .'">Dashboard</a>' .
 			' -- Joined: ' . $user["date_joined"] .
 			' -- <a href="/showUserHistory/'. $user["user_id"] .'">User History</a></li>';
@@ -79,7 +79,7 @@
 						  	<option value="">Select...</option>
 							<?php
 							foreach($usersList as $user) { ?>
-							 	<option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
+							 	<option value="<?php echo $user["user_id"]?>"><?php echo $user["nickname"]?></option>
 							<?php 
 							}
 							?>
