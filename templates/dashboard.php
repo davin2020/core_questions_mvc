@@ -22,7 +22,7 @@
 		// $assocArrayArgs['user'] = $user; 
 		// $user is implied to exist from this above
 		$dateJoined = $user['date_joined'];
-		$name = $user['name'];
+		$name = $user['nickname'];
 		$userID = $user['user_id'];
 		$dateObj = date_create($dateJoined);
 		// format date syntax eg Saturday 20 February 2021 - maybe this should be a method? ie pass in string date, convert to Date obj & get nicely formatted string back?

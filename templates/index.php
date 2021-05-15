@@ -13,19 +13,39 @@
 	<h1>LOGIN Page - Core Questions App</h1>
 
 	<h2>Register A New User</h2>
-	Actaullly need - fullname, nickname, email, password
 
 		<div class="core_form">
+			<!--  should this be save user or register user? -->
 			<form method="post" action="/saveUser">
-				<label>Name of New User:
-					<input type="text" name="itemName" id="itemName" required>
+				<label>Full Name:
+					<input type="text" name="inputFullName" id="inputFullName" required placeholder="What's your first name and last name?">
 				</label>
 				<br>
 
-				<label>Date Joined:
-					<input type="Date" name="itemDate" id="itemDate" 
-					value="<?php echo date('Y-m-d');?>" required>
+				<label>Nickname:
+					<input type="text" name="inputNickname" id="inputNickname" required placeholder="What are you usually called?">
 				</label>
+				<br>
+
+				<label>Email:
+					<input type="Email" name="inputEmail" id="inputEmail" required>
+				</label>
+				<br>
+
+				<!--  need to limit pwd to 72 chars long, due to php password_hash() function, otherwise longer pwds will get truncated to 72 chars 
+					need to implement some FE complexity checking for pwd ie upper & lowercase etc -->
+				<label>Password
+					<input type="Password" name="inputPassword" id="inputPassword" 
+					required>
+				</label>
+				<br>
+
+				<!-- this should be auto calcualted  -->
+				<!-- <label>Date Joined: -->
+					<input type="Date" name="itemDate" id="itemDate" 
+					value="<?php echo date('Y-m-d');?>" required hidden="true">
+				<!-- </label> -->
+
 				<br>
 				<div class="buttonContainer">
 					<button name="btnAddItem" type="submit" class="submitButton">Register</button>
@@ -38,14 +58,32 @@
 
 	<h2>Login An Existing User - or Admin Login</h2>
 		<div class="core_form">
+			<!--  need to create login controller class & factory ! -->
 			<form method="post" action="/loginUser">
-				<label>UserName or Email:
-					<input type="text" name="itemName" id="itemName" required>
+
+				<label for="existingUserID">TEMP Select Existing User:
+						<select name="existingUserID">
+							<!-- Need to make choosing a name mandatory -->
+						  	<option value="">Select...</option>
+							<?php
+							foreach($usersList as $user) { ?>
+							 	<option value="<?php echo $user["user_id"]?>"><?php echo $user["nickname"]?></option>
+							<?php 
+							}
+							?>
+						</select>
+					</label>
+					<br>
+					<br>
+
+
+				<label>Email:
+					<input type="Email" name="inputEmail" id="inputEmail" required>
 				</label>
 				<br>
 
 				<label>Password
-					<input type="Password" name="itemPassword" id="itemPassword" 
+					<input type="Password" name="inputPassword" id="inputPassword" 
 					required>
 				</label>
 				<br>
