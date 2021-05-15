@@ -58,6 +58,8 @@ class SaveUserController
 		//prob best to do it in the model?
 		// 2013 - probably wouldn't be bad practice to call unset([$_POST['password']) right after it's hashed too
 		//  https://stackoverflow.com/questions/14392085/where-do-i-hash-the-password
+		
+		// create the hashed password
 		$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 		
 		//compare user supplied pwd against hashed pwd in db - on login page
@@ -70,15 +72,15 @@ class SaveUserController
 		// $hashedPassword = false;
 		//returns false on failure - what to do in taht case??
 		//store hashed pwd in db as long as hashing didnt fail
-		if ($hashedPassword != false) {
+		// if ($hashedPassword != false) {
 			// var_dump('hashed pwd value: ' . $hashedPassword);
 			// exit;
 
-			$newUserID = $this->userModel->registerUser($fullName, $nickname, $email, $hashedPassword, $dateJoinedToday);
-		}
+			// $newUserID = $this->userModel->registerUser($fullName, $nickname, $email, $hashedPassword, $dateJoinedToday);
+		// }
 
 	
-	// $registerResult = $this->userModel->registerUser($fullName, $nickname, $email, $password, $dateJoinedToday);
+	$resultNewUserID = $this->userModel->registerUser($fullName, $nickname, $email, $password, $dateJoinedToday);
 
 		// get latest id from user table, so can pass to dashboard page
 		// waht if i as admin want to save/register a user?? id wnat to redirect to admin page not users own page - but why would admin person really want/need to register a user??
@@ -88,12 +90,11 @@ class SaveUserController
 
 		//how to get id back and redirect to id page? $registerResult should be id of new user
 
-		// 13may201 redirect to ADMIN Page for now
-
-		$newUserIDint = (int) $newUserID;
-		// UserModel->getUserFromID('$newUserIDint') - how to pass ID from one controller to the next?? eg via assoc array?
-		// return $response->withHeader('Location', '/dashboard/$newUserIDint')->withStatus(302);
-		return $response->withHeader('Location', '/admin')->withStatus(302);
+		// 13may201 redirect to ADMIN Page for now, redirect to dashboard page works ok now
+		$newUserIDint = (int) $resultNewUserID;
+		// UserModel->getUserFromID('$newUserIDint') - how to pass ID from one controller to the next?? eg via assoc array? - had variable inside '/dashboard' string instead of concat'd to it!
+		return $response->withHeader('Location', '/dashboard/' . $newUserIDint)->withStatus(302);
+		// return $response->withHeader('Location', '/admin')->withStatus(302);
 	}
 
 }
