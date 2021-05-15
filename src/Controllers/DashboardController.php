@@ -27,8 +27,12 @@ class DashboardController
 	//invoke only ever does 1 thing, each page has own controler thus own invoke method, where the stuff for the actual page gets done eg display users & questions or save answers etc
 	public function __invoke($request, $response, $args)
 	{
+		// var_dump($args);
+		// exit;
 		$user = $this->userModel->getUserFromID($args['user_id']);
-		$userName = $user['name'];
+		// UserModel->getUserFromID('$newUserIDint') - how to pass ID from one controller to the next??
+
+		$userName = $user['nickname'];
 		//need to return response with args[] via render method - can have multiple named keys if u needed to add/display more stuff later
 		$assocArrayArgs = [];
 

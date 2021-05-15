@@ -33,7 +33,7 @@ class QuestionFormController
 
 		$user = $this->userModel->getUserFromID($args['user_id']);
 		$assocArrayArgs['user'] = $user; 
-		$userName = $user['name'];
+		$userName = $user['nickname'];
 		$assocArrayArgs['userName'] = $userName; 
 
 		//get & show all questions - is this still being used?

@@ -24,7 +24,7 @@ class ShowUserHistoryController
 		//why do i need to get this from db, why not just pass in Name from prev page ie index/HomePageController?
 		// var name user_id in args is taken from routes.php file
 		$user = $this->userModel->getUserFromID($args['user_id']);
-		$userName = $user['name'];
+		$userName = $user['nickname'];
 
 		//find history - should this be from answerModel or userModel?
 		$userAnswerHistory = $this->answerModel->getUserAnswers($args['user_id']);
