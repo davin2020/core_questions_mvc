@@ -58,5 +58,7 @@ return function (ContainerBuilder $containerBuilder) {
 
 	$container['AdminPageController'] = DI\Factory('App\Factories\AdminPageControllerFactory');
 
+	$container['LoginUserController'] = DI\Factory('App\Factories\LoginUserControllerFactory');
+
 	$containerBuilder->addDefinitions($container);
 };

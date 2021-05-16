@@ -19,6 +19,7 @@ return function (App $app) {
 	$app->get('/showUserHistory/{user_id}', 'ShowUserHistoryController');
 
 	//restructuring app
+	// need to secure routes ilke /dashboard witouth user_id or putup/redirect to custom 404 page
 	$app->get('/dashboard/{user_id}', 'DashboardController');
 	$app->get('/questionForm/{user_id}', 'QuestionFormController');
 	// !questionForm > !QuestionFormController question_form.php
@@ -26,4 +27,6 @@ return function (App $app) {
 	$app->get('/admin', 'AdminPageController');
 
 	//  need /loginUser route
+	// $app->get('/loginUser/{user_id}', 'LoginUserController');
+	$app->post('/loginUser', 'LoginUserController');
 };
