@@ -3,7 +3,7 @@
 ## About
 This is a web form where you can submit answers to the 'GP-Core Questions', which is used to report subjective wellbeing. 
 
-**NB: This repo is very much a work in progress.**
+**NB: This repo is very much a work in progress (at 16 May currently working on adding Register & Login User functionality)**
 
 It uses the LAMP stack, and will have basic CRUD functionality, storing data in a MYSQL db.
 
@@ -26,6 +26,7 @@ This Wellbeing Tracking Form is live here - (coming soon, hopefully by mid May 2
 - View dynamic graph of previous dates & scores (added 11 April)
 - Improved layout of Core Questions form (Answer options now move below each Question on smaller screens) - added 26 April
 - Improve formatting of GP-Core Questions form, added all GP-CORE questions to DB and added copyright info for Core Systems Trust - added 2 May **NEW!**
+- Coming Soon - Restructuring the app so it has User Registration and Login options on the homepage, and creating the functionality to Register & Login.
 
 ## Screenshots
 Users: 
@@ -51,4 +52,5 @@ User History Graph:
 5. Import the file `db/core_questions_db.sql` into your database and run it to create multiple tables and add some example data
 6. Run this from a normal command prompt to start the app `composer start`
 7. Access this url in your browser `http://localhost:8087/`
+8. Regiser as a New User, or Login with an Existing User account
 
