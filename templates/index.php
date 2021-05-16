@@ -16,7 +16,7 @@
 
 		<div class="core_form">
 			<!--  should this be save user or register user? -->
-			<form method="post" action="/saveUser">
+			<form method="POST" action="/saveUser">
 				<label>Full Name:
 					<input type="text" name="inputFullName" id="inputFullName" required placeholder="What's your first name and last name?">
 				</label>
@@ -58,12 +58,30 @@
 
 	<h2>Login An Existing User - or Admin Login</h2>
 		<div class="core_form">
-			<!--  need to create login controller class & factory ! -->
-			<form method="post" action="/loginUser">
+			<!--  get headers here eg User-Message -->
 
-				<label for="existingUserID">TEMP Select Existing User:
+			<?php  
+			if ( isset($_GET['success']) && $_GET['success']== 1) {
+				echo '<em>Success msg goes here</em>';
+			} 
+
+			// echo $userMessage;
+			// echo '<br>';
+			// echo $userHeaders;
+
+			?>
+
+		
+			
+
+
+			<!--  need to create login controller class & factory ! -->
+			<!--  DONT use GET for login forms that contain PASSWORDS ! -->
+			<form method="POST" action="/loginUser">
+
+				<!-- <label for="existingUserID">TEMP Select Existing User:
 						<select name="existingUserID">
-							<!-- Need to make choosing a name mandatory -->
+							// Need to make choosing a name mandatory 
 						  	<option value="">Select...</option>
 							<?php
 							foreach($usersList as $user) { ?>
@@ -74,7 +92,7 @@
 						</select>
 					</label>
 					<br>
-					<br>
+					<br> -->
 
 
 				<label>Email:
