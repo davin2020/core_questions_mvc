@@ -114,6 +114,26 @@ class UserModel
 		return $lastID;
 	}
 
+	public function loginUser(string $userEmail, string $userPassword)
+	{
+
+		$existingUser = $this->getUserByEmail($userEmail);
+
+		//this now returns a bool of true, so how to get the user that was returned from the db?
+		// $tempUser = $this->userModel->getUserFromID(30);
+		
+
+		//check pwds here on in UserModel.getUserbyEmail or LoginUser? in UserModel
+		$existingHashedPassword = $existingUser['password'];
+		// $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+		//compare pwd from user form against its hash from db
+		$pwdMatches = password_verify ($userPassword, $existingHashedPassword);
+		//now return something based on the match?
+		return $pwdMatches;
+	}
+
+
 	// TODO form need validation to stop future dates from being entered
 	// should date be passsed in as a string, or a Date object?
 	public function saveUser(string $user, string $date_joined)
