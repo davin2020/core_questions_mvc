@@ -3,7 +3,7 @@
 ## About
 This is a web form where you can submit answers to the 'GP-Core Questions', which is used to report subjective wellbeing. 
 
-**NB: This repo is very much a work in progress.**
+**NB: This repo is very much a work in progress - as of 16 May currently working on adding Register & Login User functionality)**
 
 It uses the LAMP stack, and will have basic CRUD functionality, storing data in a MYSQL db.
 
@@ -15,7 +15,7 @@ NB: CORE forms are owned, created & copyrighted by -
 © CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
 
 ## Live Demo
-This Wellbeing Tracking Form is live here - (coming soon, hopefully by mid May 2021)
+This Wellbeing Tracking Form is live here - (coming soon, hopefully by end of May 2021)
 
 ## End User Features
 - View a list of existing users (added 5 April)
@@ -26,11 +26,16 @@ This Wellbeing Tracking Form is live here - (coming soon, hopefully by mid May 2
 - View dynamic graph of previous dates & scores (added 11 April)
 - Improved layout of Core Questions form (Answer options now move below each Question on smaller screens) - added 26 April
 - Improve formatting of GP-Core Questions form, added all GP-CORE questions to DB and added copyright info for Core Systems Trust - added 2 May **NEW!**
+- Coming Soon - Restructuring the app so it has User Registration and Login options on the homepage, which leads to the user Dashboard. Also creating the functionality to Register & Login, using hashed passwords & tokens.
 
 ## Screenshots
-Users: 
+Register User or Login: 
 
-![Image of Users](core_questions_app_users2.png)
+![Image of Users](core_questions_app_homepage.PNG)
+
+User Dashboard:
+
+![Image of Users](core_questions_app_user_dashboard.PNG)
 
 Core Questions Form: 
 
