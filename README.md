@@ -56,4 +56,5 @@ User History Graph:
 5. Import the file `db/core_questions_db.sql` into your database and run it to create multiple tables and add some example data
 6. Run this from a normal command prompt to start the app `composer start`
 7. Access this url in your browser `http://localhost:8087/`
+8. Register as a New User, or Login with an Existing User account
 
