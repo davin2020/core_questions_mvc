@@ -30,6 +30,7 @@
 		$formattedDate = date_format($dateObj, 'l j F Y');
 	?>
 
+	<section>
 	<h2>My Profile</h2>
 		<p>ID: <?php echo $userID ?> </p>
 		<p>Nickname: <?php echo $name ?></p>
@@ -40,6 +41,9 @@
 
 		<!-- show date when questions were last anaswers & last score? -->
 
+	</section>
+
+	<section>
 	<h2>Answer Questions</h2>
 	<!-- on dashboard page, add  link to quiz page/question form -->
 	<!-- what if there are other forms? -->
@@ -57,9 +61,10 @@
 			</div>
 
 		</form>
+	</section>
+
+	<section>
 	
-
-
 	<h2>My History</h2>
 	<!-- show last date & overall score -->
 
@@ -93,10 +98,7 @@
 				</div>
 
 			</form>
-
-
-	<h6><a href="/admin">TEMP LINK - Return to Core Questions Homepage</a></h6>
-
+		</section>
 
 </body>
 </html>
