@@ -21,7 +21,7 @@ class UserModel
 	//this is getting all users, but should only get them if they are not deleted, once a soft-delete flag is added to db table - false is returne on failure of any FETCH - this is doing FETCH_BOTH by default!
 	public function getUsers()
 	{
-		$query = $this->db->prepare('SELECT `user_id`, `nickname`, `date_joined` FROM `users`;');
+		$query = $this->db->prepare('SELECT `user_id`, `nickname`, `date_joined` FROM `users` ORDER BY `user_id` ;');
 		$query->execute();
 		//need to user fetch_mode correctly!
 		// FETCH_OBJ FETCH_ASSOC
@@ -34,16 +34,18 @@ class UserModel
 
 	//get single user based on their id - this returns 'duplicated' data like this - 
 	// array(6) { ["user_id"]=> string(2) "30" [0]=> string(2) "30" ["nickname"]=> string(5) "test6" [1]=> string(5) "test6" ["date_joined"]=> string(10) "2021-05-15" [2]=> string(10) "2021-05-15" }
+	// TODO use ASSOC fetch mode and get all feidls from db! @20may - do i need to get pwd in case user wants to change it, ie need pwd reset feature!
 	public function getUserFromID(int $userID)
 	{
-		$query = $this->db->prepare('SELECT `user_id`, `nickname`, `date_joined` FROM `users` WHERE `user_id` = :pl_user_id;');
+		$query = $this->db->prepare('SELECT `user_id`, `fullname`, `nickname`,`email`, `date_joined` FROM `users` WHERE `user_id` = :pl_user_id;');
 		$result = $query->execute(['pl_user_id' => $userID]);
-		$query->setFetchMode(\PDO::FETCH_CLASS, 'UserModel');  // no wonder tis wasnt giving an error, as it wasnt really doing anythign!
+		//$query->setFetchMode(\PDO::FETCH_CLASS, 'UserModel');  // no wonder tis wasnt giving an error, as it wasnt really doing anythign!
 		
 		// Set the fetch mode right after you call prepare(). It appears you _must_ use execute() - fetch() won't work
-		
+		//this is better way of doing fetch, w assoc array
+		$result = $query->fetch(\PDO::FETCH_ASSOC);
 		// $result = $query->execute();
-		$result = $query->fetch();
+		// $result = $query->fetch();
 		return $result;
 	}
 
@@ -116,6 +118,8 @@ class UserModel
 
 	public function loginUser(string $userEmail, string $userPassword)
 	{
+		//either return teh user or return false?
+		$userResultsArray = [];
 
 		$existingUser = $this->getUserByEmail($userEmail);
 
@@ -125,12 +129,18 @@ class UserModel
 
 		//check pwds here on in UserModel.getUserbyEmail or LoginUser? in UserModel
 		$existingHashedPassword = $existingUser['password'];
+		$user_id = $existingUser['user_id'];
 		// $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
 		//compare pwd from user form against its hash from db
 		$pwdMatches = password_verify ($userPassword, $existingHashedPassword);
+
 		//now return something based on the match?
-		return $pwdMatches;
+		$userResultsArray['existingUser'] = $existingUser;
+		$userResultsArray['pwdMatches'] = $pwdMatches;
+
+		//why dont i decide where to redirect the user to next in here, then just return the next page to go to?? thsi all seems overly complex! when surely its easier for the controller to decide
+		return $userResultsArray;
 	}
 
 
