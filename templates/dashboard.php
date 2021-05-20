@@ -23,6 +23,7 @@
 		// $user is implied to exist from this above
 		$dateJoined = $user['date_joined'];
 		$name = $user['nickname'];
+		$fullname = $user['fullname'];
 		$userID = $user['user_id'];
 		$dateObj = date_create($dateJoined);
 		// format date syntax eg Saturday 20 February 2021 - maybe this should be a method? ie pass in string date, convert to Date obj & get nicely formatted string back?
@@ -31,9 +32,11 @@
 
 	<h2>My Profile</h2>
 		<p>ID: <?php echo $userID ?> </p>
-		<p>Full Name: <?php echo $name ?></p>
+		<p>Nickname: <?php echo $name ?></p>
+		<p>Full Name: <?php echo $user['fullname'] ?></p>
+		<p>Email: <?php echo $user['email'] ?></p>
 		<!-- format date in DMY -->
-		<p>Date joined - <?php echo $formattedDate ?> </p>
+		<p>Date Joined: <?php echo $formattedDate ?> </p>
 
 		<!-- show date when questions were last anaswers & last score? -->
 
