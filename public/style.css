@@ -19,6 +19,7 @@ h1 {
 
 h2 {
 	color: #4115c4;
+	margin: 5px;
 }
 
 ul, ol {
@@ -29,6 +30,13 @@ div {
 	/*border: 1px solid green;*/
 	padding: 5px;
 	width: auto;
+}
+
+section {
+	border: 1px solid #4115c4;
+	/*background-color: #f7f5e3;*/
+	padding: 10px;
+	margin: 20px 10px;
 }
 
 em {
@@ -146,8 +154,8 @@ em {
 	margin: 10px auto; 
 	background-color: #45C5AF; /* 9279e0 purple, d1d2d4 gray  */
 	color: black;
-	font-size: 1.1rem;
-	font-weight: bold;
+	font-size: 1rem; /* was 1.1rem */
+	/*font-weight: bold;*/
 	align-content: center;
 }
 
