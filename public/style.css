@@ -44,6 +44,16 @@ em {
 	color: green;
 }
 
+.graph_image {
+	width: 100%;
+}
+
+@media only screen and (min-width: 960px) {
+	.graph_image {
+	width: 75%;
+}
+}
+
 .copyright {
 	text-align: center;
 	font-size: 0.9rem;
