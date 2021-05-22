@@ -8,17 +8,21 @@
 </head>
 
 <body>
-	<h1>Core Questions App</h1>
+	<h1>Core Questions App - My History</h1>
 
+	<section>
+		
 	<h2>User Graph for <?php echo $userName ?></h2>
 	<!-- make graph based on array of data from db (dates & scores shown below) -->
 
 	<div>
 		<!-- dyanmic graph showing overall scores, if present - or blank graph if no data points exist to draw graph from -->
-		<img src="data:image/png;base64,<?php echo(base64_encode($userLineGraph)); ?>" />
+		<img class="graph_image" src="data:image/png;base64,<?php echo(base64_encode($userLineGraph)); ?>" />
 	</div>
+	</section>
 
-
+	<section>
+		
 	<h2>User History for <?php echo $userName ?></h2>
 	<!-- for this user name - output date & score -->
 
@@ -32,6 +36,13 @@
 		if (count($userHistory) == 0 ) {
 			echo '<em>No dates or scores to display and above graph will be blank</em>';
 		}
+		?>
+			<!-- <p>
+				Date: -- 
+				Total Score: --
+				Mean Score: 
+			</p> -->
+		<?php
 		foreach ($userHistory as $item) { 
 			//change String rep of date into actual Date object (DateTimeInterface), then format it nicely
 			$stringDate =  $item["score_date"];
@@ -45,15 +56,21 @@
 				Total Score: <?php echo $item["overall_score"] ?> --
 				Mean Score: <?php echo $item["mean_score"] ?> 
 			</p>
+
+			
+			<!-- alt layout option
+			<p>
+				<?php echo $formattedDate ?> -- 
+				<?php echo $item["overall_score"] ?> --
+				<?php echo $item["mean_score"] ?> 
+			</p> -->
 		<?php 
 		}
 		?>
-
-	<a href="/dashboard/<?php echo $currentUser['user_id'] ?>">Return to Dashboard</a>
-
-	<h6><a href="/admin">Return to ADMIN Core Questions Homepage</a></h6>
-	 <!-- <?php echo $currentUser['user_id'] ?> -->
+	</section>
 	
+	<br>
+	<a href="/dashboard/<?php echo $currentUser['user_id'] ?>">Return to Dashboard</a>
 
 </body>
 </html>
