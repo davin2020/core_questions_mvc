@@ -10,7 +10,8 @@
 </head>
 
 <body>
-	<h1>LOGIN Page - Core Questions App</h1>
+	<h1>Core Questions App / Wellbeing Tracker</h1>
+	<!-- Wellbeing Tacking App?  -->
 
 	<h2>Register A New User</h2>
 
@@ -18,7 +19,7 @@
 			<!--  should this be save user or register user? -->
 			<form method="POST" action="/saveUser">
 				<label>Full Name:
-					<input type="text" name="inputFullName" id="inputFullName" required placeholder="What's your first name and last name?">
+					<input type="text" size="50" name="inputFullName" id="inputFullName" required placeholder="What's your first name and last name?">
 				</label>
 				<br>
 
@@ -56,7 +57,7 @@
 		<br>
 
 
-	<h2>Login An Existing User - or Admin Login</h2>
+	<h2>Login An Existing User</h2>
 		<div class="core_form">
 			<!--  get headers here eg User-Message -->
 
@@ -111,10 +112,6 @@
 
 			</form>
 		</div>
-
-
-	<h2>TEMP - Admin Page</h2>
-	<a href="/admin">Admin Page</a>
 
 </body>
 </html>
