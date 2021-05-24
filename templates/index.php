@@ -13,15 +13,18 @@
 	<h1>Core Questions App / Wellbeing Tracker</h1>
 	<!-- Wellbeing Tacking App?  -->
 
-	<h2>Register A New User</h2>
-
-		<div class="core_form">
-			<!--  should this be save user or register user? -->
+	<section>
+		<h2>Register</h2>
+		<!-- without this div words Register and Full name dont line up nicely, need to adjust css later -->
+		<div>
 			<form method="POST" action="/saveUser">
+				<!-- <div class="wrapper"> -->
 				<label>Full Name:
-					<input type="text" size="50" name="inputFullName" id="inputFullName" required placeholder="What's your first name and last name?">
+					<!-- makign thsi ' input size="50" ' makes it overflow its div on narrrow screens -->
+					<input type="text" name="inputFullName" id="inputFullName" required placeholder="What's your first name and last name?">
 				</label>
 				<br>
+				<!-- </div> -->
 
 				<label>Nickname:
 					<input type="text" name="inputNickname" id="inputNickname" required placeholder="What are you usually called?">
@@ -29,23 +32,18 @@
 				<br>
 
 				<label>Email:
+					<!-- why is email field length shwon shorter than others on FE? -->
 					<input type="Email" name="inputEmail" id="inputEmail" required>
 				</label>
 				<br>
 
 				<!--  need to limit pwd to 72 chars long, due to php password_hash() function, otherwise longer pwds will get truncated to 72 chars 
-					need to implement some FE complexity checking for pwd ie upper & lowercase etc -->
+				need to implement some FE complexity checking for pwd ie upper & lowercase etc -->
 				<label>Password
 					<input type="Password" name="inputPassword" id="inputPassword" 
 					required>
 				</label>
 				<br>
-
-				<!-- this should be auto calcualted  -->
-				<!-- <label>Date Joined: -->
-					<input type="Date" name="itemDate" id="itemDate" 
-					value="<?php echo date('Y-m-d');?>" required hidden="true">
-				<!-- </label> -->
 
 				<br>
 				<div class="buttonContainer">
@@ -54,64 +52,50 @@
 
 			</form>
 		</div>
-		<br>
+	</section>
 
 
-	<h2>Login An Existing User</h2>
-		<div class="core_form">
-			<!--  get headers here eg User-Message -->
+	<section>
+		<h2>Login</h2>
+			<div>
+				<!--  get headers here eg User-Message -->
+				<?php  
+				if ( isset($_GET['success']) && $_GET['success']== 1) {
+					echo '<em>Success msg goes here</em>';
+				} 
 
-			<?php  
-			if ( isset($_GET['success']) && $_GET['success']== 1) {
-				echo '<em>Success msg goes here</em>';
-			} 
+				if ( isset($_GET['failure']) && $_GET['failure']== 1) {
+					echo '<em user_warning>First Failure</em>';
+				} 
 
-			// echo $userMessage;
-			// echo '<br>';
-			// echo $userHeaders;
+				// only show the msg if it had been set - need to style error msg
+				if ( isset($messageForUser) ) {
+					echo '<em class="user_warning">' . $messageForUser . '</em>';
+				} 
+				?>
 
-			?>
+				<form method="POST" action="/loginUser">
 
-		
-			
-
-
-			<!--  need to create login controller class & factory ! -->
-			<!--  DONT use GET for login forms that contain PASSWORDS ! -->
-			<form method="POST" action="/loginUser">
-
-				<!-- <label for="existingUserID">TEMP Select Existing User:
-						<select name="existingUserID">
-							// Need to make choosing a name mandatory 
-						  	<option value="">Select...</option>
-							<?php
-							foreach($usersList as $user) { ?>
-							 	<option value="<?php echo $user["user_id"]?>"><?php echo $user["nickname"]?></option>
-							<?php 
-							}
-							?>
-						</select>
+					<!-- if login failed cos pwd wrong, shoudl email field be pre-populated with same email address? -->
+					<label>Email:
+						<input type="Email" name="inputEmail" id="inputEmail" required>
 					</label>
 					<br>
-					<br> -->
 
+					<label>Password
+						<input type="Password" name="inputPassword" id="inputPassword" 
+						required>
+					</label>
+					<br>
 
-				<label>Email:
-					<input type="Email" name="inputEmail" id="inputEmail" required>
-				</label>
-				<br>
+					<div class="buttonContainer">
+						<button name="btnAddItem" type="submit" class="submitButton">Login</button>
+					</div>
 
-				<label>Password
-					<input type="Password" name="inputPassword" id="inputPassword" 
-					required>
-				</label>
-				<br>
-				<div class="buttonContainer">
-					<button name="btnAddItem" type="submit" class="submitButton">Login</button>
-				</div>
+				</form>
 
-			</form>
-		</div>
+			</div>
+		</section>
 
 </body>
 </html>
