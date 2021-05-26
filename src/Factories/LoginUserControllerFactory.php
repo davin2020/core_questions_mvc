@@ -12,7 +12,8 @@ class LoginUserControllerFactory
         //always needs to instantiate a new controller inside factory's invoke method
         //no renderer is required here, as we only need to redirect to homepage after saving a new user - actually would be better to display a Success message after saving a new user via LoginUserController class
         $userModel = $container->get('UserModel');
-        $loginUserController = new LoginUserController($userModel);
+        $renderer = $container->get('renderer');
+        $loginUserController = new LoginUserController($userModel, $renderer);
         return $loginUserController;
     }
 

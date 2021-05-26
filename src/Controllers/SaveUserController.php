@@ -60,10 +60,12 @@ class SaveUserController
 		//  https://stackoverflow.com/questions/14392085/where-do-i-hash-the-password
 		
 		// create the hashed password
-		$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+		//NEW 26may - call hashPassword as soon as we get it from user
+		$hashedPassword = $this->userModel->hashPassword(password);
+		// $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 		
-		//compare user supplied pwd against hashed pwd in db - on login page
-		$pwdMatches = password_verify ($password, $hashedPassword);
+		//compare user supplied pwd against hashed pwd in db - on login page only, not on saveUser page!
+		//$pwdMatches = password_verify ($password, $hashedPassword);
 
 		// var_dump($hashedPassword);
 		// var_dump($pwdMatches);
@@ -79,8 +81,9 @@ class SaveUserController
 			// $newUserID = $this->userModel->registerUser($fullName, $nickname, $email, $hashedPassword, $dateJoinedToday);
 		// }
 
-	
-	$resultNewUserID = $this->userModel->registerUser($fullName, $nickname, $email, $password, $dateJoinedToday);
+	//only save pwd if hash came back ok!
+		//ISSUE 26may this is being used to both save a new  user from login page and save a user from admin page tha tonly has name & date fields as inputs!
+	$resultNewUserID = $this->userModel->registerUser($fullName, $nickname, $email, $hashedPassword, $dateJoinedToday);
 
 		// get latest id from user table, so can pass to dashboard page
 		// waht if i as admin want to save/register a user?? id wnat to redirect to admin page not users own page - but why would admin person really want/need to register a user??
