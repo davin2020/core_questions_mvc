@@ -98,7 +98,7 @@ class UserModel
 		return $result;
 	}
 
-	//should i salt & hash pwd in UserModel or SaveUserController? - prob best to hash it as soon as u receive it  - its really part of Model, not Controller
+	//should i salt & hash pwd in UserModel or SaveUserController? - prob best to hash it as soon as u receive it  - its really part of Model, not Controller - but now thsi function does 2 things, hashes pwd & save/registers user!
 	public function registerUser(string $fullname, string $nickname, string $email, string $password, string $dateJoinedToday) 
 	{
 
@@ -136,12 +136,40 @@ class UserModel
 		$pwdMatches = password_verify ($userPassword, $existingHashedPassword);
 
 		//now return something based on the match?
-		$userResultsArray['existingUser'] = $existingUser;
 		$userResultsArray['pwdMatches'] = $pwdMatches;
+		$userResultsArray['existingUser'] = $existingUser;
+		
 
 		//why dont i decide where to redirect the user to next in here, then just return the next page to go to?? thsi all seems overly complex! when surely its easier for the controller to decide
 		return $userResultsArray;
 	}
+
+	// separate function to hash passwords so can be called from any controller, also function has single responsibilty instead of being part of saveUser()
+	public function hashPassword(string $newPassword):string {
+		return password_hash($newPassword, PASSWORD_BCRYPT);
+	}
+
+	// separate function to verify passwords so can be called from any controller, also function has single responsibilty instead of being part of loginUser()
+	public function verifyPassword(string $userSuppliedPassword, string $existingDbPassword):bool {
+		return password_verify ($userSuppliedPassword, $existingDbPassword);
+	}
+
+/*
+URLS
+$userResultsArrayTemp = [];
+		if ($doesPwdMatch) {
+			return $response->withHeader('Location', '/dashboard/' . $user_id)->withStatus(200);
+		}
+		if (!$doesUserExist) {
+			$userResultsArrayTemp['messageForUser'] = "user does not exist, please check spelling and try again";
+			return $this->renderer->render($response, 'index.php', $userResultsArrayTemp);
+		}
+		else {
+			$userResultsArrayTemp['messageForUser'] = "wrong password, please try again";
+		return $this->renderer->render($response, 'index.php', $userResultsArrayTemp);
+		}
+
+*/
 
 
 	// TODO form need validation to stop future dates from being entered
