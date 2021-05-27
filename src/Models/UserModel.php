@@ -21,7 +21,8 @@ class UserModel
 	//this is getting all users, but should only get them if they are not deleted, once a soft-delete flag is added to db table - false is returne on failure of any FETCH - this is doing FETCH_BOTH by default!
 	public function getUsers()
 	{
-		$query = $this->db->prepare('SELECT `user_id`, `nickname`, `date_joined` FROM `users` ORDER BY `user_id` ;');
+		$query = $this->db->prepare('SELECT `user_id`, `nickname`, `date_joined` 
+			FROM `users` ORDER BY `user_id` ;');
 		$query->execute();
 		//need to user fetch_mode correctly!
 		// FETCH_OBJ FETCH_ASSOC
@@ -37,7 +38,10 @@ class UserModel
 	// TODO use ASSOC fetch mode and get all feidls from db! @20may - do i need to get pwd in case user wants to change it, ie need pwd reset feature!
 	public function getUserFromID(int $userID)
 	{
-		$query = $this->db->prepare('SELECT `user_id`, `fullname`, `nickname`,`email`, `date_joined` FROM `users` WHERE `user_id` = :pl_user_id;');
+		$query = $this->db->prepare(
+			'SELECT `user_id`, `fullname`, `nickname`,`email`, `date_joined` 
+			FROM `users` WHERE `user_id` = :pl_user_id;'
+		);
 		$result = $query->execute(['pl_user_id' => $userID]);
 		//$query->setFetchMode(\PDO::FETCH_CLASS, 'UserModel');  // no wonder tis wasnt giving an error, as it wasnt really doing anythign!
 		
@@ -83,7 +87,8 @@ class UserModel
 	// 13may2021 also need func getUserFromEmail(string $emailAddress)
 	public function getUserByEmail(string $userEmail)
 	{
-		$query = $this->db->prepare('SELECT * FROM `users` WHERE `email` = :pl_email;');
+		$query = $this->db->prepare('SELECT * FROM `users` 
+			WHERE `email` = :pl_email;');
 		$result = $query->execute(['pl_email' => $userEmail]);
 		// $query->setFetchMode(\PDO::FETCH_CLASS, 'UserModel'); //this is actually doing nothing atm!
 		// $result = $query->fetch();
@@ -99,15 +104,26 @@ class UserModel
 	}
 
 	//should i salt & hash pwd in UserModel or SaveUserController? - prob best to hash it as soon as u receive it  - its really part of Model, not Controller - but now thsi function does 2 things, hashes pwd & save/registers user!
-	public function registerUser(string $fullname, string $nickname, string $email, string $password, string $dateJoinedToday) 
+	// what about PSR formatting for long type hinted method signatures over 80 chars long?
+	public function registerUser(string $fullname, string $nickname, string $email, string $hashedPassword, string $dateJoinedToday) 
 	{
-
-		$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+		// pwd has already been hashed
+		//$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
 		$lastID = 0; // non valid id - issue with below stmt was typo!
-		$query = $this->db->prepare('INSERT INTO `users` (`fullname`, `nickname`, `email`, `password`, `date_joined`) VALUES (:pl_fullname, :pl_nickname, :pl_email, :pl_password, :pl_date_joined);');
+		$query = $this->db->prepare('INSERT INTO `users` 
+			(`fullname`, `nickname`, `email`, `password`, `date_joined`) 
+			VALUES (:pl_fullname, 
+			:pl_nickname, 
+			:pl_email, 
+			:pl_password, 
+			:pl_date_joined);');
 
-		$result = $query->execute(['pl_fullname' => $fullname, 'pl_nickname' => $nickname, 'pl_email' => $email, 'pl_password' => $hashedPassword, 'pl_date_joined' => $dateJoinedToday]);
+		$result = $query->execute(['pl_fullname' => $fullname, 
+			'pl_nickname' => $nickname, 
+			'pl_email' => $email, 
+			'pl_password' => $hashedPassword, 
+			'pl_date_joined' => $dateJoinedToday]);
 		//fyi date being inserted is 14may despite today being 00:30 on 15may, as its using UTC not current local timezone
 
 		if ($result) {
@@ -116,6 +132,7 @@ class UserModel
 		return $lastID;
 	}
 
+	/*
 	public function loginUser(string $userEmail, string $userPassword)
 	{
 		//either return teh user or return false?
@@ -143,13 +160,14 @@ class UserModel
 		//why dont i decide where to redirect the user to next in here, then just return the next page to go to?? thsi all seems overly complex! when surely its easier for the controller to decide
 		return $userResultsArray;
 	}
+	*/
 
 	// separate function to hash passwords so can be called from any controller, also function has single responsibilty instead of being part of saveUser()
 	public function hashPassword(string $newPassword):string {
 		return password_hash($newPassword, PASSWORD_BCRYPT);
 	}
 
-	// separate function to verify passwords so can be called from any controller, also function has single responsibilty instead of being part of loginUser()
+	// separate function to verify passwords so can be called from any controller, also function has single responsibilty instead of being part of loginUser() - errors if null
 	public function verifyPassword(string $userSuppliedPassword, string $existingDbPassword):bool {
 		return password_verify ($userSuppliedPassword, $existingDbPassword);
 	}
@@ -171,13 +189,15 @@ $userResultsArrayTemp = [];
 
 */
 
-
 	// TODO form need validation to stop future dates from being entered
 	// should date be passsed in as a string, or a Date object?
 	public function saveUser(string $user, string $date_joined)
 	{
-		$query = $this->db->prepare('INSERT INTO `users` (`nickname`, `date_joined`) VALUES (:pl_nickname, :pl_date_joined);');
-		$result = $query->execute(['pl_nickname' => $user, 'pl_date_joined' => $date_joined]);
+		$query = $this->db->prepare('INSERT INTO `users` 
+			(`nickname`, `date_joined`) 
+			VALUES (:pl_nickname, :pl_date_joined);');
+		$result = $query->execute(['pl_nickname' => $user, 
+			'pl_date_joined' => $date_joined]);
 		return $result;
 	}
 
