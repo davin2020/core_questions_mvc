@@ -18,4 +18,10 @@
 
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^ index.php [QSA,L]
+
+  # added to help w JWT not working issues! 31may2021
+  RewriteCond %{HTTP:Authorization} .+ RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}] 
+
+  # SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
 </IfModule>
