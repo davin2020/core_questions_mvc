@@ -70,7 +70,9 @@
 	</section>
 	
 	<br>
-	<a href="/dashboard/<?php echo $currentUser['user_id'] ?>">Return to Dashboard</a>
+	<a href="/dashboard">Return to Dashboard using Sessions</a>
+	<br>
+	<a href="/dashboard/<?php echo $currentUser['user_id'] ?>">Return to Dashboard with ID</a>
 
 </body>
 </html>
