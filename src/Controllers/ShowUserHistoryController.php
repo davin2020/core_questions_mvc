@@ -21,6 +21,18 @@ class ShowUserHistoryController
 	//FYI any data sent to this Controller will be inside the assoc array $args, with a key matching the {q_id} var from the routes file
 	public function __invoke($request, $response, $args)
 	{
+		session_start();
+		if (isset($_SESSION['coreIsLoggedIn']) && $_SESSION['coreIsLoggedIn'] == false) {
+			//maybe need logout button to test if this works?
+			//ok if assoc array shwos they are no logged in, then redirect works ok with msg - of course if i kill the session then there wont be a msg
+			$_SESSION['msg'] = "redirect from show history";
+			session_destroy();
+			header("Location: /");
+			//error The requested resource /showUserHistory/index.php was not found on this server. - locn need to be route not view !
+        	exit();
+		}
+
+
 		//why do i need to get this from db, why not just pass in Name from prev page ie index/HomePageController?
 		// var name user_id in args is taken from routes.php file
 		$user = $this->userModel->getUserFromID($args['user_id']);

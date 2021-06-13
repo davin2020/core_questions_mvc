@@ -20,7 +20,9 @@ return function (App $app) {
 
 	//restructuring app
 	// need to secure routes ilke /dashboard witouth user_id or putup/redirect to custom 404 page
-	$app->get('/dashboard/{user_id}', 'DashboardController');
+	//what if they try to access dashboard without being logged in? sessions should notice & redirect them! need do deal with Return to Dashboard page option, using sessions!
+	$app->get('/dashboard', 'DashboardController');
+	// $app->get('/dashboard/{user_id}', 'DashboardController');
 	$app->get('/questionForm/{user_id}', 'QuestionFormController');
 	// !questionForm > !QuestionFormController question_form.php
 
