@@ -31,4 +31,5 @@ return function (App $app) {
 	//  need /loginUser route
 	// $app->get('/loginUser/{user_id}', 'LoginUserController');
 	$app->post('/loginUser', 'LoginUserController');
+	$app->post('/logoutUser', 'LogoutUserController');
 };

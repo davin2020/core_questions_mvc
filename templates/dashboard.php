@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php 
+// session_name("CORE_SESSION");
+// session_start();  //seems i dont nedd to call it here if its called in controller
+// To use a named session, call session_name() before calling session_start().
+?> 
+
 <?php error_reporting(E_ALL); ini_set('display_errors', '1'); ?>
 
 <html lang="en">
@@ -9,7 +15,7 @@
 </head>
 
 <body>
-	<h1>Core Questions App - Dashboard for <?php echo $userName ?></h1>
+	<h1>Core Questions App - Dashboard for <?php echo $user['nickname'] ?></h1>
 
 	<!--  TO DO need to get this User Info from teh Dashboard Controller ! -->
 
@@ -21,6 +27,20 @@
 		// $assocArrayArgs['userName'] = $userName; 
 		// $assocArrayArgs['user'] = $user; 
 		// $user is implied to exist from this above
+
+		//new array details, used w sessions
+	//do i get the user details from teh session or from the $newAssocArray?
+		// $newAssocArray = [];
+		// $newAssocArray['user'] = $user; //how do i get the id from teh user, do i have a getter?
+		// $newAssocArray['user_id'] = $user['user_id'];
+
+	// get teh u ser from teh SESSION not from teh ARGS!
+		$userId = $_SESSION['userId'];
+		$user = $_SESSION['existingUser'];
+		var_dump("<br>user from session <br>");
+		var_dump($user);
+
+
 		$dateJoined = $user['date_joined'];
 		$name = $user['nickname'];
 		$fullname = $user['fullname'];
@@ -28,6 +48,24 @@
 		$dateObj = date_create($dateJoined);
 		// format date syntax eg Saturday 20 February 2021 - maybe this should be a method? ie pass in string date, convert to Date obj & get nicely formatted string back?
 		$formattedDate = date_format($dateObj, 'l j F Y');
+
+		//shoudl i be accessing sessino stuff here on in controller?
+		var_dump("<br>session coreIsLoggedIn<br>");
+		var_dump($_SESSION['coreIsLoggedIn']);
+		// $_SESSION coreIsLoggedIn
+		var_dump("<br>session contents<br>");
+		var_dump($_SESSION);
+		//this is now using session info from other local webiste  ie http://localhost:8000/index.php !
+		// array(4) { ["isRedirectFromAccountsToIndex"]=> bool(true) ["$errorMessage"]=> string(53) "Your not logged in, so redirected from Page2 to Index" ["isLoggedIn"]=> bool(true) ["existingUser"]=> array(6) { ["user_id"]=> string(1) "4" ["fullname"]=> string(14) "Johnny Jaqobis" ["nickname"]=> string(6) "Johnny" ["email"]=> string(18) "johnny@example.com" ["password"]=> string(60) "$2y$10$Nrw9GuifeUaO7SmhAMfauuhlKPnduXVSeCVs460Ml/ynU8/sz6DKe" ["date_joined"]=> string(10) "2021-04-04" } }
+
+		if (isset($_SESSION['coreIsLoggedIn'])) {
+			//do i get the user from teh session or from the $newAssocArray?
+			$user = $_SESSION['existingUser'];
+			echo '<br><br>heres the user<br>';
+			var_dump($user);
+			//this is ok in incognito is doesnt show session info from other localhost test_sessions app
+			// exit;
+		}
 	?>
 
 	<section>
@@ -41,6 +79,11 @@
 
 		<!-- show date when questions were last anaswers & last score? -->
 
+		<!-- logout feature -->
+		<!-- <form method="POST" action="/loginUser"> -->
+		<form method="POST" action="/logoutUser">
+            <input type="submit" value="Logout">
+        </form>
 	</section>
 
 	<section>
@@ -56,6 +99,7 @@
 
 <!-- questionForm -->
 		<form method="GET" action="/questionForm/<?php echo $userID; ?>">
+			<!-- how to pass assoc array or sesssion stuff witih user_id in it to next page? -->
 		<div class="buttonContainer">
 				<button name="btnShowQuestions" type="submit" class="submitButton">Answer Questions</button>
 			</div>
