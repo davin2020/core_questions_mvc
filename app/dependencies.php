@@ -60,5 +60,7 @@ return function (ContainerBuilder $containerBuilder) {
 
 	$container['LoginUserController'] = DI\Factory('App\Factories\LoginUserControllerFactory');
 
+	$container['LogoutUserController'] = DI\Factory('App\Factories\LogoutUserControllerFactory');
+
 	$containerBuilder->addDefinitions($container);
 };
