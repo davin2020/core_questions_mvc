@@ -11,7 +11,7 @@ NB: CORE forms are owned, created & copyrighted by -
 © CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
 
 ## Live Demo
-This Wellbeing Tracking Form wil be live here - (coming soon, hopefully by end of August 2021)
+This Wellbeing Tracking Form wil be live here - (coming soon, hopefully by end of August 2021) - https://davin2020.github.io/wellbeing/default.html
 
 ## End User Features
 - View a list of existing users (added 5 April)
@@ -28,11 +28,12 @@ This Wellbeing Tracking Form wil be live here - (coming soon, hopefully by end o
 ## Screenshots
 Register User or Login: 
 
-![Image of Users](core_questions_app_homepage.PNG)
+![Image of Register User or Login screen](core_questions_app_homepage.PNG)
 
 User Dashboard:
 
-![Image of Users](core_questions_app_user_dashboard.PNG)
+<!-- ![Image of Users](core_questions_app_user_dashboard.PNG) -->
+![Image of User Dashboard](core_questions_app_dashboard.png)
 
 Core Questions Form: 
 
@@ -42,7 +43,7 @@ Core Questions Form:
 
 User History Graph:
 
-![Image of Users](core_questions_app_graph.PNG)
+![Image of User's History and Graph](core_questions_app_graph.PNG)
 
 
 ## To Install & Run Locally
