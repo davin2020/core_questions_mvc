@@ -3,19 +3,15 @@
 ## About
 This is a web form where you can submit answers to the 'GP-Core Questions', which is used to report subjective wellbeing. 
 
-**NB: This repo is very much a work in progress - as of 16 May currently working on adding Register & Login User functionality)**
+**NB: This repo is very much a work in progress - as of 14 June currently working on adding sessions to handle Login and Logout and protect the routes**
 
-It uses the LAMP stack, and will have basic CRUD functionality, storing data in a MYSQL db.
-
-Its been cloned from an existing To Do app based on the Slim 4 framework and MVC Pattern.
-
-It uses Routing, the Dependency Injection Container, Factories, Controllers & Views to implement CRUD funtionality
+It uses the WAMP stack, and will have basic CRUD functionality, storing data in a MYSQL db. It uses Routing, the Dependency Injection Container, Factories, Controllers & Views to implement CRUD funtionality
 
 NB: CORE forms are owned, created & copyrighted by -
 © CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
 
 ## Live Demo
-This Wellbeing Tracking Form is live here - (coming soon, hopefully by end of May 2021)
+This Wellbeing Tracking Form wil be live here - (coming soon, hopefully by end of August 2021)
 
 ## End User Features
 - View a list of existing users (added 5 April)
@@ -25,8 +21,9 @@ This Wellbeing Tracking Form is live here - (coming soon, hopefully by end of Ma
 - View user history data ie previous dates & score (added 9 April)
 - View dynamic graph of previous dates & scores (added 11 April)
 - Improved layout of Core Questions form (Answer options now move below each Question on smaller screens) - added 26 April
-- Improve formatting of GP-Core Questions form, added all GP-CORE questions to DB and added copyright info for Core Systems Trust - added 2 May **NEW!**
-- Coming Soon - Restructuring the app so it has User Registration and Login options on the homepage, which leads to the user Dashboard. Also creating the functionality to Register & Login, using hashed passwords & tokens.
+- Improve formatting of GP-Core Questions form, added all GP-CORE questions to DB and added copyright info for Core Systems Trust (added 2 May)
+- Restructured the app so it has User Registration and Login options on the homepage, which leads to the user's Dashboard page. Also created the functionality to Register & Login, using hashed passwords (added June)
+- Coming Soon - Adding sessions to handle login and logout and protect the routes (added 14 June) **NEW!**
 
 ## Screenshots
 Register User or Login: 
