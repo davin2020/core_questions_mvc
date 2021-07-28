@@ -1,11 +1,11 @@
-# Core Questions Form - Using PHP & MVC
+# Wellbeing Tracker (CORE Questions Form)
 
 ## About
-This is a web form where you can submit answers to the 'GP-Core Questions', which is used to report subjective wellbeing. 
+This is a web form where you can submit answers to the 'GP-CORE Questions', which is used to report subjective wellbeing. Results are plotted on a graph so you can see your progress over time
 
-**NB: This repo is very much a work in progress - as of 14 June currently working on adding sessions to handle Login and Logout and protect the routes**
+**NB: This repo is very much a work in progress, with features in branches that aren't ready for main yet**
 
-It uses the WAMP stack, and will have basic CRUD functionality, storing data in a MYSQL db. It uses Routing, the Dependency Injection Container, Factories, Controllers & Views to implement CRUD funtionality
+This project uses the WAMP stack, Slim 4 framwork and MVC pattern (Routing, the Dependency Injection Container, Factories, Controllers & Views) to implement CRUD funtionality
 
 NB: CORE forms are owned, created & copyrighted by -
 © CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
@@ -16,74 +16,30 @@ This Wellbeing Tracking Form wil be live here - (coming soon, hopefully by end o
 ## End User Features
 - View a list of existing users (added 5 April)
 - Add a new user to the DB (added 5 April)
-- View all existing Core Questions (added 5 April)
+- View all existing CORE Questions (added 5 April)
 - Answer the Core Questions and submit the form to save the details to the DB (added 8 April)
-- View user history data ie previous dates & score (added 9 April)
+- View user history data ie previous dates & scores (added 9 April)
 - View dynamic graph of previous dates & scores (added 11 April)
-- Improved layout of Core Questions form (Answer options now move below each Question on smaller screens) - added 26 April
-- Improve formatting of GP-Core Questions form, added all GP-CORE questions to DB and added copyright info for Core Systems Trust (added 2 May)
-created feature to calculate & save Mean Score when question form is …
-…submitted (added 11 May)
+- Improved layout of CORE Questions form (Answer options now move below each Question on smaller screens) - added 26 April
+- Improved formatting of Question Form, added all GP-CORE questions to DB and added copyright info for Core Systems Trust (added 2 May)
+- Moved Question Form to its own page and calculated & saved Mean Score when form is submitted (added 11 May)
+- Restructured the app so that User Registration and Login options are on the homepage. After logging in, the user is taken to the Dashboard page, where they can access the Questions or History pages (added 13 May)
+- Added more user fields to DB (fullname, email, password). Created  functionality to Register & Login users, using hashed passwords (added 17 May)
+- Added sessions to restrict logged in users to only access their own data and added Logout button - (added 14 June, needs more testing) **NEW!**
 
-
-<!-- created Ddashabord page 11 may
-created QuestionFormController class & Factory; created question_form…
-….php page & added existing questions
-put questions on their own page 11 may 
-updated response url so it redirects to dashboard.php for current use…
-…r with success message - now redirects to history page as of may 14
-created new /admin route
-created new index page to contain login form and register form only (…
-…ie add new user) - may13
-added more fields to user table - replaced db field called name with nickname in users table across mul…
-…tiple files 15may
-created getUserByEmail() using better fetch option of FETCH_ASSOC 16may
-added loginUser() to find user and verify hashed password 17may
-updated user table with example data for fullname, email and hashed p…
-…asswords may 20
-
-added fields fullname & email to getUserFromID() when getting user fr…
-…om db and changed fetch mode to ASSOC array 20may
-updated dashboard.php to display fullname & email
-added section tags to dashboard page and styled them with a border, a…
-…lso restyled buttons
-
-created css class graph_image to display at 100% width on show_histor…
-…y.php until max screen width of 960px then 75% after that; also added section tags may22
-removed link to Admin page, updated add name, set fullname html field size…
-… to 50
-
-review commits in main_comments from 20 may
-
-
-
-/admini links no longer work eg to dashboard , but to history does work
-TODO remove vardumps on dashbord page
-check current session expiry timeframe
-need better screnshot of answer question page to include blue & beige
-beeter screenshot of login page - remove vardumps first and make full name field longer?
-check graph size on wider browsers
-dahsbboard page contains logout button, need screenshot of that
--->
-
-- Restructured the app so it has User Registration and Login options on the homepage, which leads to the user's Dashboard page. Also created the functionality to Register & Login, using hashed passwords (added 15 & 16 May)
-- Coming Soon - Adding sessions to handle login and logout and protect the routes (added 14 June) **NEW!**
 
 ## Screenshots
 Register User or Login: 
 
-![Image of Register User or Login screen](core_questions_app_homepage.PNG)
+![Image of Register User or Login screen](core_questions_app_login.PNG)
 
 User Dashboard:
 
-<!-- ![Image of Users](core_questions_app_user_dashboard.PNG) -->
 ![Image of User Dashboard](core_questions_app_dashboard.png)
 
 Core Questions Form: 
 
-<!-- ![Image of Core Questions](core_questions_app_questions_layout.PNG) -->
-<!-- ![Image of Core Questions Form](core_questions_app_form_layout_smaller.PNG) -->
-![Image of Core Questions Form](wellbeing_tracker_questions.png)
+![Image of Core Questions Form](core_questions_app_all_questions.PNG)
 
 User History Graph:
 
