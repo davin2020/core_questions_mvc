@@ -22,11 +22,20 @@ class ShowUserHistoryController
 	public function __invoke($request, $response, $args)
 	{
 		session_start();
-		if (isset($_SESSION['coreIsLoggedIn']) && $_SESSION['coreIsLoggedIn'] == false) {
+
+		// if ( !$_SESSION['coreIsLoggedIn']) {
+		// coreIsLoggedIn is not false, its null/not defined!!
+		// if (isset($_SESSION['coreIsLoggedIn']) && $_SESSION['coreIsLoggedIn'] != true) {
+
+		//this syntax redirects to login page, btu above with && doesnt!!
+		if ( !$_SESSION['coreIsLoggedIn']) {
 			//maybe need logout button to test if this works?
-			//ok if assoc array shwos they are no logged in, then redirect works ok with msg - of course if i kill the session then there wont be a msg
-			$_SESSION['msg'] = "redirect from show history";
-			session_destroy();
+			//ok if assoc array shwos they are no logged in, then redirect works ok with msg - of course if i kill the session then there wont be a msg as $_SESSION array will be empty
+			$_SESSION['errorMessage'] = "redirected from Show History to Index";
+			var_dump("var_dump_ Your not logged in, so redirected from Show History to Index");
+
+			//  do i need this here??
+			// session_destroy();
 			header("Location: /");
 			//error The requested resource /showUserHistory/index.php was not found on this server. - locn need to be route not view !
         	exit();

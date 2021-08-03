@@ -22,10 +22,23 @@ class LogoutUserController
 	{
 		//should i put some msg in args?
 		session_start();
-		$_SESSION['coreIsLoggedIn'] = false;
+		$_SESSION['coreIsLoggedIn'] = false; // this is destroy by next call so it it even needed? or use unset  instead?
+
+		// destroy everything in this session
+		unset($_SESSION);
+
+		// Before destroying a session with the session_destroy() function, you need to first recreate the session environment if it is not already there using the session_start() function, so that there is something to destroy - https://www.tutorialrepublic.com/php-tutorial/php-sessions.php
 		session_destroy(); //do u stil need to call start, before destory? - just calling destory without start means i can still access teh accounts.php page!
-	
+		echo session_id();
+		var_dump('session destroyed!!') ;
+		// exit;
+
 		//trying to access acount & page2, while calling start then destory, means u get redirected to index page, but without any error msg
+
+		// How To Remove session data, using unset
+		// if(isset($_SESSION["lastname"])){
+		//     unset($_SESSION["lastname"]);
+		// }
 
 		//prob cant send msg as session has been destroyed!
 		$_SESSION['$errorMessage'] = 'Reidrected from Logout to Index';
