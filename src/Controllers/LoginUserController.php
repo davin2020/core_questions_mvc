@@ -18,6 +18,7 @@ class LoginUserController
 // new invoke function 26may2021
 	public function __invoke($request, $response, $args)
 	{
+		
 
 		$userEmail = $request->getParsedBody()['inputEmail'];
 		$userPassword = $request->getParsedBody()['inputPassword'];
@@ -48,7 +49,42 @@ class LoginUserController
 			// var_dump('option 1');
 			// exit;
 			//$nextUrl = '/dashboard/' . $user_id;
-			return $response->withHeader('Location', '/dashboard/' . $user_id)->withStatus(200);
+
+			// 6june2021 add sessions - do i nee dto call start in controller or php view file?
+			// session_name("CORE_SESSION");
+
+			// session_set_cookie_params(0, '/members', '.yourdomain.com', 0, 1);
+
+			session_start();
+			echo session_id();
+			
+			// errror = syntax error, unexpected '='
+			//seems this stuff in set in php.ini
+			// session.name = "CORE_SESSION";
+			// session.cookie_domain = "http://localhost:8087/";
+			//for sesh variables use _ instead of camel case? unless PSR says otherwise?
+			//these session vars are avail gloablly on the same web domain (incl localhost it seems) ie i dont need to pass them between pages!!
+			$_SESSION['session_name'] = "CORE_SESSION";
+			$_SESSION['coreIsLoggedIn'] = true;
+			$_SESSION['userId'] = $existingUser['user_id'];
+			$_SESSION['existingUser'] = $existingUser;
+			// errror if falling dashboard.php - The requested resource /dashboard.php was not found on this server.
+			//this is right syntax for dynamic route, could also put id inside session
+			// header("Location: /dashboard/" . $user_id);
+			header("Location: /dashboard");
+			exit;
+
+			// $session = new Session();
+            // $session->set('user', $existingUser);
+            // header( 'Location: ' . SITE_URL);
+            // exit;
+
+			// 13june need to change route to /dashboard and put user_id in session - put userid in session first 
+
+			// then repeat on other pages ie /showHistory and /questionForm
+			return $response->withHeader('Location', '/dashboard')->withStatus(200);
+			//original route
+			// return $response->withHeader('Location', '/dashboard/' . $user_id)->withStatus(200);
 		}
 		// else if user found & pwd WRONG redirect to login page w WRONG PWD errr msg ie 401 unauth
 		else if ($existingUser != false && $pwdMatches == false)  {
