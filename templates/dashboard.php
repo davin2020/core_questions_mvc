@@ -126,7 +126,11 @@
 
 				<!-- // <form action="reply.php?id=<?php echo $id; ?>" -->
 					<!-- // action="reply.php?id=<?php echo $id; ?>" -->
-			<form method="GET" action="/showUserHistory/<?php echo $userID; ?>">
+
+			<!-- how do i use a button to pass an arry w userid in it to next page? or do i just access gloabl session var on history page?-->
+			<form method="GET" action="/showUserHistory">
+			<!-- <form method="GET" action="/showUserHistory/<?php echo $userID; ?>"> -->
+				
 				<!-- <label>Name of New User:
 					<input type="text" name="itemName" id="itemName" required>
 				</label>
