@@ -27,6 +27,7 @@ class HomepageController
 	//invoke only ever does 1 thing, each page has own controler thus own invoke method, where the stuff for the actual page gets done eg display users & questions or save answers etc
 	public function __invoke($request, $response, $args)
 	{
+		session_start();
 		//need to return response with args[] via render method - can have multiple named keys if u needed to add/display more stuff later
 		$assocArrayArgs = [];
 
