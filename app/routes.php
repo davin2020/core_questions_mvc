@@ -26,7 +26,9 @@ return function (App $app) {
 	$app->get('/dashboard', 'DashboardController');
 	// $app->get('/dashboard/{user_id}', 'DashboardController');
 
-	$app->get('/questionForm/{user_id}', 'QuestionFormController');
+
+	$app->get('/questionForm', 'QuestionFormController');
+	// $app->get('/questionForm/{user_id}', 'QuestionFormController');
 	// !questionForm > !QuestionFormController question_form.php
 
 	$app->get('/admin', 'AdminPageController');

@@ -26,12 +26,28 @@ class QuestionFormController
 
 	//invoke only ever does 1 thing, each page has own controler thus own invoke method, where the stuff for the actual page gets done eg display users & questions or save answers etc
 	public function __invoke($request, $response, $args)
-	{
-		
+	{	
+		// add session stuff here
+		session_start(); 
+		echo session_id();
+
+		//if user not logged in ie no current session, redirect to home page
+		if ( !$_SESSION['coreIsLoggedIn']) {
+			$_SESSION['errorMessage'] = "DORY redirected from Question Form to Index";
+			var_dump("DORY var_dump_ Your not logged in, so redirected from Question Form to Index");
+			header("Location: /");
+			exit();
+		}
+
+		// get user id fro session, not args in route url
+		// $user_id = $args['user_id'];
+		$session_user_id = $_SESSION['userId'];
+
 		//need to return response with args[] via render method - can have multiple named keys if u needed to add/display more stuff later
 		$assocArrayArgs = [];
 
-		$user = $this->userModel->getUserFromID($args['user_id']);
+		//why do i need to get the whole user from teh db, why not from the session??
+		$user = $this->userModel->getUserFromID($session_user_id);
 		$assocArrayArgs['user'] = $user; 
 		$userName = $user['nickname'];
 		$assocArrayArgs['userName'] = $userName; 

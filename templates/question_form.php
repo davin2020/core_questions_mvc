@@ -12,7 +12,7 @@
 
 <body>
 	<h1>Core Questions App</h1>
-
+	<!-- TODO ? need to call th option to start using sesssions on Question and History pages? -->
 	<?php
 	$userID = $user['user_id'];
 	?>
@@ -23,9 +23,17 @@
 
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
+		echo session_id(); 
+
 		if ( isset($_GET['success']) && $_GET['success']== 1) {
 			echo '<em>Your Answers have been Saved</em>';
-	} ?>
+		} 
+		if ( isset($_SESSION) )  {
+			var_dump("<br>session contents vardump: <br>");
+			var_dump($_SESSION); //this is null now?
+		}
+		echo session_id();
+	?>
 
 	<div class="core_form flex_container">
 
@@ -33,7 +41,7 @@
 
 		<!-- <div class="flex_container"> -->
 
-			<!-- need to make it redirect back to dashbord!  -->
+			<!-- TODO need to make it redirect back to dashbord!  or hsitory page with correct URL !! -->
 			<form method="post" action="/saveAnswers">
 
 				<div class="formNameDate">
@@ -89,7 +97,8 @@
 					foreach($coreQuestionsAndPoints as $singleQuestionPoints) { 
 					?>
 						<div class="flex-child-qa-questions">
-							<!-- btw db query does sort qs by gp_order, maybe rename function so its clearer? -->
+							<!--  This is the actual Question
+								btw db query does sort qs by gp_order, maybe rename function so its clearer? -->
 							<?php 
 							$q_id = $singleQuestionPoints["q_id"];
 							$q_id_label = $singleQuestionPoints["q_id"] . ". ";
@@ -99,7 +108,9 @@
 						</div> 
 
 						<div class="flex-child-qa-answers">
-							<!-- Question Answer Labels are now being retrieved from DB via QuestionModel -->
+							<!-- These are the Answer Labels for each question ie "Not At All, Only Occassionally, Sometimes, Often, Most or All the Time".
+								Question Answer Labels are now being retrieved from DB via QuestionModel.
+								TODO - consider having just one set of Answer Labels in a top-most Heading column, but would need each radio button to be in its own collumn -->
 							<label>
 								<input type="radio" required
 								name="radioAnswerPoints[<?php echo $q_id ?>]" 
@@ -133,12 +144,12 @@
 						</div>	
 
 					<?php
-					}
+					}	// end of foreach question in array loop
 					?>
 				</div> <!-- div above foreach loop, flex-parent-qa -->
 
 				<div class="instructions">
-					<!-- maybe show Thank You after form has been submitted -->
+					<!-- TODO - maybe show Thank You after form has been submitted -->
 					<p>Thank you for your time in completing this questionnaire</p>
 				</div>
 
@@ -155,7 +166,10 @@
 	</div> <!--  eof id=core-form div -->
 
 	<br>
-	<a href="/dashboard/<?php echo $userID ?>">Return to Dashboard</a>
+	<!-- <a href="/dashboard/<?php echo $userID ?>">Return to Dashboard using ID</a> -->
+	<br>
+	<a href="/dashboard">Return to Dashboard using Sessions</a>
+	<br>
 
 </body>
 </html>
