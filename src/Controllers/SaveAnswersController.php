@@ -36,7 +36,8 @@ class SaveAnswersController
 		// return $response->withHeader('Location', '/dashboard/' . $userID)->withStatus(302);
 
 		//show history page instead of dashboard page
-		return $response->withHeader('Location', '/showUserHistory/' . $userID . '?success=1' )->withStatus(302);
+		return $response->withHeader('Location', '/showUserHistory?success=1' )->withStatus(302);
+		// return $response->withHeader('Location', '/showUserHistory/' . $userID . '?success=1' )->withStatus(302);
 
 		//TO DO should only return success if saving to db has actually worked! also review status codes
 		// return $response->withHeader('Location', '/dashboard/' . $userID . '?success=1' )->withStatus(302);
