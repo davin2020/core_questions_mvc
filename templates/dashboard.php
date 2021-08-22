@@ -66,16 +66,21 @@
 			//this is ok in incognito is doesnt show session info from other localhost test_sessions app
 			// exit;
 		}
+
 	?>
 
 	<section>
 	<h2>My Profile</h2>
 		<p>ID: <?php echo $userID ?> </p>
 		<p>Nickname: <?php echo $name ?></p>
+
 		<p>Full Name: <?php echo $user['fullname'] ?></p>
+		
 		<p>Email: <?php echo $user['email'] ?></p>
 		<!-- format date in DMY -->
 		<p>Date Joined: <?php echo $formattedDate ?> </p>
+
+
 
 		<!-- show date when questions were last anaswers & last score? -->
 
@@ -98,7 +103,8 @@
 	} ?>
 
 <!-- questionForm -->
-		<form method="GET" action="/questionForm/<?php echo $userID; ?>">
+		<!-- <form method="GET" action="/questionForm/<?php echo $userID; ?>"> -->
+		<form method="GET" action="/questionForm">
 			<!-- how to pass assoc array or sesssion stuff witih user_id in it to next page? -->
 		<div class="buttonContainer">
 				<button name="btnShowQuestions" type="submit" class="submitButton">Answer Questions</button>
@@ -130,7 +136,7 @@
 			<!-- how do i use a button to pass an arry w userid in it to next page? or do i just access gloabl session var on history page?-->
 			<form method="GET" action="/showUserHistory">
 			<!-- <form method="GET" action="/showUserHistory/<?php echo $userID; ?>"> -->
-				
+
 				<!-- <label>Name of New User:
 					<input type="text" name="itemName" id="itemName" required>
 				</label>
