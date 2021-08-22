@@ -22,6 +22,7 @@
 	</section>
 
 	<section>
+
 		
 	<h2>User History for <?php echo $userName ?></h2>
 	<!-- for this user name - output date & score -->
@@ -72,7 +73,6 @@
 	<br>
 	<a href="/dashboard">Return to Dashboard using Sessions</a>
 	<br>
-	<a href="/dashboard/<?php echo $currentUser['user_id'] ?>">Return to Dashboard with ID</a>
 
 </body>
 </html>
