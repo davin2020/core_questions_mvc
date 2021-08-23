@@ -31,7 +31,7 @@ return function (App $app) {
 	// $app->get('/questionForm/{user_id}', 'QuestionFormController');
 	// !questionForm > !QuestionFormController question_form.php
 
-	$app->get('/admin', 'AdminPageController');
+	$app->get('/adminConsole', 'AdminPageController');
 
 	//  need /loginUser route
 	// $app->get('/loginUser/{user_id}', 'LoginUserController');

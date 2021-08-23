@@ -12,6 +12,11 @@
 <body>
 	<h1>ADMIN PAGE - Core Questions App</h1>
 
+	<form method="POST" action="/logoutUser">
+        <input type="submit" value="Logout">
+    </form>
+		
+
 <!-- 	<h2>Dashboards</h2>
 	Dutch
 	<br>
@@ -21,6 +26,9 @@
 	<h2>Show Existing Users & Dashboard Links</h2>
 	<!--  fyi Controller for index page ie HomePageController is where array variables like $userList are coming from 
 	Show list of users with individual link to user history page at /showUserHistory/{q_id}
+	-->
+	<!-- how will this work to show data about each user, if im nont that user? ie if i dont have a session for that user? 
+		does admin page need special pages to view others detaiils? or shoudl each controller check if admin is logge din and allow them access to toher users data? but if each user is taken from session data, maybe i need to add the other user to the session?
 	-->
 		<?php
 		echo '<ul>';
