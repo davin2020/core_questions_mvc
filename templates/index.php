@@ -4,13 +4,13 @@
 <!-- Davin updated this file for CoreQuestions -->
 <head>
 	<meta charset="utf-8"/>
-	<title>GP-Core Question Form</title>
+	<title>Wellbeing Tracker - Register or Login</title>
 	<link href="style.css" type="text/css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<h1>Core Questions App / Wellbeing Tracker</h1>
+	<h1>Wellbeing Tracker</h1>
 	<!-- Wellbeing Tacking App?  -->
 
 	<section>
@@ -72,6 +72,8 @@
 				if ( isset($messageForUser) ) {
 					echo '<em class="user_warning">' . $messageForUser . '</em>';
 				} 
+
+
 				?>
 
 				<form method="POST" action="/loginUser">

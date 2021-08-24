@@ -3,16 +3,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>GP-Core Questions Form - User History</title>
+	<title>Wellbeing Tracker - My History</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-	<h1>Core Questions App - My History</h1>
+	<h1>Wellbeing Tracker - My History</h1>
 
 	<section>
 		
-	<h2>User Graph for <?php echo $userName ?></h2>
+	<h2>User Graph Details for <?php echo $userName ?></h2>
 	<!-- make graph based on array of data from db (dates & scores shown below) -->
 
 	<div>
@@ -24,7 +24,7 @@
 	<section>
 
 		
-	<h2>User History for <?php echo $userName ?></h2>
+	<h2>User History Details for <?php echo $userName ?></h2>
 	<!-- for this user name - output date & score -->
 
 	<!-- success msg if answeres to questions are saved ok -->

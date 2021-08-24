@@ -4,16 +4,16 @@
 <!-- Davin updated this file for CoreQuestions -->
 <head>
 	<meta charset="utf-8"/>
-	<title>ADMIN PAGE - GP-Core Question Form</title>
+	<title>Wellbeing Tracker - Admin Console</title>
 	<link href="style.css" type="text/css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<h1>ADMIN PAGE - Core Questions App</h1>
+	<h1>Wellbeing Tracker - Admin Console</h1>
 
 	<form method="POST" action="/logoutUser">
-        <input type="submit" value="Logout">
+        <input type="submit" value="Logout as Admin">
     </form>
 		
 

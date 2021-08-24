@@ -4,14 +4,14 @@
 <!-- Davin updated this file for CoreQuestions -->
 <head>
 	<meta charset="utf-8"/>
-	<title>GP-Core Question Form</title>
+	<title>Wellbeing Tracker - Answer Form</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
 	<!-- <link href="style.css" type="text/css" rel="stylesheet"> -->
 	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<h1>Core Questions App</h1>
+	<h1>Wellbeing Tracker - Answer Form</h1>
 	<!-- TODO ? need to call th option to start using sesssions on Question and History pages? -->
 	<?php
 	$userID = $user['user_id'];
@@ -19,7 +19,7 @@
 
 		<!-- <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option> -->
 
-	<h2>Answer GP-Core Questions for <?php echo $userName ?> </h2>
+	<h2>Answer Questions for <?php echo $userName ?> </h2>
 
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
