@@ -10,12 +10,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>GP-Core Questions Form - Dashboard</title>
+	<title>Wellbeing Tracker - Dashboard</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-	<h1>Core Questions App - Dashboard for <?php echo $user['nickname'] ?></h1>
+	<h1>Wellbeing Tracker - Dashboard for <?php echo $user['nickname'] ?></h1>
 
 	<!--  TO DO need to get this User Info from teh Dashboard Controller ! -->
 
