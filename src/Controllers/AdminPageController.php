@@ -38,15 +38,15 @@ class AdminPageController
 	    	exit();
 		}
 		// If they ARE logged in BUT are not an ADMIN user, send them back to dashboard?
-		if ( $_SESSION['coreIsLoggedIn'] && $_SESSION['userId'] != 10 ) {
+		if ( $_SESSION['coreIsLoggedIn'] && $_SESSION['userId'] !=99 ) {
 			$_SESSION['errorMessage'] = 'Trying to access a Restricted page and your not an Admin User,  so redirected back to Dashboard';
 			header("Location: /dashboard");
 			exit();
 		}
 		// else if ( !$_SESSION['coreIsLoggedIn'] && $_SESSION['userId'] ) {
 		//only show contents of admin page if its AdminDavin
-		else if ( $_SESSION['coreIsLoggedIn'] && $_SESSION['userId'] == 10) {
-			echo "<br>DAVIN is logged in as ADMIN";
+		else if ( $_SESSION['coreIsLoggedIn'] && $_SESSION['userId'] == 99) {
+			echo "<br>DAVIN is logged in as ADMIN 999";
 		}
 		//need logout button
 

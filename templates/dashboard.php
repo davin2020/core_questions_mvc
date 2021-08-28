@@ -58,15 +58,22 @@
 		//this is now using session info from other local webiste  ie http://localhost:8000/index.php !
 		// array(4) { ["isRedirectFromAccountsToIndex"]=> bool(true) ["$errorMessage"]=> string(53) "Your not logged in, so redirected from Page2 to Index" ["isLoggedIn"]=> bool(true) ["existingUser"]=> array(6) { ["user_id"]=> string(1) "4" ["fullname"]=> string(14) "Johnny Jaqobis" ["nickname"]=> string(6) "Johnny" ["email"]=> string(18) "johnny@example.com" ["password"]=> string(60) "$2y$10$Nrw9GuifeUaO7SmhAMfauuhlKPnduXVSeCVs460Ml/ynU8/sz6DKe" ["date_joined"]=> string(10) "2021-04-04" } }
 
-		if (isset($_SESSION['coreIsLoggedIn'])) {
+		if (isset($_SESSION['coreIsLoggedIn'])  && $_SESSION['userId'] == 99) {
 			//do i get the user from teh session or from the $newAssocArray?
 			$user = $_SESSION['existingUser'];
-			echo '<br><br>heres the user<br>';
+			echo '<br><br>heres the ADMIN user<br>';
 			var_dump($user);
 			//this is ok in incognito is doesnt show session info from other localhost test_sessions app
 			// exit;
+		?>	
+			<br>
+			<!-- format this a button like the others?? -->
+			<h2><a href="/adminConsole">Admin Console</a></h2>
+			<br>
+		<?php 
 		}
 
+		
 	?>
 
 	<section>

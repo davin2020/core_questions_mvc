@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<h1>Wellbeing Tracker - Answer Form</h1>
+	<h1>Wellbeing Tracker - Answer Wellbeing Questions</h1>
 	<!-- TODO ? need to call th option to start using sesssions on Question and History pages? -->
 	<?php
 	$userID = $user['user_id'];
@@ -19,7 +19,7 @@
 
 		<!-- <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option> -->
 
-	<h2>Answer Questions for <?php echo $userName ?> </h2>
+	<h2>Answer Wellbeing Questions for <?php echo $userName ?> </h2>
 
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
