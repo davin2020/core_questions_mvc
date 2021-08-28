@@ -14,6 +14,22 @@ class SaveUserController
 
 	public function __invoke($request, $response, $args)
 	{
+		// 28aug starrting session here or further down seems ok
+		session_start(); 
+		echo session_id();
+		// eg hj81kesf7j8t8tdjk82bhf5cvq - seems to be hte same regardles of whose logged in?? so is destory working properly?
+		// var_dump(session_id()); // this outputs stuff in quotes
+		// exit();
+
+		//i shoudnt be chekcing this so early, when is htis set?
+		// if ( !$_SESSION['coreIsLoggedIn']) {
+		// 	$_SESSION['errorMessage'] = 'Your not logged in, so redirected from Save User Controller to Index';
+		// 	// var_dump("Your not logged in, so redirected from Save User Controller to Index");
+		// 	//when redirection happens and there is no session, then no $errorMessage will be sent - could try redirecting to a third page, just to prove that works
+		// 	header("Location: /"); //must be a route not a view
+	 //    	exit();
+		// }
+
 			// $dataName = $request->getParsedBody()['itemName'];
 		//should this string date be converted to a Date object before being passed into saveUser()?
 			// $dataDate = $request->getParsedBody()['itemDate'];
@@ -61,7 +77,7 @@ class SaveUserController
 		
 		// create the hashed password
 		//NEW 26may - call hashPassword as soon as we get it from user
-		$hashedPassword = $this->userModel->hashPassword(password);
+		$hashedPassword = $this->userModel->hashPassword($password);
 		// $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 		
 		//compare user supplied pwd against hashed pwd in db - on login page only, not on saveUser page!
@@ -96,7 +112,36 @@ class SaveUserController
 		// 13may201 redirect to ADMIN Page for now, redirect to dashboard page works ok now
 		$newUserIDint = (int) $resultNewUserID;
 		// UserModel->getUserFromID('$newUserIDint') - how to pass ID from one controller to the next?? eg via assoc array? - had variable inside '/dashboard' string instead of concat'd to it!
-		return $response->withHeader('Location', '/dashboard/' . $newUserIDint)->withStatus(302);
+
+		// 28aug - now get the new user
+		$newUser = $this->userModel->getUserFromID($newUserIDint);
+		//compare their pwds
+			//compare pwd from user form against its hash from db - dont callt his if user doenst exist! - but why wouldnt pwd match if we have JUST created them?
+			$pwdMatches = $this->userModel->verifyPassword($password, $hashedPassword);
+			// var_dump($pwdMatches) ; //pwd matches ok for test9
+			// var_dump($newUser) ;
+			//exit;
+
+		// 28AUG try staring session here , assuming the user got saved ok
+		// session_start(); 
+		// echo session_id();
+
+		// new s28aug - once we have the new user saved, setup the sesion stuff
+		$_SESSION['session_name'] = "CORE_SESSION";
+		$_SESSION['coreIsLoggedIn'] = true;
+		$_SESSION['userId'] =  $newUserIDint;
+		// $_SESSION['userId'] = $existingUser['user_id'];
+		// Dashboard page needs Existing User session var to populate hat page!
+		$_SESSION['existingUser'] = $newUser;
+		// check logging in , BEFORE manully changing user id
+
+		//this assumes user registation/saving has gone ok! and that pwd matches etc
+		// for some reason user is NOT being saved to session !
+		header("Location: /dashboard");
+		exit;
+
+		return $response->withHeader('Location', '/dashboard')->withStatus(302);
+		// return $response->withHeader('Location', '/dashboard/' . $newUserIDint)->withStatus(302);
 		// return $response->withHeader('Location', '/admin')->withStatus(302);
 	}
 
