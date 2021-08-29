@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
 	<h1>Wellbeing Tracker</h1>
 	<!-- Wellbeing Tacking App?  -->
 
@@ -72,8 +73,6 @@
 				if ( isset($messageForUser) ) {
 					echo '<em class="user_warning">' . $messageForUser . '</em>';
 				} 
-
-
 				?>
 
 				<form method="POST" action="/loginUser">

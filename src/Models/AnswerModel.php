@@ -11,11 +11,9 @@ use Amenadiel\JpGraph\Graph\DateScale; //is this actually being included/used/re
 use Amenadiel\JpGraph\LinePlot; 
 use Amenadiel\JpGraph\Themes;
 use Amenadiel\JpGraph\UniversalTheme;
-// dir C:\wamp64\www\nvc_project\gp_core\php_mvc_questions\core_questions_mvc\vendor\amenadiel\jpgraph\src\themes
 
 // updated for CoreQuestions wrt Answers - but should this be part of the UserModel instead?
 // TODO rename to UserAnswerModel ?
-// Per Mike - can use chart JS - php to return json to page - can output html xml or json - php5 was 2005 which is how old JPGraph library is
 class AnswerModel
 {
 	private $db;
@@ -46,7 +44,7 @@ class AnswerModel
 		return $result; // are dates in the resultset actually Dates or Strings?
 	}
 
-
+  
 	// 10 April - this is the graph method im actually using, internally within this model - pass in one dimensional array of values from db in order to generate graph
 	// BUT whats if theres a years worth of data, might need to break it down into 3 month chunks, and pass in arg about timeframe/timescale ?
 	private function makeLineGraph(array $values) 
@@ -56,13 +54,14 @@ class AnswerModel
 		$data_x_dates = $values[1]; // these are the dates
 		// var_dump('<br>dates on x axis');
 		// var_dump($data_x_dates);
-
+    
 		// Setup the graph - have to call Graph\Graph for some reason?
 		//create graph with set width & height - height best at 400+ so legend doesnt cover y axis labels
 		$graph = new Graph\Graph(500,450);
 
 		//SetScale() first arg is x y = dat lin, or datint, where dat=date and lin=linear ie decimals not ints - means dates are on x and linear values are on y
 		//second arg is show y scale from 0 until 60, otherwise it starts at lowest current value eg 40 - FYI max of 60 is for GP-CORE with 14 Questions, max of 130 is for OM-CORE-OM with 34 Questions
+    // datint means for dates on x axis and ints on y axis
 		$graph->SetScale('datint',0,60,0,0);
 
 		// CAVEAT - graph may not plot lines if there are less than 2 inputs/dates - see getUserAnswersLineGraph() which generates a fake blank graph
@@ -180,7 +179,6 @@ class AnswerModel
 
 
 	// this function can be called by external controllers, to start building a history graph for a given userID
-	//can unit test thing, returns $graph - can't as gets stuff from DB!
 	public function getUserAnswersLineGraph(int $userID) 
 	{
 		//setup arrays to hold values/data that will be used to build the line graph

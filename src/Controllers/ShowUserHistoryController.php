@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers; //namespace must be first stmt!
 
 // is this still required ?
@@ -6,6 +7,7 @@ error_reporting(E_ALL); ini_set('display_errors', '1');
 
 class ShowUserHistoryController
 {
+  // am i gettig the user model or the answer model here?
 	private $userModel;
 	private $answerModel;
 	private $renderer;
@@ -18,7 +20,7 @@ class ShowUserHistoryController
 		$this->renderer = $renderer;
 	}
 
-	//FYI any data sent to this Controller will be inside the assoc array $args, with a key matching the {q_id} var from the routes file
+	//FYI any data sent to this Controller will be inside the assoc array $args, with a key matching the {user_id} var from the routes file
 	public function __invoke($request, $response, $args)
 	{
 		session_start();

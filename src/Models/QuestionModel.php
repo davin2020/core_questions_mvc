@@ -5,6 +5,7 @@ namespace App\Models;
 // updated for CoreQuestions 
 class QuestionModel
 {
+
 	private $db;
 
 	/**
@@ -48,7 +49,7 @@ class QuestionModel
 	public function getQuestionLabels() {
 		$query = $this->db->prepare('SELECT `scale_id`, `label` FROM `ref_core_scale` ORDER BY `scale_id`;');
 		$query->execute();
-		// $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion'); 
+		// $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion');  // or try FETCH_ASSOC late ??
 		$result = $query->fetchAll();
 		return $result;
 	}

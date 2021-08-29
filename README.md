@@ -31,7 +31,6 @@ This is a summary of the main changes to the app -
 - Added sessions to the Show History and Question Form pages, so users can only access thier own data (6 Aug)
 - Updated all page titles to be Wellbeing Tracker (24 Aug) **NEW!**
 
-
 ## Screenshots
 Register User or Login: 
 
@@ -48,7 +47,6 @@ Answer Wellbeing Questions (GP-CORE Form):
 User History Graph & Details:
 
 ![Image of User's History and Graph](/screenshots/core_questions_app_graph.PNG)
-
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory
