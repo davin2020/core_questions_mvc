@@ -19,7 +19,7 @@ class QuestionModel
 
 	// TODO Later - only get the questions if they are active, or only get GP Questions vs OM questions etc
 	// this isnt currently being used/called on HomepageController
-  public function getQuestions()
+	public function getQuestions()
 	{
 		$query = $this->db->prepare('SELECT `q_id`, `question`, `gp_order`, `points_type` FROM `ref_core_questions`;');
 		$query->execute();
@@ -28,10 +28,11 @@ class QuestionModel
 		return $result;
 	}
 
-	// get all the questions and the number of points assigned to each possible answer for that question
-	// seems php doesnt like ` in query string
+	// get all the questions and the number of poinst assigned to each possible answer for that question
+	// seems php doesnt like ` in query string, but its ok within sql app only
 	public function getQuestionsAndPoints()
 	{
+		//questions must be retrieved in the correct order!
 		$queryGetQuestionPoints = 'SELECT rcq.q_id, rcq.gp_order, rcq.question, rcq.points_type, rcp.pointsA_not, rcp.pointsB_only, rcp.pointsC_sometimes, rcp.pointsD_often, rcp.pointsE_most 
 			FROM ref_core_questions AS rcq 
 			INNER JOIN ref_core_points AS rcp 
@@ -44,11 +45,11 @@ class QuestionModel
 		return $result;
 	}
 
-	//added this to retrieve Labels eg Often, Somtimes, but what type of class do i need to return, eg Label class? what if there isnt a direct model/entity?
+	//added this to retrieve Labels eg Often, Sometimes, but what type of class do i need to return, eg Label class? what if there isnt a direct model/entity? - execute sql without a fetch_class for now
 	public function getQuestionLabels() {
 		$query = $this->db->prepare('SELECT `scale_id`, `label` FROM `ref_core_scale` ORDER BY `scale_id`;');
 		$query->execute();
-
+		// $query->setFetchMode(\PDO::FETCH_CLASS, 'CoreQuestion');  // or try FETCH_ASSOC late ??
 		$result = $query->fetchAll();
 		return $result;
 	}

@@ -10,7 +10,7 @@ app/settings.php
 
 
 # Standard Files #
-##################
+######################
 .idea/
 .DS_Store
 /coverage/

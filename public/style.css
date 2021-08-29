@@ -5,7 +5,7 @@
 body {
 	margin: 10px;
 	padding: 5px;
-	width: 100%;
+	width: 95%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
 	font-size: 1rem; /* was 18px */
@@ -19,6 +19,7 @@ h1 {
 
 h2 {
 	color: #4115c4;
+	margin: 5px;
 }
 
 ul, ol {
@@ -31,9 +32,32 @@ div {
 	width: auto;
 }
 
+section {
+	border: 2px solid #4115c4;
+	/*background-color: #f7f5e3;*/
+	padding: 10px;
+	margin: 20px 10px;
+}
+
 em {
 	font-weight: bold;
 	color: green;
+}
+.user_warning {
+	font-weight: bold;
+	color: #ff7200;
+	/* orange ff7200  ed7b09  */
+}
+
+/*what to do on smaller screens under 400px? as graph is too small to read easily? */
+.graph_image {
+	width: 100%;
+}
+
+@media only screen and (min-width: 960px) {
+	.graph_image {
+		width: 75%;
+	}
 }
 
 .copyright {
@@ -47,6 +71,27 @@ em {
 	display: flex;
 	flex-direction: row;
 	/*flex-wrap: wrap;*/
+}
+
+/* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
+.instructions {
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+	background-color: #d1d2d4;
+	border: 1px solid gray;
+}
+
+/*contents is overflowign, need to combine with flex grid below ? */
+.core_form {
+	border: 3px solid #4115c4;
+	background-color: #f7f5e3;
+	padding: 10px;
+}
+
+.flex_container {
+  display: flex; 
+  /*border: 3px solid red;*/
 }
 
 /* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
@@ -87,12 +132,12 @@ em {
 
 .flex-child-qa-questions {
 	width: 40%;
-	border: 2px solid gray;
+	border: 1px solid gray;
 }
 
 .flex-child-qa-answers {
 	width: 60%;
-	border: 2px solid gray;
+	border: 1px solid gray;
 }
 
 /* writing 500px makes this actually change/flex about 400px but why? */
@@ -117,12 +162,13 @@ em {
 }
 
 .submitButton {
+	/*how to center align button in its parent? */
 	padding: 10px 20px;
 	margin: 10px auto; 
 	background-color: #45C5AF; /* 9279e0 purple, d1d2d4 gray  */
 	color: black;
-	font-size: 1.1rem;
-	font-weight: bold;
+	font-size: 1rem; /* was 1.1rem */
+	/*font-weight: bold;*/
 	align-content: center;
 }
 
@@ -132,12 +178,38 @@ em {
 }
 
 input[type="radio"] {
-	display: inline-block; 
-	/*width: auto;*/
-	/*white-space: nowrap;*/
+	display: inline-block;
+	width: auto;
+	white-space: nowrap;
 }
 
-/* need to apply inline-block to BOTH label and radio button to keep them together on same line */
+/* need to target text and email and pwd fields ! 
+google styles for login forms 
+try flexbox form for better layour - eg https://codepen.io/rstrahl/pen/rxmjgL */
+input[type="text"], input[type="email"], input[type="password"] {
+	display: inline;  
+	/* block means its not 100% wide for some reason */
+	
+	/*white-space:nowrap;*/
+	width: 100%;
+	border: 0px solid blue;
+	border-bottom: 3px solid green;
+	line-height: 1.2rem;
+	padding: 5px;
+	margin:  5px 0;
+	background-color: #f7f5e3;
+	/* d9f7d9  bef7be nicer */
+}
+
+.wrapper {
+	display: flex;
+}
+
+.wrapper input[type="text"], input[type="email"], input[type="password"] {
+    flex: 1 1 auto;
+  }
+     
+/* need to apply inline-block to BOTH label and radio button, to keep them together on same line - only actually required for lables it seems */
 label {
 	display: inline-block;
 	/*width: auto;*/

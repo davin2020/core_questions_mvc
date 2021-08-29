@@ -14,7 +14,7 @@ return function (ContainerBuilder $containerBuilder) {
 	$container = [];
 
 	$container[LoggerInterface::class] = function (ContainerInterface $c) {
-		// $settings is array that contains key/value pairs like logger, renderer, and now dbDetails
+		// $settings is array that contains key/value pairs like logger, renderer, and now dbDetails - see file settings.php for actual DB details
 		$settings = $c->get('settings');
 
 		$loggerSettings = $settings['logger'];
@@ -50,6 +50,17 @@ return function (ContainerBuilder $containerBuilder) {
 	$container['SaveAnswersController'] = DI\Factory('App\Factories\SaveAnswersControllerFactory');
 
 	$container['ShowUserHistoryController'] = DI\Factory('App\Factories\ShowUserHistoryControllerFactory');
+
+	//dont forget to add new models & controllers here! esp when restructuring!
+	$container['DashboardController'] = DI\Factory('App\Factories\DashboardControllerFactory');
+
+	$container['QuestionFormController'] = DI\Factory('App\Factories\QuestionFormControllerFactory');
+
+	$container['AdminPageController'] = DI\Factory('App\Factories\AdminPageControllerFactory');
+
+	$container['LoginUserController'] = DI\Factory('App\Factories\LoginUserControllerFactory');
+
+	$container['LogoutUserController'] = DI\Factory('App\Factories\LogoutUserControllerFactory');
 
 	$containerBuilder->addDefinitions($container);
 

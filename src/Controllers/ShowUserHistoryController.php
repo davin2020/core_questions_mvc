@@ -3,7 +3,7 @@
 namespace App\Controllers; //namespace must be first stmt!
 
 // is this still required ?
-//error_reporting(E_ALL); ini_set('display_errors', '1');
+error_reporting(E_ALL); ini_set('display_errors', '1');
 
 class ShowUserHistoryController
 {
@@ -23,20 +23,53 @@ class ShowUserHistoryController
 	//FYI any data sent to this Controller will be inside the assoc array $args, with a key matching the {user_id} var from the routes file
 	public function __invoke($request, $response, $args)
 	{
+		session_start();
+
+		// if ( !$_SESSION['coreIsLoggedIn']) {
+		// coreIsLoggedIn is not false, its null/not defined!!
+		// if (isset($_SESSION['coreIsLoggedIn']) && $_SESSION['coreIsLoggedIn'] != true) {
+
+		//this syntax redirects to login page, btu above with && doesnt!!
+		if ( !$_SESSION['coreIsLoggedIn']) {
+			//maybe need logout button to test if this works?
+			//ok if assoc array shwos they are no logged in, then redirect works ok with msg - of course if i kill the session then there wont be a msg as $_SESSION array will be empty
+			$_SESSION['errorMessage'] = "redirected from Show History to Index";
+			var_dump("var_dump_ Your not logged in, so redirected from Show History to Index");
+
+			//  do i need this here??
+			// session_destroy();
+			header("Location: /");
+			//error The requested resource /showUserHistory/index.php was not found on this server. - locn need to be route not view !
+        	exit();
+		}
+
+
 		//why do i need to get this from db, why not just pass in Name from prev page ie index/HomePageController?
 		// var name user_id in args is taken from routes.php file
-		$user = $this->userModel->getUserFromID($args['user_id']);
-		$userName = $user['name'];
+		// $user_id = $args['user_id'];
+		$session_user_id = $_SESSION['userId'];
+		// $userId = $_SESSION['userId'];
+		// $user = $_SESSION['existingUser'];
+
+		// if i already have the user obj in sesion, do i need to get it from the db again?
+		//this is how LoginUserController gets the user
+		// $existingUser = $this->userModel->getUserByEmail($userEmail);
+
+		$user = $this->userModel->getUserFromID($session_user_id);
+		$userName = $user['nickname'];
 
 		//find history - should this be from answerModel or userModel?
-		$userAnswerHistory = $this->answerModel->getUserAnswers($args['user_id']);
+		// $userAnswerHistory = $this->answerModel->getUserAnswers($args['user_id']);
+		$userAnswerHistory = $this->answerModel->getUserAnswers($session_user_id);
 		// $userHistory = $this->userModel->getUserHistory($args['q_id']); //method never written/doesnt exist
 
 		//make line graph based on users overall_score  
-		$userLineGraph = $this->answerModel->getUserAnswersLineGraph($args['user_id']);
+		$userLineGraph = $this->answerModel->getUserAnswersLineGraph($session_user_id);
 
-		//do stuff with output buffering & encoding to embed the graph-image, so graph doesnt take over the whole web page
+		//Stroke() actually 'creates the graph as an image, encodes it in the chosen image format eg png, and stream it back to the browser with the correct header identifying the data stream that the client receives as a valid image stream'
 		$userLineGraphImg = $userLineGraph->Stroke(_IMG_HANDLER);
+
+		//must do stuff with output buffering & encoding to embed the graph-image, otherwise graph will take over/overwrite the whole web page, as JpGraph library outputs binary (stream)
 		ob_start();
 		imagepng($userLineGraphImg);
 		$imageLineGraphData = ob_get_contents();
@@ -44,6 +77,7 @@ class ShowUserHistoryController
 
 		//build AssocArgs array & add items to it, for actual php page to render
 		$assocArrayArgs = [];
+		$assocArrayArgs['currentUser'] = $user; 
 		$assocArrayArgs['userName'] = $userName; 
 		$assocArrayArgs['userHistory'] = $userAnswerHistory; 
 		$assocArrayArgs['userLineGraph'] = $imageLineGraphData; 
