@@ -27,9 +27,9 @@ class DashboardController
 	public function __invoke($request, $response, $args)
 	{
 		session_start(); 
-		echo session_id();
+		// echo session_id();
 		// eg hj81kesf7j8t8tdjk82bhf5cvq - seems to be hte same regardles of whose logged in?? so is destory working properly?
-		var_dump(session_id());
+		// var_dump(session_id()); //shows output inside doubel quotes with data type
 
 	//thsi is what actualy protects each route! need to add to each controller that i want to protect/restrict from direct url access  - needs to be correct var name!
 		// ISSUE this protection this doesnt stop me from channging url to /dashboard/5 and getting access to antoher users data, so maybe i DO need to change the url so it doesnt use an ID, and isntead put ID into session ??

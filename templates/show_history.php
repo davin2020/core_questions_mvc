@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php error_reporting(E_ALL); ini_set('display_errors', '1'); ?>
+<!-- <?php error_reporting(E_ALL); ini_set('display_errors', '1'); ?> -->
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -31,26 +32,20 @@
 	<?php  
 		if ( isset($_GET['success']) && $_GET['success']== 1) {
 			echo '<em>Your Answers have been Saved</em>';
-	} ?>
-
-		<?php
+		} 
 		if (count($userHistory) == 0 ) {
 			echo '<em>No dates or scores to display and above graph will be blank</em>';
 		}
-		?>
-			<!-- <p>
-				Date: -- 
-				Total Score: --
-				Mean Score: 
-			</p> -->
-		<?php
+	?>
+
+	<?php
 		foreach ($userHistory as $item) { 
 			//change String rep of date into actual Date object (DateTimeInterface), then format it nicely
 			$stringDate =  $item["score_date"];
 			$dateObj = date_create($stringDate);
 			// format date syntax - l = full name of day, j = day of month, F = full month name, Y = year in 4 digits, eg Saturday 20 February 2021
 			$formattedDate = date_format($dateObj, 'l j F Y');
-		?>
+	?>
 			<!-- <p>RowID: <?php echo $item["ucs_id"] ?> --  -->
 			<p>
 				Date: <?php echo $formattedDate ?> -- 
@@ -58,20 +53,21 @@
 				Mean Score: <?php echo $item["mean_score"] ?> 
 			</p>
 
-			
 			<!-- alt layout option
 			<p>
 				<?php echo $formattedDate ?> -- 
 				<?php echo $item["overall_score"] ?> --
 				<?php echo $item["mean_score"] ?> 
 			</p> -->
-		<?php 
+
+	<?php 
 		}
-		?>
+	?>
+
 	</section>
 	
 	<br>
-	<a href="/dashboard">Return to Dashboard using Sessions</a>
+	<a href="/dashboard">Return to Dashboard</a>
 	<br>
 
 </body>
