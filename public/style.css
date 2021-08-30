@@ -46,6 +46,14 @@ em {
 	color: #ff7200;
 }
 
+table {
+	margin: 10px;
+}
+
+.history_table {
+	border: 2px solid black;
+}
+
 /*what to do on smaller screens under 400px? as graph is too small to read easily? */
 .graph_image {
 	width: 100%;
