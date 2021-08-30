@@ -35,19 +35,23 @@ return function (ContainerBuilder $containerBuilder) {
 		return $renderer;
 	};
 
+	//original dependancies
 	$container['HomepageController'] = DI\Factory('App\Factories\HomepageControllerFactory');
 	$container['DBConnector'] = DI\Factory('App\DBConnector'); //technically a factory
  
+	//updated for CoreQuestions - added 3 new models each of which requires its own factory
 	$container['QuestionModel'] = DI\Factory('App\Factories\QuestionModelFactory');
 	$container['UserModel'] = DI\Factory('App\Factories\UserModelFactory');
 	$container['AnswerModel'] = DI\Factory('App\Factories\AnswerModelFactory');
 
+	//dont forget to add new models & controllers here!
 	$container['SaveUserController'] = DI\Factory('App\Factories\SaveUserControllerFactory');
 
 	$container['SaveAnswersController'] = DI\Factory('App\Factories\SaveAnswersControllerFactory');
 
 	$container['ShowUserHistoryController'] = DI\Factory('App\Factories\ShowUserHistoryControllerFactory');
 
+	//dont forget to add new models & controllers here! esp when restructuring!
 	$container['DashboardController'] = DI\Factory('App\Factories\DashboardControllerFactory');
 
 	$container['QuestionFormController'] = DI\Factory('App\Factories\QuestionFormControllerFactory');

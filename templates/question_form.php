@@ -6,47 +6,69 @@
 	<meta charset="utf-8"/>
 	<title>Wellbeing Tracker - Answer Form</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
+	<!-- <link href="style.css" type="text/css" rel="stylesheet"> -->
 	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 	<h1>Wellbeing Tracker - Answer Wellbeing Questions</h1>
-
+	<!-- TODO ? need to call th option to start using sesssions on Question and History pages? -->
 	<?php
-			$userID = $user['user_id'];
+	$userID = $user['user_id'];
 	?>
+
+		<!-- <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option> -->
 
 	<h2>Answer Wellbeing Questions for <?php echo $userName ?> </h2>
 
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
+		echo session_id(); 
+
 		if ( isset($_GET['success']) && $_GET['success']== 1) {
 			echo '<em>Your Answers have been Saved</em>';
 		} 
 		if ( isset($_SESSION) )  {
-			// echo session_id(); 
-			// var_dump("<br>session contents vardump: <br>");
-			// var_dump($_SESSION); //this is null now?
+			var_dump("<br>session contents vardump: <br>");
+			var_dump($_SESSION); //this is null now?
 		}
+		echo session_id();
 	?>
 
 	<div class="core_form flex_container">
 
+		<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
+
+		<!-- <div class="flex_container"> -->
+
+			<!-- TODO need to make it redirect back to dashbord!  or hsitory page with correct URL !! -->
 			<form method="post" action="/saveAnswers">
 
 				<div class="formNameDate">
 
+					<!-- remove name & embed in link/route/url to get here -->
+					<!--  label isnt really needed anymore if select field is hidden? -->
+					<!-- <label for="existingUserID">Name of Existing User: -->
+
 						<select name="existingUserID" hidden="true">
-							 <option value="<?php echo $user["user_id"]?>"><?php echo $user["nickname"]?></option>
+							<!-- Need to make choosing a name mandatory -->
+						  	<!-- <option value="<?php echo $userID ?>"><?php echo $userName ?>...</option> -->
+						  	
+							 <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
 						</select>
+					<!-- </label> -->
 
 					<br>
-					<!--  need to make date compulsoyr & in the future! -->
+					<!--  need to make name & date compulsoyr & in the future! -->
 					<label for="dateCompleted">Date Form Completed:
 						<input type="Date" name="dateCompleted" id="dateCompleted" 
 						value="<?php echo date('Y-m-d');?>" required>
 					</label>
 					<br>
+					<!-- 
+					<label>Date Form Completed
+						<input type="date" id="date" name="date" required>
+					</label> -->
 
 				</div>
 				
@@ -58,6 +80,7 @@
 					<!-- need to flex this on smaller screens -->
 					<div class="instructions">
 						<strong>IMPORTANT - PLEASE READ THIS FIRST</strong>
+						<!-- need to make 14 a dynamic number, based on the number of questions that this Core form has -->
 						<?php $maxQuestions = count($coreQuestionsAndPoints); ?>
 						<p>This form has <?php echo $maxQuestions ?> statements about how you have been OVER THE LAST WEEK.
 						<br>Please read each statement and think how often you felt that way last week.
@@ -143,7 +166,9 @@
 	</div> <!--  eof id=core-form div -->
 
 	<br>
-	<a href="/dashboard">Return to Dashboard</a>
+	<!-- <a href="/dashboard/<?php echo $userID ?>">Return to Dashboard using ID</a> -->
+	<br>
+	<a href="/dashboard">Return to Dashboard using Sessions</a>
 	<br>
 
 </body>
