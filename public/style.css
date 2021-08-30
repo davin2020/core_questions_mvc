@@ -8,8 +8,8 @@ body {
 	width: 95%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
-	font-size: 1rem; /* was 18px */
-	background-color: #a5e0f7 ; /*#FCFFCD  */
+	font-size: 1rem; 
+	background-color: #a5e0f7; 
 } 
 
 h1 {
@@ -27,14 +27,12 @@ ul, ol {
 }
 
 div {
-	/*border: 1px solid green;*/
 	padding: 5px;
 	width: auto;
 }
 
 section {
 	border: 2px solid #4115c4;
-	/*background-color: #f7f5e3;*/
 	padding: 10px;
 	margin: 20px 10px;
 }
@@ -46,7 +44,14 @@ em {
 .user_warning {
 	font-weight: bold;
 	color: #ff7200;
-	/* orange ff7200  ed7b09  */
+}
+
+table {
+	margin: 10px;
+}
+
+.history_table {
+	border: 2px solid black;
 }
 
 /*what to do on smaller screens under 400px? as graph is too small to read easily? */
@@ -67,10 +72,8 @@ em {
 
 /*parent contains child of logo and instructions*/
 .block_instructions {
-	/* differnce between flex & inline-flex ? */
 	display: flex;
 	flex-direction: row;
-	/*flex-wrap: wrap;*/
 }
 
 /* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
@@ -140,7 +143,7 @@ em {
 	border: 1px solid gray;
 }
 
-/* writing 500px makes this actually change/flex about 400px but why? */
+/* BUG writing 500px makes this actually change/flex about 400px but why? */
 @media only screen and (max-width: 500px) {
 	.flex-child-qa {
 		width: 100%;
@@ -162,13 +165,11 @@ em {
 }
 
 .submitButton {
-	/*how to center align button in its parent? */
 	padding: 10px 20px;
 	margin: 10px auto; 
 	background-color: #45C5AF; /* 9279e0 purple, d1d2d4 gray  */
 	color: black;
-	font-size: 1rem; /* was 1.1rem */
-	/*font-weight: bold;*/
+	font-size: 1rem; 
 	align-content: center;
 }
 
@@ -183,14 +184,9 @@ input[type="radio"] {
 	white-space: nowrap;
 }
 
-/* need to target text and email and pwd fields ! 
-google styles for login forms 
-try flexbox form for better layour - eg https://codepen.io/rstrahl/pen/rxmjgL */
+/* need to target text and email and pwd fields with same styling */
 input[type="text"], input[type="email"], input[type="password"] {
 	display: inline;  
-	/* block means its not 100% wide for some reason */
-	
-	/*white-space:nowrap;*/
 	width: 100%;
 	border: 0px solid blue;
 	border-bottom: 3px solid green;
@@ -198,7 +194,6 @@ input[type="text"], input[type="email"], input[type="password"] {
 	padding: 5px;
 	margin:  5px 0;
 	background-color: #f7f5e3;
-	/* d9f7d9  bef7be nicer */
 }
 
 .wrapper {
@@ -212,13 +207,13 @@ input[type="text"], input[type="email"], input[type="password"] {
 /* need to apply inline-block to BOTH label and radio button, to keep them together on same line - only actually required for lables it seems */
 label {
 	display: inline-block;
-	/*width: auto;*/
 }
 
 /* 
 COLORS
 #a5e0f7 blue bkg
-#4115c4    purple h1
+#FCFFCD yellow bkg
+#4115c4 purple h1
 #FF8F35 orange h1
-#FCFFCD  yellow bkg
+
 */

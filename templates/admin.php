@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <html>
-<!-- Davin updated this file for CoreQuestions -->
+
 <head>
 	<meta charset="utf-8"/>
 	<title>Wellbeing Tracker - Admin Console</title>
@@ -17,16 +17,8 @@
     </form>
 		
 
-<!-- 	<h2>Dashboards</h2>
-	Dutch
-	<br>
-	<a href="/dashboard/10">DAVIN</a>
-	<br> -->
-
 	<h2>Show Existing Users & Dashboard Links</h2>
-	<!--  fyi Controller for index page ie HomePageController is where array variables like $userList are coming from 
-	Show list of users with individual link to user history page at /showUserHistory/{q_id}
-	-->
+
 	<!-- how will this work to show data about each user, if im nont that user? ie if i dont have a session for that user? 
 		does admin page need special pages to view others detaiils? or shoudl each controller check if admin is logge din and allow them access to toher users data? but if each user is taken from session data, maybe i need to add the other user to the session?
 	-->
@@ -74,8 +66,6 @@
 
 	<div class="core_form flex_container">
 
-		<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
-
 		<!-- <div class="flex_container"> -->
 
 			<form method="post" action="/saveAnswers">
@@ -101,10 +91,6 @@
 						value="<?php echo date('Y-m-d');?>" required>
 					</label>
 					<br>
-					<!-- 
-					<label>Date Form Completed
-						<input type="date" id="date" name="date" required>
-					</label> -->
 
 				</div>
 				
@@ -115,7 +101,6 @@
 					<!-- need to flex this on smaller screens -->
 					<div class="instructions">
 						<strong>IMPORTANT - PLEASE READ THIS FIRST</strong>
-						<!-- need to make 14 a dynamic number, based on the number of questions that this Core form has -->
 						<?php $maxQuestions = count($coreQuestionsAndPoints); ?>
 						<p>This form has <?php echo $maxQuestions ?> statements about how you have been OVER THE LAST WEEK.
 						<br>Please read each statement and think how often you felt that way last week.
@@ -181,7 +166,6 @@
 				</div> <!-- div above foreach loop, flex-parent-qa -->
 
 				<div class="instructions">
-					<!-- <p>THANK YOU FOR YOUR TIME IN COMPLETING THIS QUESTIONNAIRE</p> -->
 					<p>Thank you for your time in completing this questionnaire</p>
 				</div>
 
