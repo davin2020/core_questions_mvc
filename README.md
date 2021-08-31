@@ -11,7 +11,7 @@ NB: CORE forms are owned, created & copyrighted by -
 © CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
 
 ## Live Demo
-This Wellbeing Tracker will be live here - (coming soon, hopefully by end of August 2021) - https://davin2020.github.io/wellbeing/default.html
+This Wellbeing Tracker is live here (as of 31 August) - https://wellbeing.2020-davin.dev.io-academy.uk/
 
 ## End User Features
 This is a summary of the main changes to the app -
@@ -28,8 +28,9 @@ This is a summary of the main changes to the app -
 - Added more user fields to DB (fullname, email, password). Created  functionality to Register & Login users, using hashed passwords (17 May)
 - Added sessions to restrict logged in users to only access their own Dashboard data and added Logout button to destory sessions (14 June) 
 - Updated pages so that if users try to manually change the URL and aren't logged in, they are redirected to the login page (3 Aug)
-- Added sessions to the Show History and Question Form pages, so users can only access thier own data (6 Aug)
-- Updated all page titles to be Wellbeing Tracker (24 Aug) **NEW!**
+- Added sessions to the Show History and Question Form pages, so users can only access their own data (6 Aug)
+- Updated all page titles to be Wellbeing Tracker (24 Aug)
+- Improved formatting of User History by adding tickmarks to graph and displaying details within a table (30 Aug) **NEW!**
 
 ## Screenshots
 Register User or Login: 
@@ -46,7 +47,7 @@ Answer Wellbeing Questions (GP-CORE Form):
 
 User History Graph & Details:
 
-![Image of User's History and Graph](/screenshots/core_questions_app_graph.PNG)
+![Image of User's History and Graph](/screenshots/core_questions_app_graph_improved.PNG)
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory
