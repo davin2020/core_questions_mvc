@@ -94,11 +94,28 @@ em {
   /*border: 3px solid red;*/
 }
 
+/* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
+.instructions {
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+	background-color: #d1d2d4;
+	border: 1px solid gray;
+}
 
-/*#Flexbox is for alignment. #CSSGrid is for layout. */
-/*Use grid when you already have the layout structure in mind, and flex when you just want everything to fit. Layout first vs content first.*/
-/*for flex, parent does work*/
+/*contents is overflowign, need to combine with flex grid below ? */
+.core_form {
+	border: 3px solid #4115c4;
+	background-color: #f7f5e3;
+	padding: 10px;
+}
 
+.flex_container {
+  display: flex; 
+  /*border: 3px solid brown;*/
+}
+
+/* flex boxes to line up Questions & Answers on Form */
 .flex-parent-qa {
   	display: flex; 
   	width: 100%;
@@ -108,10 +125,9 @@ em {
 	align-content: space-around;
 }
 
-/*is this being used/neede anymore? */
+
 .flex-child-qa {
 	width: 50%;
-	/*border: 1px solid orange;*/
 }
 
 .flex-child-qa-questions {
@@ -124,17 +140,8 @@ em {
 	border: 1px solid gray;
 }
 
-/*@media only screen and (max-width: 400px) {
-	.flex-child-qa {
-		width: 100%;
-		border: 1px solid white;
-		font-size: 0.9rem;
-	}
-}
-*/
-/* writing 500px makes this actually changes about 400px but why? */
+/* writing 500px makes this actually change/flex about 400px but why? */
 @media only screen and (max-width: 500px) {
-
 	.flex-child-qa {
 		width: 100%;
 		font-size: 0.9rem;
@@ -153,16 +160,6 @@ em {
 		padding-bottom: 20px;
 	}
 }
-
-
-/*@media (min-width: 30em) and (orientation: landscape)*/
-/*@media only screen and (min-width: 200px) and (orientation: landscape) {
-	.flex-child-qa {
-		width: 50%;
-		border: 1px solid black;
-	}
-}*/
-
 
 .submitButton {
 	/*how to center align button in its parent? */
@@ -212,8 +209,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     flex: 1 1 auto;
   }
      
-
-/* need to apply inline-block to BOTH label and radio button - only actually required for lables it seems */
+/* need to apply inline-block to BOTH label and radio button, to keep them together on same line - only actually required for lables it seems */
 label {
 	display: inline-block;
 	/*width: auto;*/

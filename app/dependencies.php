@@ -35,9 +35,9 @@ return function (ContainerBuilder $containerBuilder) {
 		return $renderer;
 	};
 
-	//original stuff for ToDos
+	//original dependancies
 	$container['HomepageController'] = DI\Factory('App\Factories\HomepageControllerFactory');
-	$container['DBConnector'] = DI\Factory('App\DBConnector'); //technically a factoy
+	$container['DBConnector'] = DI\Factory('App\DBConnector'); //technically a factory
  
 	//updated for CoreQuestions - added 3 new models each of which requires its own factory
 	$container['QuestionModel'] = DI\Factory('App\Factories\QuestionModelFactory');
@@ -63,4 +63,5 @@ return function (ContainerBuilder $containerBuilder) {
 	$container['LogoutUserController'] = DI\Factory('App\Factories\LogoutUserControllerFactory');
 
 	$containerBuilder->addDefinitions($container);
+
 };

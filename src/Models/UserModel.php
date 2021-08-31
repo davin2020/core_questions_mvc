@@ -56,6 +56,7 @@ class UserModel
 		return $result;
 	}
 
+
 	//chck this out 16may2021
 	/*
 
@@ -191,6 +192,7 @@ $userResultsArrayTemp = [];
 		}
 
 */
+
 
 	// TODO form need validation to stop future dates from being entered
 	// should date be passsed in as a string, or a Date object?

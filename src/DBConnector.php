@@ -5,9 +5,10 @@ namespace App;
 // updated for CoreQuestions
 class DBConnector
 {
+  
+  //need to pass in container in order to get db settings out
 	public function __invoke($container) 
 	{
-
 		// abstracted actual db connection details to settings.php file
 		$dbSettings = $container->get('settings')['dbDetails'];
 
@@ -22,4 +23,5 @@ class DBConnector
 		$db->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
 		return $db;
 	}
+
 }

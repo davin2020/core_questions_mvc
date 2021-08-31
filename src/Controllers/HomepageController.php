@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 class HomepageController
 {
+
 	private $userModel;
 	private $questionModel;
 	private $renderer;
@@ -24,7 +25,6 @@ class HomepageController
 		$this->renderer = $renderer;
 	}
 
-	//invoke only ever does 1 thing, each page has own controler thus own invoke method, where the stuff for the actual page gets done eg display users & questions or save answers etc
 	public function __invoke($request, $response, $args)
 	{
 		session_start();

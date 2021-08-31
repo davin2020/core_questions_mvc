@@ -32,7 +32,6 @@ This is a summary of the main changes to the app -
 - Updated all page titles to be Wellbeing Tracker (24 Aug)
 - Improved formatting of User History by adding tickmarks to graph and displaying details within a table (30 Aug) **NEW!**
 
-
 ## Screenshots
 Register User or Login: 
 
@@ -49,7 +48,6 @@ Answer Wellbeing Questions (GP-CORE Form):
 User History Graph & Details:
 
 ![Image of User's History and Graph](/screenshots/core_questions_app_graph_improved.PNG)
-
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory
