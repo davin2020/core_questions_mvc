@@ -3,15 +3,16 @@
 ## About
 This is a web form where you can submit answers to the 'GP-CORE Questions', which is used to report subjective wellbeing. Results are plotted on a graph so you can see your progress over time
 
-**NB: This repo is very much a work in progress, with features in branches that aren't ready for `main` yet**
-
-This project uses the WAMP stack, Slim 4 framwork and MVC pattern (Routing, the Dependency Injection Container, Factories, Controllers & Views) to implement CRUD funtionality
+**This repo is very much a work in progress, with features in branches that aren't ready for `main` yet**
 
 NB: CORE forms are owned, created & copyrighted by -
 © CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
 
+## Tech Stack
+This project uses PHP 7, the Slim 4 framwork and MVC pattern (Routing, the Dependency Injection Container, Factories, Controllers & Views) to implement CRUD funtionality, with a MySQL database.
+
 ## Live Demo
-This Wellbeing Tracker is live here (as of 31 August) - https://wellbeing.2020-davin.dev.io-academy.uk/
+This Wellbeing Tracker is live here (as of 31 August 2021) - https://wellbeing.2020-davin.dev.io-academy.uk/
 
 ## End User Features
 This is a summary of the main changes to the app -
