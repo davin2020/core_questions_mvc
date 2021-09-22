@@ -5,7 +5,7 @@
 body {
 	margin: 10px;
 	padding: 5px;
-	width: 95%;
+	width: 98%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
 	font-size: 1rem; /* was 18px */
@@ -26,10 +26,11 @@ ul, ol {
 	list-style-position:inside;
 }
 
+/* dont apply this to ALL divs, just apply padding to the ones that need it */
 div {
 	/*border: 1px solid green;*/
-	padding: 5px;
-	width: auto;
+	/*padding: 5px;*/
+	/*width: auto;*/
 }
 
 section {
@@ -54,7 +55,8 @@ em {
 	width: 100%;
 }
 
-@media only screen and (min-width: 960px) {
+/* rems (ie root-ems) cascade their properties down to their children but ems dont - hence swopped 960px for 70rems */
+@media only screen and (min-width: 70rem) {
 	.graph_image {
 		width: 75%;
 	}
@@ -65,12 +67,22 @@ em {
 	font-size: 0.9rem;
 }
 
-/*parent contains child of logo and instructions*/
+/*parent contains child of logo and instructions - needs mq about 550 to center and take 100% width */
 .block_instructions {
+	margin-top: 10px;
 	/* differnce between flex & inline-flex ? */
 	display: flex;
 	flex-direction: row;
-	/*flex-wrap: wrap;*/
+	flex-wrap: wrap;
+	/* this is how to center an item within its parent */
+	/*justify-content: center;*/
+	/* this seems to center and adjust space to be equal around multiple items on same line, even when they flex/wrap to the below line */
+	justify-content: space-around;
+	width: 100%;
+}
+
+/* nothing required here at present */
+.core_logo {
 }
 
 /* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
@@ -80,8 +92,13 @@ em {
 	text-align: center;
 	background-color: #d1d2d4;
 	border: 1px solid gray;
+	width: 60%;
 }
-
+@media only screen and (max-width: 600px) {
+	.instructions {
+		width: 90%;
+	}
+}
 /*contents is overflowign, need to combine with flex grid below ? */
 .core_form {
 	border: 3px solid #4115c4;
@@ -94,26 +111,17 @@ em {
   /*border: 3px solid red;*/
 }
 
-/* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
-.instructions {
-	padding: 10px;
-	margin: 10px;
-	text-align: center;
-	background-color: #d1d2d4;
-	border: 1px solid gray;
-}
-
 /*contents is overflowign, need to combine with flex grid below ? */
-.core_form {
+/*.core_form {
 	border: 3px solid #4115c4;
 	background-color: #f7f5e3;
 	padding: 10px;
-}
+}*/
 
-.flex_container {
+/*.flex_container {
   display: flex; 
-  /*border: 3px solid brown;*/
-}
+  border: 3px solid brown;
+}*/
 
 /* flex boxes to line up Questions & Answers on Form */
 .flex-parent-qa {
@@ -131,17 +139,19 @@ em {
 }
 
 .flex-child-qa-questions {
-	width: 40%;
+	width: 60%;
 	border: 1px solid gray;
+	padding: 5px;
 }
 
 .flex-child-qa-answers {
-	width: 60%;
+	width: 40%;
 	border: 1px solid gray;
+	padding: 5px;
 }
 
-/* writing 500px makes this actually change/flex about 400px but why? */
-@media only screen and (max-width: 500px) {
+/* writing 500px makes this actually change/flex about 400px but why? - use rems instead of px, 30 rem is approx 450px tho depends on font size etc - othe rem sizes to try are 25, 35, 50, 70 */
+@media only screen and (max-width: 30rem) {
 	.flex-child-qa {
 		width: 100%;
 		font-size: 0.9rem;
