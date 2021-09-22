@@ -5,6 +5,8 @@
 	<meta charset="UTF-8">
 	<title>Wellbeing Tracker - My History</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
+	<!-- needed for mobile devices/MQ -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -30,7 +32,7 @@
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
 		if ( isset($_GET['success']) && $_GET['success']== 1) {
-			echo '<em>Your Answers have been Saved</em>';
+			echo '<em>Your Answers have been saved. Thank you for your time in completing this questionnaire.</em>';
 	} ?>
 
 		<?php

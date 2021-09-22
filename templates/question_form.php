@@ -5,9 +5,8 @@
 	<meta charset="utf-8" />
 	<title>Wellbeing Tracker - Answer Form</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
-	<!-- <link href="style.css" type="text/css" rel="stylesheet"> -->
 	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css' />
-	<!-- needed for mobile devices/mq etc -->
+	<!-- needed for mobile devices/MQ -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
@@ -161,10 +160,10 @@
 					?>
 				</div> <!-- div above foreach loop, flex-parent-qa -->
 
-				<div class="instructions">
-					<!-- TODO - maybe show Thank You after form has been submitted -->
+				<!-- TODO - maybe show Thank You after form has been submitted - Done see show_history.php -->
+				<!-- <div class="instructions">
 					<p>Thank you for your time in completing this questionnaire</p>
-				</div>
+				</div> -->
 
 				<div class="buttonContainer">
 					<button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>

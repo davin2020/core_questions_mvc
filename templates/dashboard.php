@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<?php 
-// session_name("CORE_SESSION");
-// session_start();  //seems i dont nedd to call it here if its called in controller
-// To use a named session, call session_name() before calling session_start().
-?> 
-
 <?php error_reporting(E_ALL); ini_set('display_errors', '1'); ?>
-
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Wellbeing Tracker - Dashboard</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
+	<!-- needed for mobile devices/MQ -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
