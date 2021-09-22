@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
 <!-- Davin updated this file for CoreQuestions -->
 <head>
 	<meta charset="utf-8"/>
 	<title>Wellbeing Tracker - Admin Console</title>
 	<link href="style.css" type="text/css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
+	<!-- needed for mobile devices/MQ -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
