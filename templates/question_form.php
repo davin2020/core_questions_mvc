@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
 <!-- Davin updated this file for CoreQuestions -->
 <head>
-	<meta charset="utf-8"/>
+	<meta charset="utf-8" />
 	<title>Wellbeing Tracker - Answer Form</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
 	<!-- <link href="style.css" type="text/css" rel="stylesheet"> -->
-	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css' />
+	<!-- needed for mobile devices/mq etc -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
 
 <body>
 	<h1>Wellbeing Tracker - Answer Wellbeing Questions</h1>
@@ -23,19 +25,19 @@
 
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
-		echo session_id(); 
+		// echo session_id(); 
 
 		if ( isset($_GET['success']) && $_GET['success']== 1) {
 			echo '<em>Your Answers have been Saved</em>';
 		} 
 		if ( isset($_SESSION) )  {
-			var_dump("<br>session contents vardump: <br>");
-			var_dump($_SESSION); //this is null now?
+			// var_dump("<br>session contents vardump: <br>");
+			// var_dump($_SESSION); //this is null now?
 		}
-		echo session_id();
+		// echo session_id();
 	?>
 
-	<div class="core_form flex_container">
+	<div class="core_form">
 
 		<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
 
@@ -111,36 +113,47 @@
 							<!-- These are the Answer Labels for each question ie "Not At All, Only Occassionally, Sometimes, Often, Most or All the Time".
 								Question Answer Labels are now being retrieved from DB via QuestionModel.
 								TODO - consider having just one set of Answer Labels in a top-most Heading column, but would need each radio button to be in its own collumn -->
-							<label>
-								<input type="radio" required
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
-								<?php echo $questionAnswerLabels[0]['label']; ?> 
-							</label>
-							<label>
-								<input type="radio"
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
-								<?php echo $questionAnswerLabels[1]['label']; ?>
-							</label>
-							<label>
-								<input type="radio"
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
-								<?php echo $questionAnswerLabels[2]['label']; ?>
-							</label>
-							<label>
-								<input type="radio"
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsD_often"] ?>">
-								<?php echo $questionAnswerLabels[3]['label']; ?>
-							</label>
-							<label>
-								<input type="radio"
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
-								<?php echo $questionAnswerLabels[4]['label']; ?>
-							</label>
+							<div>
+								<label>
+									<input type="radio" required
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
+									<?php echo $questionAnswerLabels[0]['label']; ?> 
+								</label>
+							</div>
+							<div>
+								<label>
+									<input type="radio"
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
+									<?php echo $questionAnswerLabels[1]['label']; ?>
+								</label>
+							</div>
+							<div>
+								<label>
+									<input type="radio"
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
+									<?php echo $questionAnswerLabels[2]['label']; ?>
+								</label>
+							</div>
+							<div>
+								<label>
+									<input type="radio"
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsD_often"] ?>">
+									<?php echo $questionAnswerLabels[3]['label']; ?>
+								</label>
+							</div>
+							<div>
+								<label>
+									<input type="radio"
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
+									<?php echo $questionAnswerLabels[4]['label']; ?>
+								</label>
+							</div>
+
 						</div>	
 
 					<?php
@@ -157,7 +170,7 @@
 					<button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>
 				</div>
 
-				<p class="copyright">© CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf</p>
+				<p class="copyright"><a href="https://www.coresystemtrust.org.uk/copyright.pdf">© CORE System Trust</a></p>
 
 			</form>
 
