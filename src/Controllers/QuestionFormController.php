@@ -29,7 +29,7 @@ class QuestionFormController
 	{	
 		// add session stuff here
 		session_start(); 
-		echo session_id();
+		// echo session_id();
 
 		//if user not logged in ie no current session, redirect to home page
 		if ( !$_SESSION['coreIsLoggedIn']) {
