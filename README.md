@@ -31,7 +31,8 @@ This is a summary of the main changes to the app -
 - Updated pages so that if users try to manually change the URL and aren't logged in, they are redirected to the login page (3 Aug)
 - Added sessions to the Show History and Question Form pages, so users can only access their own data (6 Aug)
 - Updated all page titles to be Wellbeing Tracker (24 Aug)
-- Improved formatting of User History by adding tickmarks to graph and displaying details within a table (30 Aug) **NEW!**
+- Improved formatting of User History by adding tickmarks to graph and displaying details within a table (30 Aug)
+- Improved mobile responsiveness with better Media Queries and layout/formatting for Wellbeing Questions and Answers Form (22 Sept) **NEW!**
 
 ## Screenshots
 Register User or Login: 
@@ -44,7 +45,7 @@ User Dashboard:
 
 Answer Wellbeing Questions (GP-CORE Form): 
 
-![Image of Core Questions Form](/screenshots/core_questions_app_all_questions.PNG)
+![Image of Core Questions Form](/screenshots/core_questions_app_all_questions_v2.PNG)
 
 User History Graph & Details:
 
