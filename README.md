@@ -44,7 +44,7 @@ User Dashboard:
 
 Answer Wellbeing Questions (GP-CORE Form): 
 
-![Image of Core Questions Form](/screenshots/core_questions_app_all_questions_v3.png)
+![Image of Core Questions Form](/screenshots/core_questions_app_all_questions_v4.png)
 
 User History Graph & Details:
 
