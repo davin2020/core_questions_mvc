@@ -49,7 +49,8 @@ Answer Wellbeing Questions (GP-CORE Form):
 
 User History Graph & Details:
 
-![Image of User's History and Graph](/screenshots/core_questions_app_graph_improved.PNG)
+![Image of User's History and Graph](/screenshots/core_questions_app_graph2.png)
+
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory

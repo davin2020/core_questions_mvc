@@ -46,10 +46,36 @@ em {
 	font-weight: bold;
 	color: green;
 }
+
 .user_warning {
 	font-weight: bold;
 	color: #ff7200;
-	/* orange ff7200  ed7b09  */
+  /* orange ff7200  ed7b09  */
+}
+
+table {
+	margin: 10px;
+	border-collapse: collapse;
+}
+
+.history_table {
+	border: 2px solid black;
+}
+
+.history_table th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.history_table td {
+    border: 1px solid black;
+    padding: 6px;
+    text-align: center;
+}
+
+/* left align the first column of table, as it contains Dates */
+.history_table td:first-child {
+    text-align: left;
 }
 
 /*what to do on smaller screens under 400px? as graph is too small to read easily? */
