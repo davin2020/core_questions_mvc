@@ -3,15 +3,16 @@
 ## About
 This is a web form where you can submit answers to the 'GP-CORE Questions', which is used to report subjective wellbeing. Results are plotted on a graph so you can see your progress over time
 
-**NB: This repo is very much a work in progress, with features in branches that aren't ready for `main` yet**
-
-This project uses the WAMP stack, Slim 4 framwork and MVC pattern (Routing, the Dependency Injection Container, Factories, Controllers & Views) to implement CRUD funtionality
+**This repo is very much a work in progress, with features in branches that aren't ready for `main` yet**
 
 NB: CORE forms are owned, created & copyrighted by -
 © CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf
 
+## Tech Stack
+This project uses PHP 7, the Slim 4 framwork and MVC pattern (Routing, the Dependency Injection Container, Factories, Controllers & Views) to implement CRUD funtionality, with a MySQL database.
+
 ## Live Demo
-This Wellbeing Tracker will be live here - (coming soon, hopefully by end of August 2021) - https://davin2020.github.io/wellbeing/default.html
+This Wellbeing Tracker is live here (as of 31 August 2021) - https://wellbeing.2020-davin.dev.io-academy.uk/
 
 ## End User Features
 This is a summary of the main changes to the app -
@@ -28,8 +29,10 @@ This is a summary of the main changes to the app -
 - Added more user fields to DB (fullname, email, password). Created  functionality to Register & Login users, using hashed passwords (17 May)
 - Added sessions to restrict logged in users to only access their own Dashboard data and added Logout button to destory sessions (14 June) 
 - Updated pages so that if users try to manually change the URL and aren't logged in, they are redirected to the login page (3 Aug)
-- Added sessions to the Show History and Question Form pages, so users can only access thier own data (6 Aug)
-- Updated all page titles to be Wellbeing Tracker (24 Aug) **NEW!**
+- Added sessions to the Show History and Question Form pages, so users can only access their own data (6 Aug)
+- Updated all page titles to be Wellbeing Tracker (24 Aug)
+- Improved formatting of User History by adding tickmarks to graph and displaying details within a table (30 Aug)
+- Improved mobile responsiveness with better Media Queries and layout/formatting for Wellbeing Questions and Answers Form (22 Sept) **NEW!**
 
 ## Screenshots
 Register User or Login: 
@@ -42,11 +45,12 @@ User Dashboard:
 
 Answer Wellbeing Questions (GP-CORE Form): 
 
-![Image of Core Questions Form](/screenshots/core_questions_app_all_questions.PNG)
+![Image of Core Questions Form](/screenshots/core_questions_app_all_questions_v4.png)
 
 User History Graph & Details:
 
 ![Image of User's History and Graph](/screenshots/core_questions_app_graph2.png)
+
 
 ## To Install & Run Locally
 1. Clone repo locally & `cd` to directory

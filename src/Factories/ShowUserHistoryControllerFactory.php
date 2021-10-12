@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Factories;
+// updated for CoreQuestions wrt UserModel and AnswerModel and showing user history (ie dates & overall score)
 
 use App\Controllers\ShowUserHistoryController;
 

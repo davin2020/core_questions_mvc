@@ -5,11 +5,11 @@
 body {
 	margin: 10px;
 	padding: 5px;
-	width: 95%;
+	width: 98%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #000;
-	font-size: 1rem; 
-	background-color: #a5e0f7; 
+	font-size: 1rem; /* was 18px */
+	background-color: #a5e0f7 ; /*#FCFFCD  */
 } 
 
 h1 {
@@ -26,24 +26,31 @@ ul, ol {
 	list-style-position:inside;
 }
 
+/* dont apply this to ALL divs, just apply padding to the ones that need it */
 div {
-	padding: 5px;
-	width: auto;
+	/*border: 1px solid green;*/
+	/*padding: 5px;*/
+	/*width: auto;*/
 }
 
 section {
 	border: 2px solid #4115c4;
+	/*background-color: #f7f5e3;*/
 	padding: 10px;
-	margin: 20px 10px;
+	/*margin: 20px 10px;*/
+	margin-bottom: 20px;
+	margin-right: 5px;
 }
 
 em {
 	font-weight: bold;
 	color: green;
 }
+
 .user_warning {
 	font-weight: bold;
 	color: #ff7200;
+  /* orange ff7200  ed7b09  */
 }
 
 table {
@@ -71,13 +78,13 @@ table {
     text-align: left;
 }
 
-
 /*what to do on smaller screens under 400px? as graph is too small to read easily? */
 .graph_image {
 	width: 100%;
 }
 
-@media only screen and (min-width: 960px) {
+/* rems (ie root-ems) cascade their properties down to their children but ems dont - hence swopped 960px for 70rems */
+@media only screen and (min-width: 70rem) {
 	.graph_image {
 		width: 75%;
 	}
@@ -88,10 +95,22 @@ table {
 	font-size: 0.9rem;
 }
 
-/*parent contains child of logo and instructions*/
+/*parent contains child of logo and instructions - needs mq about 550 to center and take 100% width */
 .block_instructions {
+	margin-top: 10px;
+	/* differnce between flex & inline-flex ? */
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	/* this is how to center an item within its parent */
+	/*justify-content: center;*/
+	/* this seems to center and adjust space to be equal around multiple items on same line, even when they flex/wrap to the below line */
+	justify-content: space-around;
+	width: 100%;
+}
+
+/* nothing required here at present */
+.core_logo {
 }
 
 /* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
@@ -101,8 +120,13 @@ table {
 	text-align: center;
 	background-color: #d1d2d4;
 	border: 1px solid gray;
+	width: 60%;
 }
-
+@media only screen and (max-width: 600px) {
+	.instructions {
+		width: 90%;
+	}
+}
 /*contents is overflowign, need to combine with flex grid below ? */
 .core_form {
 	border: 3px solid #4115c4;
@@ -115,26 +139,17 @@ table {
   /*border: 3px solid red;*/
 }
 
-/* need MQ to wrap children when browser is narrower ie change parent to flex-wrap = wrap, or why not use flex option from my portfolio ? */
-.instructions {
-	padding: 10px;
-	margin: 10px;
-	text-align: center;
-	background-color: #d1d2d4;
-	border: 1px solid gray;
-}
-
 /*contents is overflowign, need to combine with flex grid below ? */
-.core_form {
+/*.core_form {
 	border: 3px solid #4115c4;
 	background-color: #f7f5e3;
 	padding: 10px;
-}
+}*/
 
-.flex_container {
+/*.flex_container {
   display: flex; 
-  /*border: 3px solid brown;*/
-}
+  border: 3px solid brown;
+}*/
 
 /* flex boxes to line up Questions & Answers on Form */
 .flex-parent-qa {
@@ -152,17 +167,19 @@ table {
 }
 
 .flex-child-qa-questions {
-	width: 40%;
+	width: 60%;
 	border: 1px solid gray;
+	padding: 5px;
 }
 
 .flex-child-qa-answers {
-	width: 60%;
+	width: 40%;
 	border: 1px solid gray;
+	padding: 5px;
 }
 
-/* BUG writing 500px makes this actually change/flex about 400px but why? */
-@media only screen and (max-width: 500px) {
+/* writing 500px makes this actually change/flex about 400px but why? - use rems instead of px, 30 rem is approx 450px tho depends on font size etc - othe rem sizes to try are 25, 35, 50, 70 */
+@media only screen and (max-width: 30rem) {
 	.flex-child-qa {
 		width: 100%;
 		font-size: 0.9rem;
@@ -183,11 +200,13 @@ table {
 }
 
 .submitButton {
+	/*how to center align button in its parent? */
 	padding: 10px 20px;
 	margin: 10px auto; 
 	background-color: #45C5AF; /* 9279e0 purple, d1d2d4 gray  */
 	color: black;
-	font-size: 1rem; 
+	font-size: 1rem; /* was 1.1rem */
+	/*font-weight: bold;*/
 	align-content: center;
 }
 
@@ -202,9 +221,14 @@ input[type="radio"] {
 	white-space: nowrap;
 }
 
-/* need to target text and email and pwd fields with same styling */
+/* need to target text and email and pwd fields ! 
+google styles for login forms 
+try flexbox form for better layour - eg https://codepen.io/rstrahl/pen/rxmjgL */
 input[type="text"], input[type="email"], input[type="password"] {
 	display: inline;  
+	/* block means its not 100% wide for some reason */
+	
+	/*white-space:nowrap;*/
 	width: 100%;
 	border: 0px solid blue;
 	border-bottom: 3px solid green;
@@ -212,6 +236,7 @@ input[type="text"], input[type="email"], input[type="password"] {
 	padding: 5px;
 	margin:  5px 0;
 	background-color: #f7f5e3;
+	/* d9f7d9  bef7be nicer */
 }
 
 .wrapper {
@@ -225,13 +250,13 @@ input[type="text"], input[type="email"], input[type="password"] {
 /* need to apply inline-block to BOTH label and radio button, to keep them together on same line - only actually required for lables it seems */
 label {
 	display: inline-block;
+	/*width: auto;*/
 }
 
 /* 
 COLORS
 #a5e0f7 blue bkg
-#FCFFCD yellow bkg
-#4115c4 purple h1
+#4115c4    purple h1
 #FF8F35 orange h1
-
+#FCFFCD  yellow bkg
 */

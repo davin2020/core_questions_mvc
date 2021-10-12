@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
-
+<!-- Davin updated this file for CoreQuestions -->
 <head>
 	<meta charset="utf-8"/>
 	<title>Wellbeing Tracker - Register or Login</title>
 	<link href="style.css" type="text/css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
+	<!-- needed for mobile devices/MQ -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -58,6 +59,7 @@
 	<section>
 		<h2>Login</h2>
 			<div>
+				<!--  get headers here eg User-Message -->
 				<?php  
 				if ( isset($_GET['success']) && $_GET['success']== 1) {
 					echo '<em>Success msg goes here</em>';
@@ -67,6 +69,7 @@
 					echo '<em user_warning>First Failure</em>';
 				} 
 
+				// only show the msg if it had been set - need to style error msg
 				if ( isset($messageForUser) ) {
 					echo '<em class="user_warning">' . $messageForUser . '</em>';
 				} 
@@ -74,6 +77,7 @@
 
 				<form method="POST" action="/loginUser">
 
+					<!-- if login failed cos pwd wrong, shoudl email field be pre-populated with same email address? -->
 					<label>Email:
 						<input type="Email" name="inputEmail" id="inputEmail" required>
 					</label>

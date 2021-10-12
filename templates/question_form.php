@@ -1,52 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
 <!-- Davin updated this file for CoreQuestions -->
 <head>
-	<meta charset="utf-8"/>
+	<meta charset="utf-8" />
 	<title>Wellbeing Tracker - Answer Form</title>
 	<link href="../style.css" type="text/css" rel="stylesheet">
-	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css' />
+	<!-- needed for mobile devices/MQ -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
 
 <body>
 	<h1>Wellbeing Tracker - Answer Wellbeing Questions</h1>
-
+	<!-- TODO ? need to call th option to start using sesssions on Question and History pages? -->
 	<?php
-			$userID = $user['user_id'];
+	$userID = $user['user_id'];
 	?>
+
+		<!-- <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option> -->
 
 	<h2>Answer Wellbeing Questions for <?php echo $userName ?> </h2>
 
 	<!-- success msg if answeres to questions are saved ok -->
 	<?php  
+		// echo session_id(); 
+
 		if ( isset($_GET['success']) && $_GET['success']== 1) {
 			echo '<em>Your Answers have been Saved</em>';
 		} 
 		if ( isset($_SESSION) )  {
-			// echo session_id(); 
 			// var_dump("<br>session contents vardump: <br>");
 			// var_dump($_SESSION); //this is null now?
 		}
+		// echo session_id();
 	?>
 
-	<div class="core_form flex_container">
+	<div class="core_form">
 
+		<!-- Added date and name to form here - values are extracted as part of SaveAnswersController - OR should whole form be under a /userid route?-->
+
+		<!-- <div class="flex_container"> -->
+
+			<!-- TODO need to make it redirect back to dashbord!  or hsitory page with correct URL !! -->
 			<form method="post" action="/saveAnswers">
 
 				<div class="formNameDate">
 
+					<!-- remove name & embed in link/route/url to get here -->
+					<!--  label isnt really needed anymore if select field is hidden? -->
+					<!-- <label for="existingUserID">Name of Existing User: -->
+
 						<select name="existingUserID" hidden="true">
-							 <option value="<?php echo $user["user_id"]?>"><?php echo $user["nickname"]?></option>
+							<!-- Need to make choosing a name mandatory -->
+						  	<!-- <option value="<?php echo $userID ?>"><?php echo $userName ?>...</option> -->
+						  	
+							 <option value="<?php echo $user["user_id"]?>"><?php echo $user["name"]?></option>
 						</select>
+					<!-- </label> -->
 
 					<br>
-					<!--  need to make date compulsoyr & in the future! -->
+					<!--  need to make name & date compulsoyr & in the future! -->
 					<label for="dateCompleted">Date Form Completed:
 						<input type="Date" name="dateCompleted" id="dateCompleted" 
 						value="<?php echo date('Y-m-d');?>" required>
 					</label>
 					<br>
+					<!-- 
+					<label>Date Form Completed
+						<input type="date" id="date" name="date" required>
+					</label> -->
 
 				</div>
 				
@@ -58,6 +81,7 @@
 					<!-- need to flex this on smaller screens -->
 					<div class="instructions">
 						<strong>IMPORTANT - PLEASE READ THIS FIRST</strong>
+						<!-- need to make 14 a dynamic number, based on the number of questions that this Core form has -->
 						<?php $maxQuestions = count($coreQuestionsAndPoints); ?>
 						<p>This form has <?php echo $maxQuestions ?> statements about how you have been OVER THE LAST WEEK.
 						<br>Please read each statement and think how often you felt that way last week.
@@ -88,36 +112,47 @@
 							<!-- These are the Answer Labels for each question ie "Not At All, Only Occassionally, Sometimes, Often, Most or All the Time".
 								Question Answer Labels are now being retrieved from DB via QuestionModel.
 								TODO - consider having just one set of Answer Labels in a top-most Heading column, but would need each radio button to be in its own collumn -->
-							<label>
-								<input type="radio" required
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
-								<?php echo $questionAnswerLabels[0]['label']; ?> 
-							</label>
-							<label>
-								<input type="radio"
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
-								<?php echo $questionAnswerLabels[1]['label']; ?>
-							</label>
-							<label>
-								<input type="radio"
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
-								<?php echo $questionAnswerLabels[2]['label']; ?>
-							</label>
-							<label>
-								<input type="radio"
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsD_often"] ?>">
-								<?php echo $questionAnswerLabels[3]['label']; ?>
-							</label>
-							<label>
-								<input type="radio"
-								name="radioAnswerPoints[<?php echo $q_id ?>]" 
-								value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
-								<?php echo $questionAnswerLabels[4]['label']; ?>
-							</label>
+							<div>
+								<label>
+									<input type="radio" required
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsA_not"] ?>">
+									<?php echo $questionAnswerLabels[0]['label']; ?> 
+								</label>
+							</div>
+							<div>
+								<label>
+									<input type="radio"
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsB_only"] ?>">
+									<?php echo $questionAnswerLabels[1]['label']; ?>
+								</label>
+							</div>
+							<div>
+								<label>
+									<input type="radio"
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsC_sometimes"] ?>">
+									<?php echo $questionAnswerLabels[2]['label']; ?>
+								</label>
+							</div>
+							<div>
+								<label>
+									<input type="radio"
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsD_often"] ?>">
+									<?php echo $questionAnswerLabels[3]['label']; ?>
+								</label>
+							</div>
+							<div>
+								<label>
+									<input type="radio"
+									name="radioAnswerPoints[<?php echo $q_id ?>]" 
+									value="<?php echo $singleQuestionPoints["pointsE_most"] ?>">
+									<?php echo $questionAnswerLabels[4]['label']; ?>
+								</label>
+							</div>
+
 						</div>	
 
 					<?php
@@ -125,16 +160,16 @@
 					?>
 				</div> <!-- div above foreach loop, flex-parent-qa -->
 
-				<div class="instructions">
-					<!-- TODO - maybe show Thank You after form has been submitted -->
+				<!-- TODO - maybe show Thank You after form has been submitted - Done see show_history.php -->
+				<!-- <div class="instructions">
 					<p>Thank you for your time in completing this questionnaire</p>
-				</div>
+				</div> -->
 
 				<div class="buttonContainer">
 					<button name="btnSubmitAnswers" type="submit" class="submitButton">Submit Answers</button>
 				</div>
 
-				<p class="copyright">© CORE System Trust: https://www.coresystemtrust.org.uk/copyright.pdf</p>
+				<p class="copyright"><a href="https://www.coresystemtrust.org.uk/copyright.pdf">© CORE System Trust</a></p>
 
 			</form>
 
@@ -143,7 +178,9 @@
 	</div> <!--  eof id=core-form div -->
 
 	<br>
-	<a href="/dashboard">Return to Dashboard</a>
+	<!-- <a href="/dashboard/<?php echo $userID ?>">Return to Dashboard using ID</a> -->
+	<br>
+	<a href="/dashboard">Return to Dashboard using Sessions</a>
 	<br>
 
 </body>

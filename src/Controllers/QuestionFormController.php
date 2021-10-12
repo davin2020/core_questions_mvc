@@ -34,7 +34,7 @@ class QuestionFormController
 		//if user not logged in ie no current session, redirect to home page
 		if ( !$_SESSION['coreIsLoggedIn']) {
 			$_SESSION['errorMessage'] = "DORY redirected from Question Form to Index";
-			// var_dump("DORY var_dump_ Your not logged in, so redirected from Question Form to Index");
+			var_dump("DORY var_dump_ Your not logged in, so redirected from Question Form to Index");
 			header("Location: /");
 			exit();
 		}
