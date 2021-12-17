@@ -30,7 +30,7 @@
 		// $newAssocArray['user_id'] = $user['user_id'];
 
 	// get teh u ser from teh SESSION not from teh ARGS!
-		$userId = $_SESSION['userId'];
+		// $userId = $_SESSION['userId'];
 		$user = $_SESSION['existingUser'];
 		var_dump("<br>user from session <br>");
 		var_dump($user);
@@ -38,8 +38,8 @@
 
 		$dateJoined = $user['date_joined'];
 		$name = $user['nickname'];
-		$fullname = $user['fullname'];
-		$userID = $user['user_id'];
+		// $fullname = $user['fullname'];
+		// $userID = $user['user_id'];
 		$dateObj = date_create($dateJoined);
 		// format date syntax eg Saturday 20 February 2021 - maybe this should be a method? ie pass in string date, convert to Date obj & get nicely formatted string back?
 		$formattedDate = date_format($dateObj, 'l j F Y');
@@ -73,10 +73,10 @@
 
 	<section>
 	<h2>My Profile</h2>
-		<p>ID: <?php echo $userID ?> </p>
+		<!-- <p>ID: <?php echo $userID ?> </p> -->
 		<p>Nickname: <?php echo $name ?></p>
 
-		<p>Full Name: <?php echo $user['fullname'] ?></p>
+		<!-- <p>Full Name: <?php echo $user['fullname'] ?></p> -->
 		
 		<p>Email: <?php echo $user['email'] ?></p>
 		<!-- format date in DMY -->
