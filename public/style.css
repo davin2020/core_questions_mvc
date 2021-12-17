@@ -238,7 +238,11 @@ input[type="text"], input[type="email"], input[type="password"] {
 	background-color: #f7f5e3;
 	/* d9f7d9  bef7be nicer */
 }
-
+/* remove fulname for now*/
+#inputFullName {
+	display: none;
+	/*visibility: hidden;*/
+}
 .wrapper {
 	display: flex;
 }
