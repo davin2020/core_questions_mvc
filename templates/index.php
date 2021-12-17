@@ -20,10 +20,10 @@
 		<div>
 			<form method="POST" action="/saveUser">
 				<!-- <div class="wrapper"> -->
-				<label>Full Name:
-					<!-- makign thsi ' input size="50" ' makes it overflow its div on narrrow screens -->
-					<input type="text" name="inputFullName" id="inputFullName" required placeholder="What's your first name and last name?">
-				</label>
+				<!-- makign thsi ' input size="50" ' makes it overflow its div on narrrow screens -->
+				<!-- <label>Full Name: -->
+					<input type="text" name="inputFullName" id="inputFullName" placeholder="What's your first name and last name?">
+				<!-- </label> -->
 				<br>
 				<!-- </div> -->
 
